@@ -4,13 +4,29 @@ A modern, elegant website for Rashika Dance Academy - a premier institution for 
 
 ## About the Academy
 
-Rashika Dance Academy is a beacon of Indian classical dance excellence, established over three decades ago in Mumbai, India. Founded by Rashika Sharma, a highly accomplished dancer with multiple national awards and international recognition, the academy has trained more than 500 students who have performed on global stages.
+Rashika Dance Academy is a beacon of Indian classical dance excellence, established over three decades ago. Founded by Rashika Sharma, a highly accomplished dancer with multiple national awards and international recognition, the academy has trained more than 500 students who have performed on global stages.
+
+### Contact Information
+
+**Location:**  
+Bellavista, New South Wales, Australia
+
+**Phone:**  
+0433 005 131
+
+**Classes Available At:**  
+- BellaVista
+- Baulkham Hills
+
+**Email:**  
+info@rashikadance.com
 
 ### What Makes This Academy Special
-- **Award-Winning Founder**: Led by Rashika Sharma, a multi-award-winning dancer recognized across India
+- **Award-Winning Founder**: Led by Rashika Sharma, a multi-award-winning dancer recognized internationally
 - **International Training**: Students trained to perform at international levels
 - **Cultural Preservation**: Dedicated to preserving and promoting Indian classical dance traditions
 - **Global Impact**: Alumni performing on stages across continents
+- **Charitable Focus**: "We at Rasika see the need not the cause" - Using dance as a platform for positive social impact
 
 ## Website Design Philosophy
 

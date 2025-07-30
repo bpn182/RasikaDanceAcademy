@@ -29,9 +29,10 @@ Rashika Dance Academy has been a beacon of Indian classical dance for over three
 > "Performing internationally was a dream come true, thanks to the academy's support and training." — Student
 
 ## Contact & Studio Info
-- **Location:** 123 Cultural Arts Center, Dance District, Mumbai 400001, India
-- **Phone:** +91 98765 43210, +91 87654 32109
-- **Email:** info@rashikadance.com, admissions@rashikadance.com
+- **Location:** Bellavista, New South Wales, Australia
+- **Phone:** 0433 005 131
+- **Classes Available At:** BellaVista & Baulkham Hills
+- **Email:** info@rashikadance.com
 
 ---
 

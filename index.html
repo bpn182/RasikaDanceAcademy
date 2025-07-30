@@ -149,6 +149,69 @@
             }
         }
         
+        /* Gallery styles */
+        .gallery-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            color: #6b7280;
+        }
+        
+        .gallery-nav-btn:hover {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+        
+        .gallery-nav-btn.active {
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            color: white;
+            border-color: #ec4899;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+        
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 320px;
+            height: 320px;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-nav-arrow {
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        
+        .gallery-nav-arrow:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-indicator {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-indicator:hover {
+            transform: scale(1.2);
+        }
+        
         .smoke-particle {
             position: absolute;
             width: 8px;
@@ -426,23 +489,173 @@
             animation-delay: 6s;
         }
         
-        /* Responsive image handling */
-        @media (max-width: 768px) {
-            .dancer-container {
-                height: 350px;
+        /* DJ-style smoke effects */
+        @keyframes djSmoke {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) translateX(0px) scale(0.8) rotate(0deg);
             }
-            .dancer-container .dancer-image {
-                object-position: center center;
+            25% {
+                opacity: 0.7;
+                transform: translateY(-20px) translateX(10px) scale(1.2) rotate(5deg);
             }
-            .divine-light {
-                width: 150px;
-                height: 150px;
+            50% {
+                opacity: 0.5;
+                transform: translateY(-60px) translateX(-5px) scale(1.5) rotate(-3deg);
+            }
+            75% {
+                opacity: 0.3;
+                transform: translateY(-100px) translateX(15px) scale(1.8) rotate(8deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) translateX(-10px) scale(2.2) rotate(-5deg);
             }
         }
         
+        @keyframes djSmokeHorizontal {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px) translateY(0px) scale(0.5) rotate(0deg);
+            }
+            25% {
+                opacity: 0.6;
+                transform: translateX(20px) translateY(-10px) scale(1) rotate(10deg);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translateX(80px) translateY(-25px) scale(1.5) rotate(-5deg);
+            }
+            75% {
+                opacity: 0.2;
+                transform: translateX(140px) translateY(-40px) scale(2) rotate(15deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(200px) translateY(-60px) scale(2.5) rotate(-10deg);
+            }
+        }
+        
+        @keyframes djSmokeBurst {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(0deg);
+            }
+            20% {
+                opacity: 0.8;
+                transform: scale(1) rotate(45deg);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.8) rotate(90deg);
+            }
+            80% {
+                opacity: 0.3;
+                transform: scale(2.5) rotate(135deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(3) rotate(180deg);
+            }
+        }
+        
+        .dj-smoke-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 5;
+        }
+        
+        .dj-smoke {
+            position: absolute;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                rgba(200, 200, 255, 0.6) 30%, 
+                rgba(150, 150, 200, 0.4) 60%, 
+                transparent 100%);
+            border-radius: 50%;
+            filter: blur(3px);
+        }
+        
+        .dj-smoke-bottom {
+            width: 60px;
+            height: 30px;
+            bottom: 10px;
+            animation: djSmoke 8s ease-out infinite;
+        }
+        
+        .dj-smoke-side {
+            width: 80px;
+            height: 40px;
+            top: 50%;
+            animation: djSmokeHorizontal 10s ease-out infinite;
+        }
+        
+        .dj-smoke-burst {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: djSmokeBurst 6s ease-out infinite;
+        }
+        
+        /* Individual smoke particles with delays */
+        .dj-smoke:nth-child(1) { 
+            animation-delay: 0s; 
+            left: 20%; 
+        }
+        .dj-smoke:nth-child(2) { 
+            animation-delay: 1.5s; 
+            left: 80%; 
+        }
+        .dj-smoke:nth-child(3) { 
+            animation-delay: 3s; 
+            left: 40%; 
+        }
+        .dj-smoke:nth-child(4) { 
+            animation-delay: 4.5s; 
+            left: 70%; 
+        }
+        .dj-smoke:nth-child(5) { 
+            animation-delay: 6s; 
+            left: 10%; 
+        }
+        .dj-smoke:nth-child(6) { 
+            animation-delay: 2s; 
+            right: 20%; 
+        }
+        .dj-smoke:nth-child(7) { 
+            animation-delay: 3.5s; 
+            right: 10%; 
+        }
+        .dj-smoke:nth-child(8) { 
+            animation-delay: 5s; 
+            left: 60%; 
+        }
+        .dj-smoke:nth-child(9) { 
+            animation-delay: 1s; 
+            right: 40%; 
+        }
+        .dj-smoke:nth-child(10) { 
+            animation-delay: 4s; 
+            left: 30%; 
+        }
+        
+        /* Enhanced smoke for larger screens */
         @media (min-width: 1024px) {
-            .dancer-container {
-                height: 500px;
+            .dj-smoke-bottom {
+                width: 80px;
+                height: 40px;
+            }
+            .dj-smoke-side {
+                width: 100px;
+                height: 50px;
+            }
+            .dj-smoke-burst {
+                width: 120px;
+                height: 120px;
             }
         }
         
@@ -502,14 +715,14 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Home</a>
+                    <a href="index.html" class="text-primary-600 font-semibold border-b-2 border-primary-600">Home</a>
                     <a href="media-charity.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Media & Charity</a>
-                    <a href="#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
-                    <a href="#news" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">News</a>
+                    <a href="index.html#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
+                    <a href="news.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">News</a>
                     <a href="videos.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Videos</a>
-                    <a href="#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
+                    <a href="index.html#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
                     <a href="arangetram.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Arangetram</a>
-                    <a href="#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
+                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -524,14 +737,14 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
             <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
+                <a href="index.html" class="block py-2 text-primary-600 font-semibold">Home</a>
                 <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="#news" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
+                <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
+                <a href="news.html" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
                 <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
+                <a href="index.html#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
                 <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
-                <a href="#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
+                <a href="index.html#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
             </div>
         </div>
     </nav>
@@ -711,8 +924,35 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl">
-                        <div class="w-full h-full bg-gradient-to-br from-gold-200 to-primary-200 flex items-center justify-center">
+                    <div class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl relative">
+                        <!-- DJ Smoke Effects -->
+                        <div class="dj-smoke-container">
+                            <!-- Bottom rising smoke -->
+                            <div class="dj-smoke dj-smoke-bottom"></div>
+                            <div class="dj-smoke dj-smoke-bottom"></div>
+                            <div class="dj-smoke dj-smoke-bottom"></div>
+                            <div class="dj-smoke dj-smoke-bottom"></div>
+                            <div class="dj-smoke dj-smoke-bottom"></div>
+                            
+                            <!-- Side flowing smoke -->
+                            <div class="dj-smoke dj-smoke-side"></div>
+                            <div class="dj-smoke dj-smoke-side"></div>
+                            
+                            <!-- Burst effects -->
+                            <div class="dj-smoke dj-smoke-burst"></div>
+                            <div class="dj-smoke dj-smoke-burst"></div>
+                            <div class="dj-smoke dj-smoke-burst"></div>
+                        </div>
+                        
+                        <img 
+                            src="images/dance-home.png" 
+                            alt="Classical Dance Performance" 
+                            class="w-full h-full object-cover relative z-10"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        />
+                        <!-- Fallback content if image fails to load -->
+                        <div class="hidden w-full h-full bg-gradient-to-br from-gold-200 to-primary-200 items-center justify-center">
                             <i class="fas fa-om text-6xl text-white/80"></i>
                         </div>
                     </div>
@@ -721,180 +961,184 @@
         </div>
     </section>
 
-    <!-- Classes Section -->
-    <section id="classes" class="py-20 bg-white">
+    <!-- Interactive Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Dance Forms</h2>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Our Dance Gallery</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore the rich tapestry of Indian classical and contemporary dance forms, each with its unique charm and cultural significance.</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience the beauty and grace of classical Indian dance through our interactive gallery showcasing performances, students, and memorable moments.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Bharatanatyam -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-primary-500 to-rose-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-hands text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Bharatanatyam</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The classical temple dance of Tamil Nadu, characterized by fixed upper torso, bent legs, and sophisticated footwork.</p>
-                        <button class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Kathak -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-gold-500 to-yellow-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-yin-yang text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Kathak</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The storytelling dance from North India, known for its graceful spins, intricate footwork, and expressive gestures.</p>
-                        <button class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Odissi -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-purple-500 to-pink-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-lotus text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Odissi</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The sculptural dance from Odisha, inspired by temple carvings and characterized by fluid movements and tribhangi postures.</p>
-                        <button class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Contemporary Fusion -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-teal-500 to-blue-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-sync-alt text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Contemporary Fusion</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Modern expressions blending classical techniques with contemporary movements, creating unique artistic experiences.</p>
-                        <button class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Folk Dance -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-orange-500 to-red-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-drumstick-bite text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Folk Traditions</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Vibrant regional folk dances celebrating the diverse cultural heritage of India through energetic and colorful performances.</p>
-                        <button class="bg-white text-orange-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Kids Classes -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-green-500 to-emerald-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-child text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Kids Special</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Age-appropriate programs designed to introduce children to the joy of dance through fun, creative, and engaging methods.</p>
-                        <button class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
+            <!-- Gallery Navigation -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-gray-100 rounded-full p-1 flex space-x-1">
+                    <button class="gallery-nav-btn active px-6 py-2 rounded-full font-medium transition-all duration-300" data-category="all">All</button>
+                    <button class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300" data-category="performances">Performances</button>
+                    <button class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300" data-category="students">Students</button>
+                    <button class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300" data-category="awards">Awards</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Moments of Grace</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Capturing the beauty and elegance of our performances, competitions, and memorable moments from our dance academy.</p>
+            <!-- Interactive Sliding Gallery -->
+            <div class="relative">
+                <!-- Gallery Container -->
+                <div class="gallery-container overflow-hidden">
+                    <div class="gallery-track flex transition-transform duration-500 ease-in-out" id="gallery-track">
+                        
+                        <!-- Performance Images -->
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="performances">
+                            <div class="w-full h-full bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center relative">
+                                <i class="fas fa-theater-masks text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Bharatanatyam Performance</h3>
+                                        <p class="text-sm">Classical temple dance showcase</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="performances">
+                            <div class="w-full h-full bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center relative">
+                                <i class="fas fa-music text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Kathak Excellence</h3>
+                                        <p class="text-sm">Graceful spinning movements</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="performances">
+                            <div class="w-full h-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center relative">
+                                <i class="fas fa-lotus text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Odissi Elegance</h3>
+                                        <p class="text-sm">Sculptural dance movements</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student Images -->
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="students">
+                            <div class="w-full h-full bg-gradient-to-br from-teal-200 to-blue-200 flex items-center justify-center relative">
+                                <i class="fas fa-users text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Student Showcase</h3>
+                                        <p class="text-sm">Young talent in action</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="students">
+                            <div class="w-full h-full bg-gradient-to-br from-green-200 to-emerald-200 flex items-center justify-center relative">
+                                <i class="fas fa-child text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Kids Classes</h3>
+                                        <p class="text-sm">Nurturing young dancers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="students">
+                            <div class="w-full h-full bg-gradient-to-br from-orange-200 to-red-200 flex items-center justify-center relative">
+                                <i class="fas fa-graduation-cap text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Graduation Day</h3>
+                                        <p class="text-sm">Celebrating achievements</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Award Images -->
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="awards">
+                            <div class="w-full h-full bg-gradient-to-br from-yellow-200 to-amber-200 flex items-center justify-center relative">
+                                <i class="fas fa-trophy text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Excellence Awards</h3>
+                                        <p class="text-sm">Recognition for outstanding work</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="awards">
+                            <div class="w-full h-full bg-gradient-to-br from-indigo-200 to-purple-200 flex items-center justify-center relative">
+                                <i class="fas fa-medal text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Competition Winners</h3>
+                                        <p class="text-sm">National dance championships</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="awards">
+                            <div class="w-full h-full bg-gradient-to-br from-rose-200 to-pink-200 flex items-center justify-center relative">
+                                <i class="fas fa-star text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Hall of Fame</h3>
+                                        <p class="text-sm">Legendary performers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Performance Images -->
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="performances">
+                            <div class="w-full h-full bg-gradient-to-br from-cyan-200 to-blue-200 flex items-center justify-center relative">
+                                <i class="fas fa-hands-praying text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Devotional Dance</h3>
+                                        <p class="text-sm">Spiritual expressions through movement</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group" data-category="performances">
+                            <div class="w-full h-full bg-gradient-to-br from-lime-200 to-green-200 flex items-center justify-center relative">
+                                <i class="fas fa-leaf text-6xl text-white/80"></i>
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <h3 class="text-xl font-bold mb-2">Nature-Inspired</h3>
+                                        <p class="text-sm">Contemporary fusion pieces</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="gallery-nav-arrow gallery-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10">
+                    <i class="fas fa-chevron-left text-gray-600"></i>
+                </button>
+                <button class="gallery-nav-arrow gallery-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10">
+                    <i class="fas fa-chevron-right text-gray-600"></i>
+                </button>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center">
-                        <i class="fas fa-camera text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold">View Gallery</button>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center">
-                        <i class="fas fa-video text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold">Watch Videos</button>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center">
-                        <i class="fas fa-trophy text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold">See Awards</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instructors Section -->
-    <section id="instructors" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Master Teachers</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Learn from acclaimed artists and master teachers who have dedicated their lives to preserving and promoting the art of dance.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gold-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Founder
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Rashika Sharma</h3>
-                    <p class="text-primary-600 font-semibold mb-3">Principal & Artistic Director</p>
-                    <p class="text-gray-600 leading-relaxed">30+ years of experience in Bharatanatyam and contemporary dance. International performer and cultural ambassador.</p>
-                </div>
-
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Master
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Priya Nair</h3>
-                    <p class="text-gold-600 font-semibold mb-3">Kathak Specialist</p>
-                    <p class="text-gray-600 leading-relaxed">Trained under legendary Kathak maestros. Expert in both traditional and contemporary Kathak expressions.</p>
-                </div>
-
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Expert
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Anjali Das</h3>
-                    <p class="text-purple-600 font-semibold mb-3">Odissi & Folk Dance</p>
-                    <p class="text-gray-600 leading-relaxed">Renowned for her expertise in Odissi and various Indian folk dance forms. International award winner.</p>
-                </div>
+            <!-- Gallery Indicators -->
+            <div class="flex justify-center mt-8 space-x-2" id="gallery-indicators">
+                <button class="gallery-indicator w-3 h-3 rounded-full bg-primary-500 transition-all duration-300"></button>
+                <button class="gallery-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
+                <button class="gallery-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
             </div>
         </div>
     </section>
@@ -917,7 +1161,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">Visit Our Studio</h3>
-                            <p class="text-gray-600">123 Cultural Arts Center<br>Dance District, Mumbai 400001<br>India</p>
+                            <p class="text-gray-600">Bellavista, New South Wales<br>Australia<br>Classes at BellaVista & Baulkham Hills</p>
                         </div>
                     </div>
 
@@ -927,7 +1171,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
-                            <p class="text-gray-600">+91 98765 43210<br>+91 87654 32109</p>
+                            <p class="text-gray-600">0433 005 131</p>
                         </div>
                     </div>
 
@@ -1017,11 +1261,11 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-primary-400 transition-colors">Home</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary-400 transition-colors">Home</a></li>
                         <li><a href="media-charity.html" class="text-gray-400 hover:text-primary-400 transition-colors">Media & Charity</a></li>
-                        <li><a href="#shows" class="text-gray-400 hover:text-primary-400 transition-colors">Shows</a></li>
-                        <li><a href="#news" class="text-gray-400 hover:text-primary-400 transition-colors">News</a></li>
-                        <li><a href="#gallery" class="text-gray-400 hover:text-primary-400 transition-colors">Gallery</a></li>
+                        <li><a href="index.html#shows" class="text-gray-400 hover:text-primary-400 transition-colors">Shows</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-primary-400 transition-colors">News</a></li>
+                        <li><a href="videos.html" class="text-gray-400 hover:text-primary-400 transition-colors">Videos</a></li>
                     </ul>
                 </div>
 
@@ -1029,11 +1273,11 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-6">Special Programs</h4>
                     <ul class="space-y-3">
-                        <li><a href="#manjula" class="text-gray-400 hover:text-gold-400 transition-colors">Manjula</a></li>
-                        <li><a href="#arangetram" class="text-gray-400 hover:text-gold-400 transition-colors">Arangetram</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Bharatanatyam</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Kathak</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Odissi</a></li>
+                        <li><a href="index.html#manjula" class="text-gray-400 hover:text-gold-400 transition-colors">Manjula</a></li>
+                        <li><a href="arangetram.html" class="text-gray-400 hover:text-gold-400 transition-colors">Arangetram</a></li>
+                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Bharatanatyam</a></li>
+                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Kathak</a></li>
+                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Odissi</a></li>
                     </ul>
                 </div>
 
@@ -1043,11 +1287,11 @@
                     <div class="space-y-3">
                         <p class="text-gray-400 flex items-center">
                             <i class="fas fa-map-marker-alt mr-3 text-primary-400"></i>
-                            Mumbai, India
+                            Bellavista, NSW, Australia
                         </p>
                         <p class="text-gray-400 flex items-center">
                             <i class="fas fa-phone mr-3 text-gold-400"></i>
-                            +91 98765 43210
+                            0433 005 131
                         </p>
                         <p class="text-gray-400 flex items-center">
                             <i class="fas fa-envelope mr-3 text-rose-400"></i>
@@ -1133,6 +1377,143 @@
         document.querySelectorAll('section > div').forEach(el => {
             observer.observe(el);
         });
+
+        // Interactive Gallery Functionality
+        let currentSlide = 0;
+        let currentFilter = 'all';
+        const galleryTrack = document.getElementById('gallery-track');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryNavBtns = document.querySelectorAll('.gallery-nav-btn');
+        const galleryPrevBtn = document.querySelector('.gallery-prev');
+        const galleryNextBtn = document.querySelector('.gallery-next');
+        const galleryIndicators = document.querySelectorAll('.gallery-indicator');
+        
+        // Calculate visible items and slides
+        function getVisibleItems() {
+            const containerWidth = galleryTrack.parentElement.offsetWidth;
+            const itemWidth = 320 + 16; // min-w-80 (320px) + margin (16px)
+            return Math.floor(containerWidth / itemWidth);
+        }
+        
+        // Filter gallery items
+        function filterGallery(category) {
+            currentFilter = category;
+            currentSlide = 0;
+            
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+        }
+        
+        // Update gallery position
+        function updateGalleryPosition() {
+            const visibleItems = getVisibleItems();
+            const itemWidth = 320 + 16; // min-w-80 + margin
+            const translateX = -currentSlide * itemWidth * visibleItems;
+            galleryTrack.style.transform = `translateX(${translateX}px)`;
+        }
+        
+        // Update navigation buttons
+        function updateNavigationButtons() {
+            const visibleItems = getVisibleItems();
+            const filteredItems = Array.from(galleryItems).filter(item => 
+                currentFilter === 'all' || item.dataset.category === currentFilter
+            );
+            const maxSlides = Math.ceil(filteredItems.length / visibleItems);
+            
+            galleryPrevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+            galleryNextBtn.style.opacity = currentSlide >= maxSlides - 1 ? '0.5' : '1';
+            galleryPrevBtn.style.pointerEvents = currentSlide === 0 ? 'none' : 'auto';
+            galleryNextBtn.style.pointerEvents = currentSlide >= maxSlides - 1 ? 'none' : 'auto';
+        }
+        
+        // Update indicators
+        function updateIndicators() {
+            const visibleItems = getVisibleItems();
+            const filteredItems = Array.from(galleryItems).filter(item => 
+                currentFilter === 'all' || item.dataset.category === currentFilter
+            );
+            const maxSlides = Math.ceil(filteredItems.length / visibleItems);
+            
+            galleryIndicators.forEach((indicator, index) => {
+                if (index < maxSlides) {
+                    indicator.style.display = 'block';
+                    indicator.classList.toggle('bg-primary-500', index === currentSlide);
+                    indicator.classList.toggle('bg-gray-300', index !== currentSlide);
+                } else {
+                    indicator.style.display = 'none';
+                }
+            });
+        }
+        
+        // Gallery navigation event listeners
+        galleryNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                galleryNavBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterGallery(btn.dataset.category);
+            });
+        });
+        
+        galleryPrevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateGalleryPosition();
+                updateNavigationButtons();
+                updateIndicators();
+            }
+        });
+        
+        galleryNextBtn.addEventListener('click', () => {
+            const visibleItems = getVisibleItems();
+            const filteredItems = Array.from(galleryItems).filter(item => 
+                currentFilter === 'all' || item.dataset.category === currentFilter
+            );
+            const maxSlides = Math.ceil(filteredItems.length / visibleItems);
+            
+            if (currentSlide < maxSlides - 1) {
+                currentSlide++;
+                updateGalleryPosition();
+                updateNavigationButtons();
+                updateIndicators();
+            }
+        });
+        
+        // Gallery indicators event listeners
+        galleryIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateGalleryPosition();
+                updateNavigationButtons();
+                updateIndicators();
+            });
+        });
+        
+        // Initialize gallery
+        function initGallery() {
+            filterGallery('all');
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+        });
+        
+        // Initialize gallery when page loads
+        initGallery();
     </script>
 </body>
 </html>
