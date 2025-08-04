@@ -1,1138 +1,1893 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rashika Dance Academy - Where Art Meets Soul</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'serif': ['Cormorant Garamond', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                        },
-                        'gold': {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        },
-                        'rose': {
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'fadeInUp': 'fadeInUp 0.8s ease-out',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ["Cormorant Garamond", "serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                50: "#fdf2f8",
+                100: "#fce7f3",
+                500: "#ec4899",
+                600: "#db2777",
+                700: "#be185d",
+              },
+              gold: {
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+              },
+              rose: {
+                400: "#fb7185",
+                500: "#f43f5e",
+                600: "#e11d48",
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+              fadeInUp: "fadeInUp 0.8s ease-out",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
         }
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
-            to { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+        50% {
+          transform: translateY(-20px);
         }
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
         }
-        .hero-gradient {
-            background: linear-gradient(135deg, 
-                rgba(139, 69, 19, 0.9) 0%,
-                rgba(236, 72, 153, 0.85) 25%,
-                rgba(251, 191, 36, 0.8) 50%,
-                rgba(156, 39, 176, 0.85) 75%,
-                rgba(236, 72, 153, 0.9) 100%
-            );
+        to {
+          box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
         }
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        
-        /* Image optimization styles */
-        .dancer-image {
-            transition: all 0.8s ease;
-            width: 100%;
-            height: 100%;
-            filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
-            animation: dancerGlow 4s ease-in-out infinite alternate;
+      }
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 69, 19, 0.9) 0%,
+          rgba(236, 72, 153, 0.85) 25%,
+          rgba(251, 191, 36, 0.8) 50%,
+          rgba(156, 39, 176, 0.85) 75%,
+          rgba(236, 72, 153, 0.9) 100%
+        );
+      }
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #fbbf24 50%,
+          #ffffff 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Image optimization styles */
+      .dancer-image {
+        transition: all 0.8s ease;
+        width: 100%;
+        height: 100%;
+        filter: brightness(1.1) contrast(1.05)
+          drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+        animation: dancerGlow 4s ease-in-out infinite alternate;
+      }
+
+      .dancer-image:hover {
+        transform: scale(1.02) rotate(0.5deg);
+        filter: brightness(1.2) contrast(1.1)
+          drop-shadow(0 0 40px rgba(251, 191, 36, 0.5));
+      }
+
+      /* Handle PNG with transparent background */
+      .dancer-container .dancer-image {
+        object-fit: contain;
+        object-position: center center;
+        min-height: 100%;
+        min-width: 100%;
+      }
+
+      /* For PNG images, use contain to preserve transparency */
+      .dancer-container .dancer-image[src*=".png"] {
+        object-fit: contain;
+        object-position: center center;
+        background: transparent;
+      }
+
+      /* For portrait images, adjust positioning */
+      .dancer-container .dancer-image[src*=".gif"] {
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      /* Dancer glow animation */
+      @keyframes dancerGlow {
+        0% {
+          filter: brightness(1.1) contrast(1.05)
+            drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+          transform: translateY(0px) rotate(0deg);
         }
-        
-        .dancer-image:hover {
-            transform: scale(1.02) rotate(0.5deg);
-            filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 40px rgba(251, 191, 36, 0.5));
+        50% {
+          filter: brightness(1.15) contrast(1.08)
+            drop-shadow(0 0 35px rgba(236, 72, 153, 0.4));
+          transform: translateY(-5px) rotate(0.3deg);
         }
-        
-        /* Handle PNG with transparent background */
+        100% {
+          filter: brightness(1.1) contrast(1.05)
+            drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+
+      /* Incense smoke animation */
+      @keyframes smokeRise {
+        0% {
+          opacity: 0.8;
+          transform: translateY(0px) translateX(0px) scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: translateY(-100px) translateX(10px) scale(1.2);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-200px) translateX(-5px) scale(1.5);
+        }
+      }
+
+      .smoke-particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.6) 0%,
+          rgba(251, 191, 36, 0.2) 50%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        animation: smokeRise 6s ease-out infinite;
+        filter: blur(1px);
+      }
+
+      .smoke-particle:nth-child(1) {
+        animation-delay: 0s;
+        left: 20%;
+      }
+      .smoke-particle:nth-child(2) {
+        animation-delay: 1s;
+        left: 80%;
+      }
+      .smoke-particle:nth-child(3) {
+        animation-delay: 2s;
+        left: 30%;
+      }
+      .smoke-particle:nth-child(4) {
+        animation-delay: 3s;
+        left: 70%;
+      }
+      .smoke-particle:nth-child(5) {
+        animation-delay: 4s;
+        left: 50%;
+      }
+
+      /* Divine light rays */
+      @keyframes lightRays {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: rotate(2deg) scale(1.05);
+        }
+      }
+
+      .divine-light {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: conic-gradient(
+          from 0deg,
+          transparent,
+          rgba(251, 191, 36, 0.1),
+          transparent,
+          rgba(236, 72, 153, 0.1),
+          transparent
+        );
+        border-radius: 50%;
+        animation: lightRays 8s ease-in-out infinite;
+        filter: blur(2px);
+      }
+
+      /* Sunlight rays from top-right corner */
+      @keyframes sunlightBeam {
+        0% {
+          opacity: 0;
+          transform: scale(0.8) rotate(-5deg);
+        }
+        25% {
+          opacity: 0.4;
+          transform: scale(1) rotate(0deg);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.1) rotate(2deg);
+        }
+        75% {
+          opacity: 0.3;
+          transform: scale(1) rotate(1deg);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.8) rotate(-5deg);
+        }
+      }
+
+      @keyframes sunlightRays {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: translateX(0px) translateY(0px) rotate(0deg);
+        }
+        33% {
+          opacity: 0.5;
+          transform: translateX(-10px) translateY(5px) rotate(1deg);
+        }
+        66% {
+          opacity: 0.7;
+          transform: translateX(5px) translateY(-3px) rotate(-1deg);
+        }
+      }
+
+      .sunlight-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      .sunlight-beam {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 300px;
+        height: 600px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.3) 0%,
+          rgba(251, 191, 36, 0.2) 25%,
+          rgba(255, 255, 255, 0.1) 50%,
+          rgba(251, 191, 36, 0.15) 75%,
+          transparent 100%
+        );
+        transform-origin: top right;
+        animation: sunlightBeam 12s ease-in-out infinite;
+        filter: blur(1px);
+      }
+
+      .sunlight-ray {
+        position: absolute;
+        background: linear-gradient(
+          to bottom left,
+          rgba(255, 215, 0, 0.4),
+          rgba(251, 191, 36, 0.2),
+          transparent
+        );
+        transform-origin: top right;
+        animation: sunlightRays 8s ease-in-out infinite;
+        filter: blur(0.5px);
+      }
+
+      .sunlight-ray:nth-child(1) {
+        top: 0;
+        right: 0;
+        width: 2px;
+        height: 400px;
+        animation-delay: 0s;
+      }
+
+      .sunlight-ray:nth-child(2) {
+        top: 10px;
+        right: 20px;
+        width: 1px;
+        height: 350px;
+        animation-delay: 1s;
+      }
+
+      .sunlight-ray:nth-child(3) {
+        top: 5px;
+        right: 40px;
+        width: 1.5px;
+        height: 380px;
+        animation-delay: 2s;
+      }
+
+      .sunlight-ray:nth-child(4) {
+        top: 15px;
+        right: 60px;
+        width: 1px;
+        height: 320px;
+        animation-delay: 3s;
+      }
+
+      .sunlight-ray:nth-child(5) {
+        top: 20px;
+        right: 80px;
+        width: 2px;
+        height: 360px;
+        animation-delay: 4s;
+      }
+
+      .sunlight-particles {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 215, 0, 0.8) 0%,
+          rgba(251, 191, 36, 0.4) 50%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        animation: sunlightRays 6s ease-out infinite;
+      }
+
+      .sunlight-particles:nth-child(6) {
+        top: 30px;
+        right: 30px;
+        animation-delay: 0.5s;
+      }
+      .sunlight-particles:nth-child(7) {
+        top: 60px;
+        right: 50px;
+        animation-delay: 1.5s;
+      }
+      .sunlight-particles:nth-child(8) {
+        top: 90px;
+        right: 70px;
+        animation-delay: 2.5s;
+      }
+      .sunlight-particles:nth-child(9) {
+        top: 45px;
+        right: 90px;
+        animation-delay: 3.5s;
+      }
+      .sunlight-particles:nth-child(10) {
+        top: 75px;
+        right: 110px;
+        animation-delay: 4.5s;
+      }
+
+      /* Sunlight rays from top-right corner */
+      @keyframes sunlightRays {
+        0% {
+          opacity: 0;
+          transform: rotate(-15deg) scale(0.8);
+        }
+        50% {
+          opacity: 0.4;
+          transform: rotate(-10deg) scale(1);
+        }
+        100% {
+          opacity: 0.2;
+          transform: rotate(-12deg) scale(0.9);
+        }
+      }
+
+      @keyframes sunlightBeam {
+        0% {
+          opacity: 0;
+          transform: translateX(100px) translateY(-100px) rotate(-35deg)
+            scaleX(0);
+        }
+        50% {
+          opacity: 0.3;
+          transform: translateX(0) translateY(0) rotate(-35deg) scaleX(1);
+        }
+        100% {
+          opacity: 0.1;
+          transform: translateX(-20px) translateY(20px) rotate(-35deg)
+            scaleX(0.8);
+        }
+      }
+
+      .sunlight-container {
+        position: absolute;
+        top: -10%;
+        right: -10%;
+        width: 120%;
+        height: 120%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .sunlight-rays {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 400px;
+        background: conic-gradient(
+          from 45deg at 100% 0%,
+          transparent 0deg,
+          rgba(251, 191, 36, 0.15) 30deg,
+          rgba(255, 255, 255, 0.1) 45deg,
+          rgba(251, 191, 36, 0.15) 60deg,
+          transparent 90deg
+        );
+        animation: sunlightRays 12s ease-in-out infinite;
+        transform-origin: 100% 0%;
+      }
+
+      .sunlight-beam {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        width: 300px;
+        height: 8px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.4) 20%,
+          rgba(251, 191, 36, 0.3) 50%,
+          rgba(255, 255, 255, 0.2) 80%,
+          transparent 100%
+        );
+        transform-origin: 100% 50%;
+        animation: sunlightBeam 10s ease-in-out infinite;
+        filter: blur(1px);
+      }
+
+      .sunlight-beam:nth-child(2) {
+        top: 8%;
+        right: 3%;
+        width: 250px;
+        height: 6px;
+        animation-delay: 2s;
+      }
+
+      .sunlight-beam:nth-child(3) {
+        top: 12%;
+        right: 7%;
+        width: 200px;
+        height: 4px;
+        animation-delay: 4s;
+      }
+
+      .sunlight-beam:nth-child(4) {
+        top: 15%;
+        right: 2%;
+        width: 180px;
+        height: 3px;
+        animation-delay: 6s;
+      }
+
+      /* Responsive image handling */
+      @media (max-width: 768px) {
+        .dancer-container {
+          height: 350px;
+        }
         .dancer-container .dancer-image {
-            object-fit: contain;
-            object-position: center center;
-            min-height: 100%;
-            min-width: 100%;
+          object-position: center center;
         }
-        
-        /* For PNG images, use contain to preserve transparency */
-        .dancer-container .dancer-image[src*=".png"] {
-            object-fit: contain;
-            object-position: center center;
-            background: transparent;
-        }
-        
-        /* For portrait images, adjust positioning */
-        .dancer-container .dancer-image[src*=".gif"] {
-            object-fit: cover;
-            object-position: center top;
-        }
-        
-        /* Dancer glow animation */
-        @keyframes dancerGlow {
-            0% { 
-                filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% { 
-                filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 35px rgba(236, 72, 153, 0.4));
-                transform: translateY(-5px) rotate(0.3deg);
-            }
-            100% { 
-                filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
-                transform: translateY(0px) rotate(0deg);
-            }
-        }
-        
-        /* Incense smoke animation */
-        @keyframes smokeRise {
-            0% {
-                opacity: 0.8;
-                transform: translateY(0px) translateX(0px) scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: translateY(-100px) translateX(10px) scale(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-200px) translateX(-5px) scale(1.5);
-            }
-        }
-        
-        .smoke-particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(251, 191, 36, 0.2) 50%, transparent 100%);
-            border-radius: 50%;
-            animation: smokeRise 6s ease-out infinite;
-            filter: blur(1px);
-        }
-        
-        .smoke-particle:nth-child(1) { animation-delay: 0s; left: 20%; }
-        .smoke-particle:nth-child(2) { animation-delay: 1s; left: 80%; }
-        .smoke-particle:nth-child(3) { animation-delay: 2s; left: 30%; }
-        .smoke-particle:nth-child(4) { animation-delay: 3s; left: 70%; }
-        .smoke-particle:nth-child(5) { animation-delay: 4s; left: 50%; }
-        
-        /* Divine light rays */
-        @keyframes lightRays {
-            0%, 100% {
-                opacity: 0.3;
-                transform: rotate(0deg) scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: rotate(2deg) scale(1.05);
-            }
-        }
-        
         .divine-light {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: conic-gradient(from 0deg, transparent, rgba(251, 191, 36, 0.1), transparent, rgba(236, 72, 153, 0.1), transparent);
-            border-radius: 50%;
-            animation: lightRays 8s ease-in-out infinite;
-            filter: blur(2px);
+          width: 150px;
+          height: 150px;
         }
-        
-        /* Sunlight rays from top-right corner */
-        @keyframes sunlightBeam {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) rotate(-5deg);
-            }
-            25% {
-                opacity: 0.4;
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.1) rotate(2deg);
-            }
-            75% {
-                opacity: 0.3;
-                transform: scale(1) rotate(1deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.8) rotate(-5deg);
-            }
+      }
+
+      @media (min-width: 1024px) {
+        .dancer-container {
+          height: 500px;
         }
-        
-        @keyframes sunlightRays {
-            0%, 100% {
-                opacity: 0.2;
-                transform: translateX(0px) translateY(0px) rotate(0deg);
-            }
-            33% {
-                opacity: 0.5;
-                transform: translateX(-10px) translateY(5px) rotate(1deg);
-            }
-            66% {
-                opacity: 0.7;
-                transform: translateX(5px) translateY(-3px) rotate(-1deg);
-            }
+      }
+
+      /* Namaste background image animation and sizing */
+      .namaste-background {
+        /* For portrait orientation images like 1024x1536 */
+        max-height: 85vh;
+        max-width: 85vw;
+        width: auto;
+        height: auto;
+        animation: namasteAppear 16s ease-in-out infinite;
+      }
+      @keyframes namasteAppear {
+        0% {
+          opacity: 0;
+          transform: scale(0.92);
         }
-        
-        .sunlight-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 5;
+        10% {
+          opacity: 0.3;
+          transform: scale(0.96);
         }
-        
-        .sunlight-beam {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 300px;
-            height: 600px;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 215, 0, 0.3) 0%,
-                rgba(251, 191, 36, 0.2) 25%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(251, 191, 36, 0.15) 75%,
-                transparent 100%
-            );
-            transform-origin: top right;
-            animation: sunlightBeam 12s ease-in-out infinite;
-            filter: blur(1px);
+        25% {
+          opacity: 1;
+          transform: scale(1);
         }
-        
-        .sunlight-ray {
-            position: absolute;
-            background: linear-gradient(
-                to bottom left,
-                rgba(255, 215, 0, 0.4),
-                rgba(251, 191, 36, 0.2),
-                transparent
-            );
-            transform-origin: top right;
-            animation: sunlightRays 8s ease-in-out infinite;
-            filter: blur(0.5px);
+        45% {
+          opacity: 1;
+          transform: scale(1);
         }
-        
-        .sunlight-ray:nth-child(1) {
-            top: 0;
-            right: 0;
-            width: 2px;
-            height: 400px;
-            animation-delay: 0s;
+        55% {
+          opacity: 0.7;
+          transform: scale(1.01);
         }
-        
-        .sunlight-ray:nth-child(2) {
-            top: 10px;
-            right: 20px;
-            width: 1px;
-            height: 350px;
-            animation-delay: 1s;
+        65% {
+          opacity: 0.3;
+          transform: scale(0.98);
         }
-        
-        .sunlight-ray:nth-child(3) {
-            top: 5px;
-            right: 40px;
-            width: 1.5px;
-            height: 380px;
-            animation-delay: 2s;
+        70% {
+          opacity: 0;
+          transform: scale(0.95);
         }
-        
-        .sunlight-ray:nth-child(4) {
-            top: 15px;
-            right: 60px;
-            width: 1px;
-            height: 320px;
-            animation-delay: 3s;
+        100% {
+          opacity: 0;
+          transform: scale(0.92);
         }
-        
-        .sunlight-ray:nth-child(5) {
-            top: 20px;
-            right: 80px;
-            width: 2px;
-            height: 360px;
-            animation-delay: 4s;
-        }
-        
-        .sunlight-particles {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(251, 191, 36, 0.4) 50%, transparent 100%);
-            border-radius: 50%;
-            animation: sunlightRays 6s ease-out infinite;
-        }
-        
-        .sunlight-particles:nth-child(6) { top: 30px; right: 30px; animation-delay: 0.5s; }
-        .sunlight-particles:nth-child(7) { top: 60px; right: 50px; animation-delay: 1.5s; }
-        .sunlight-particles:nth-child(8) { top: 90px; right: 70px; animation-delay: 2.5s; }
-        .sunlight-particles:nth-child(9) { top: 45px; right: 90px; animation-delay: 3.5s; }
-        .sunlight-particles:nth-child(10) { top: 75px; right: 110px; animation-delay: 4.5s; }
-        
-        /* Sunlight rays from top-right corner */
-        @keyframes sunlightRays {
-            0% {
-                opacity: 0;
-                transform: rotate(-15deg) scale(0.8);
-            }
-            50% {
-                opacity: 0.4;
-                transform: rotate(-10deg) scale(1);
-            }
-            100% {
-                opacity: 0.2;
-                transform: rotate(-12deg) scale(0.9);
-            }
-        }
-        
-        @keyframes sunlightBeam {
-            0% {
-                opacity: 0;
-                transform: translateX(100px) translateY(-100px) rotate(-35deg) scaleX(0);
-            }
-            50% {
-                opacity: 0.3;
-                transform: translateX(0) translateY(0) rotate(-35deg) scaleX(1);
-            }
-            100% {
-                opacity: 0.1;
-                transform: translateX(-20px) translateY(20px) rotate(-35deg) scaleX(0.8);
-            }
-        }
-        
-        .sunlight-container {
-            position: absolute;
-            top: -10%;
-            right: -10%;
-            width: 120%;
-            height: 120%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .sunlight-rays {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: conic-gradient(
-                from 45deg at 100% 0%,
-                transparent 0deg,
-                rgba(251, 191, 36, 0.15) 30deg,
-                rgba(255, 255, 255, 0.1) 45deg,
-                rgba(251, 191, 36, 0.15) 60deg,
-                transparent 90deg
-            );
-            animation: sunlightRays 12s ease-in-out infinite;
-            transform-origin: 100% 0%;
-        }
-        
-        .sunlight-beam {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            width: 300px;
-            height: 8px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.4) 20%,
-                rgba(251, 191, 36, 0.3) 50%,
-                rgba(255, 255, 255, 0.2) 80%,
-                transparent 100%
-            );
-            transform-origin: 100% 50%;
-            animation: sunlightBeam 10s ease-in-out infinite;
-            filter: blur(1px);
-        }
-        
-        .sunlight-beam:nth-child(2) {
-            top: 8%;
-            right: 3%;
-            width: 250px;
-            height: 6px;
-            animation-delay: 2s;
-        }
-        
-        .sunlight-beam:nth-child(3) {
-            top: 12%;
-            right: 7%;
-            width: 200px;
-            height: 4px;
-            animation-delay: 4s;
-        }
-        
-        .sunlight-beam:nth-child(4) {
-            top: 15%;
-            right: 2%;
-            width: 180px;
-            height: 3px;
-            animation-delay: 6s;
-        }
-        
-        /* Responsive image handling */
-        @media (max-width: 768px) {
-            .dancer-container {
-                height: 350px;
-            }
-            .dancer-container .dancer-image {
-                object-position: center center;
-            }
-            .divine-light {
-                width: 150px;
-                height: 150px;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .dancer-container {
-                height: 500px;
-            }
-        }
-        
-        /* Namaste background image responsive handling */
-        .namaste-background {
-            /* For portrait orientation images like 1024x1536 */
-            max-height: 85vh;
-            max-width: 85vw;
-            width: auto;
-            height: auto;
-            animation: namasteAppear 8s ease-out forwards;
-        }
-        
-        @keyframes namasteAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0.95);
-                filter: sepia(100%) hue-rotate(280deg) saturate(0.1) brightness(2.5) contrast(0.3);
-            }
-            100% {
-                opacity: 0.25;
-                transform: scale(1);
-                filter: sepia(100%) hue-rotate(280deg) saturate(0.6) brightness(1.4) contrast(0.8);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .namaste-background {
-                max-height: 80vh;
-                max-width: 80vw;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .namaste-background {
-                max-height: 90vh;
-                max-width: 90vw;
-            }
-        }
+      }
     </style>
-</head>
-<body class="font-sans overflow-x-hidden">
+  </head>
+  <body class="font-sans overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-hand-peace text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
-                        <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Home</a>
-                    <a href="media-charity.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Media & Charity</a>
-                    <a href="#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
-                    <a href="#news" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">News</a>
-                    <a href="videos.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Videos</a>
-                    <a href="#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
-                    <a href="arangetram.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Arangetram</a>
-                    <a href="#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+    <nav
+      class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <img src="images/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain" loading="lazy" />
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
-                <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="#news" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
-                <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
-                <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
-                <a href="#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
+            <div>
+              <h2 class="text-2xl font-serif font-bold text-primary-600">
+                Rashika
+              </h2>
+              <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
             </div>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#home"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Home</a
+            >
+            <a
+              href="media-charity.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Media & Charity</a
+            >
+            <a
+              href="#shows"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Shows</a
+            >
+            <a
+              href="#news"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >News</a
+            >
+            <a
+              href="videos.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Videos</a
+            >
+            <a
+              href="#manjula"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Manjula</a
+            >
+            <a
+              href="arangetram.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Arangetram</a
+            >
+            <a
+              href="#contact"
+              class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-700 hover:text-primary-600"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
+        <div class="px-4 py-2 space-y-2">
+          <a
+            href="#home"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Home</a
+          >
+          <a
+            href="media-charity.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Media & Charity</a
+          >
+          <a
+            href="#shows"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Shows</a
+          >
+          <a
+            href="#news"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >News</a
+          >
+          <a
+            href="videos.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Videos</a
+          >
+          <a
+            href="#manjula"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Manjula</a
+          >
+          <a
+            href="arangetram.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Arangetram</a
+          >
+          <a href="#contact" class="block py-2 text-primary-600 font-medium"
+            >Contact</a
+          >
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden">
-        <!-- Namaste Background Image -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 p-4">
-            <img 
-                src="images/namaste_white.png" 
-                alt="Namaste Gesture Background" 
-                class="namaste-background object-contain"
-                loading="lazy"
-            />
-        </div>
-        
-        <!-- Sunlight Effects from Top-Right -->
-        <div class="sunlight-container">
-            <!-- Main sunlight beam -->
-            <div class="sunlight-beam"></div>
-            
-            <!-- Individual sunlight rays -->
-            <div class="sunlight-ray"></div>
-            <div class="sunlight-ray"></div>
-            <div class="sunlight-ray"></div>
-            <div class="sunlight-ray"></div>
-            <div class="sunlight-ray"></div>
-            
-            <!-- Sunlight particles -->
-            <div class="sunlight-particles"></div>
-            <div class="sunlight-particles"></div>
-            <div class="sunlight-particles"></div>
-            <div class="sunlight-particles"></div>
-            <div class="sunlight-particles"></div>
-        </div>
-        
-        <!-- Decorative Elements -->
-        <div class="absolute inset-0 opacity-30 z-5">
-            <div class="absolute top-20 left-10 w-20 h-20 bg-gold-400 rounded-full animate-float"></div>
-            <div class="absolute top-40 right-20 w-16 h-16 bg-rose-400 rounded-full animate-float" style="animation-delay: 2s;"></div>
-            <div class="absolute bottom-40 left-20 w-24 h-24 bg-primary-400 rounded-full animate-float" style="animation-delay: 4s;"></div>
-        </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Hero Text -->
-                <div class="text-center lg:text-left">
-                    <div class="mb-6">
-                        <span class="font-serif text-xl text-gold-400 block mb-2 tracking-wider">नृत्यं देवो देवकी नन्दनस्य</span>
-                        <h1 class="text-5xl lg:text-7xl font-serif font-bold text-gradient mb-4 leading-tight">
-                            Where Art<br>
-                            <span class="text-white">Meets Soul</span>
-                        </h1>
-                    </div>
-                    <p class="text-xl text-white/90 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                        Experience the divine grace of classical Indian dance forms. From Bharatanatyam to contemporary fusion, discover your rhythm with India's premier dance academy.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 animate-glow">
-                            Start Your Journey
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300">
-                            Watch Demo
-                        </button>
-                    </div>
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden"
+    >
+      <!-- Namaste Background Image (restored original style) -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 p-4"
+      >
+        <img
+          src="images/namaste_white.png"
+          alt="Namaste Gesture Background"
+          class="namaste-background object-contain"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Sunlight Effects from Top-Right -->
+      <div class="sunlight-container">
+        <!-- Main sunlight beam -->
+        <div class="sunlight-beam"></div>
+
+        <!-- Individual sunlight rays -->
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+
+        <!-- Sunlight particles -->
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute inset-0 opacity-30 z-5">
+        <div
+          class="absolute top-20 left-10 w-20 h-20 bg-gold-400 rounded-full animate-float"
+        ></div>
+        <div
+          class="absolute top-40 right-20 w-16 h-16 bg-rose-400 rounded-full animate-float"
+          style="animation-delay: 2s"
+        ></div>
+        <div
+          class="absolute bottom-40 left-20 w-24 h-24 bg-primary-400 rounded-full animate-float"
+          style="animation-delay: 4s"
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Hero Text -->
+          <div class="text-center lg:text-left">
+            <div class="mb-6">
+              <span
+                class="font-serif text-xl text-gold-400 block mb-2 tracking-wider"
+                >नृत्यं देवो देवकी नन्दनस्य</span
+              >
+              <h1
+                class="text-5xl lg:text-7xl font-serif font-bold text-gradient mb-4 leading-tight"
+              >
+                Where Art<br />
+                <span class="text-white">Meets Soul</span>
+              </h1>
+            </div>
+            <p
+              class="text-xl text-white/90 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+            >
+              Experience the divine grace of classical Indian dance forms. From
+              Bharatanatyam to contemporary fusion, discover your rhythm with
+              India's premier dance academy.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <button
+                class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 animate-glow"
+              >
+                Start Your Journey
+              </button>
+              <button
+                class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300"
+              >
+                Watch Demo
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="relative">
+            <div class="w-full h-96 lg:h-[500px] dancer-container">
+              <!-- Main dancer image container -->
+              <div class="w-full h-full relative">
+                <!-- Divine light behind dancer -->
+                <div
+                  class="divine-light absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+                ></div>
+
+                <!-- Incense smoke particles -->
+                <div
+                  class="absolute bottom-0 left-0 w-full h-full pointer-events-none z-10"
+                >
+                  <div class="smoke-particle bottom-10"></div>
+                  <div class="smoke-particle bottom-8"></div>
+                  <div class="smoke-particle bottom-12"></div>
+                  <div class="smoke-particle bottom-6"></div>
+                  <div class="smoke-particle bottom-14"></div>
                 </div>
 
-                <!-- Hero Image -->
-                <div class="relative">
-                    <div class="w-full h-96 lg:h-[500px] dancer-container">
-                        <!-- Main dancer image container -->
-                        <div class="w-full h-full relative">
-                            
-                            <!-- Divine light behind dancer -->
-                            <div class="divine-light absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
-                            
-                            <!-- Incense smoke particles -->
-                            <div class="absolute bottom-0 left-0 w-full h-full pointer-events-none z-10">
-                                <div class="smoke-particle bottom-10"></div>
-                                <div class="smoke-particle bottom-8"></div>
-                                <div class="smoke-particle bottom-12"></div>
-                                <div class="smoke-particle bottom-6"></div>
-                                <div class="smoke-particle bottom-14"></div>
-                            </div>
-                            
-                            <!-- Primary: PNG with transparent background -->
-                            <picture class="relative z-20">
-                                <source srcset="images/main.png" type="image/png">
-                                <source srcset="images/main.jpg" type="image/jpeg">
-                                <!-- Your current image as fallback -->
-                                <img 
-                                    src="images/main.png" 
-                                    alt="Classical Indian Dancer in Traditional Pose" 
-                                    class="w-full h-full object-contain dancer-image"
-                                    style="object-position: center center;"
-                                    loading="lazy"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                />
-                            </picture>
-                            
-                            <!-- Final fallback content if both images fail to load -->
-                            <div class="hidden w-full h-full bg-gradient-to-br from-primary-200 to-gold-200 items-center justify-center rounded-3xl z-30">
-                                <div class="text-center">
-                                    <i class="fas fa-user-friends text-6xl text-white/80 mb-4"></i>
-                                    <p class="text-white/90 font-serif text-xl">Classical Dancer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Floating Cards -->
-                    <div class="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-xl animate-float glass-effect">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center">
-                                <i class="fas fa-users text-white"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">500+</p>
-                                <p class="text-sm text-gray-600">Students</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl animate-float glass-effect" style="animation-delay: 2s;">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center">
-                                <i class="fas fa-trophy text-white"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">50+</p>
-                                <p class="text-sm text-gray-600">Awards</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Primary: PNG with transparent background -->
+                <picture class="relative z-20">
+                  <source srcset="images/main.png" type="image/png" />
+                  <source srcset="images/main.jpg" type="image/jpeg" />
+                  <!-- Your current image as fallback -->
+                  <img
+                    src="images/main.png"
+                    alt="Classical Indian Dancer in Traditional Pose"
+                    class="w-full h-full object-contain dancer-image"
+                    style="object-position: center center"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                </picture>
+
+                <!-- Final fallback content if both images fail to load -->
+                <div
+                  class="hidden w-full h-full bg-gradient-to-br from-primary-200 to-gold-200 items-center justify-center rounded-3xl z-30"
+                >
+                  <div class="text-center">
+                    <i
+                      class="fas fa-user-friends text-6xl text-white/80 mb-4"
+                    ></i>
+                    <p class="text-white/90 font-serif text-xl">
+                      Classical Dancer
+                    </p>
+                  </div>
                 </div>
+              </div>
             </div>
+            <!-- Floating Cards -->
+            <div
+              class="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-xl animate-float glass-effect"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-users text-white"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-800">500+</p>
+                  <p class="text-sm text-gray-600">Students</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl animate-float glass-effect"
+              style="animation-delay: 2s"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-trophy text-white"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-800">50+</p>
+                  <p class="text-sm text-gray-600">Awards</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Experimental Dance Animation Section -->
+    <section
+      id="experimental-dance"
+      class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden"
+    >
+      <!-- Namaste Background Image (Experimental) -->
+      <div class="namaste-dance-sequence">
+        <img
+          src="images/shivadance.png"
+          alt="Shiva Dance 1"
+          class="namaste-dance-img img1"
+          loading="lazy"
+        />
+        <img
+          src="images/shivadance2.png"
+          alt="Shiva Dance 2"
+          class="namaste-dance-img img2"
+          loading="lazy"
+        />
+        <img
+          src="images/shivadance3.png"
+          alt="Shiva Dance 3"
+          class="namaste-dance-img img3"
+          loading="lazy"
+        />
+      </div>
+      <!-- Sunlight Effects from Top-Right (duplicate for consistency) -->
+      <div class="sunlight-container">
+        <div class="sunlight-beam"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-ray"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+        <div class="sunlight-particles"></div>
+      </div>
+      <!-- Decorative Elements (optional, for full background effect) -->
+      <div class="absolute inset-0 opacity-30 z-5">
+        <div
+          class="absolute top-20 left-10 w-20 h-20 bg-gold-400 rounded-full animate-float"
+        ></div>
+        <div
+          class="absolute top-40 right-20 w-16 h-16 bg-rose-400 rounded-full animate-float"
+          style="animation-delay: 2s"
+        ></div>
+        <div
+          class="absolute bottom-40 left-20 w-24 h-24 bg-primary-400 rounded-full animate-float"
+          style="animation-delay: 4s"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Experimental Column: Three distinct sections with image and text -->
+    <section id="experimental-column" class="py-24 hero-gradient overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
+        <!-- PART 1 -->
+        <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
+          <div class="w-full lg:w-2/6 flex justify-start mb-4 lg:mb-0">
+            <img
+              src="images/shivadance.png"
+              alt="Shiva Dance 1"
+              class="w-1/2 scale-50 origin-left ml-0 fade-scroll gold-tint"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full lg:w-4/6 fade-scroll">
+            <div class="mb-3">
+              <span class="uppercase tracking-widest text-sm font-semibold text-gold-600">Humble Beginnings</span>
+            </div>
+            <p class="text-lg text-gray-800 leading-relaxed">
+              Rasika Dance Academy began in Bangalore in 1996. When Manjula moved to Sydney in 2001, she founded the academy in North Parramatta with only a few students. Within a year, her unique teaching style gained recognition, and by 2005, the academy presented its first major production with over 70 students. Since then, the journey has never stopped.
+            </p>
+            <!-- YouTube Video Embed -->
+            <div class="mt-6 flex flex-col items-center">
+              <div class="w-full max-w-2xl rounded-xl overflow-hidden shadow-lg">
+                <div style="position:relative; width:100%; padding-bottom:56.25%;">
+                  <iframe src="https://www.youtube.com/embed/PKvpcq-MiC4?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                </div>
+              </div>
+              <div class="mt-3 w-full max-w-2xl">
+                <p class="text-base text-gray-700 italic text-center">
+                  A glimpse of Manjula Viswanath’s Arangetram performance in Bangalore — the beginning of a lifelong journey in Bharatanatyam.
+                </p>
+              </div>
+            </div>
+            </p>
+          </div>
+        </div>
+        <!-- PART 2 -->
+        <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
+          <div class="w-full lg:w-2/6 flex justify-start mb-4 lg:mb-0">
+            <img
+              src="images/shivadance2.png"
+              alt="Shiva Dance 2"
+              class="w-1/2 scale-50 origin-left ml-0 fade-scroll gold-tint"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full lg:w-4/6 fade-scroll">
+            <div class="mb-3">
+              <span class="uppercase tracking-widest text-sm font-semibold text-gold-600">A Rare Tradition</span>
+            </div>
+            <p class="text-lg text-gray-800 leading-relaxed">
+              The academy specializes in the Vazhuvoor style of Bharatanatyam — known for its grace, swift storytelling, and expressive movements. Rasika remains the only academy in Australia teaching this rare and traditional style. Manjula received her training in Bangalore and Chennai under the legendary K.J. Sarasa, staying loyal to a single guru throughout her journey — a rarity today.
+            </p>
+            <div class="mt-6 flex justify-center">
+              <img src="images/group-img.jpg" alt="Rasika Dance Academy Group" class="rounded-2xl shadow-lg max-w-full h-auto" loading="lazy" />
+            </div>
+            </p>
+          </div>
+        </div>
+        <!-- PART 3 -->
+        <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
+          <div class="w-full lg:w-2/6 flex justify-start mb-4 lg:mb-0">
+            <img
+              src="images/shivadance3.png"
+              alt="Shiva Dance 3"
+              class="w-1/2 scale-50 origin-left ml-0 fade-scroll gold-tint"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full lg:w-4/6 fade-scroll">
+            <div class="mb-3">
+              <span class="uppercase tracking-widest text-sm font-semibold text-gold-600 block mb-4">Legacy & Recognition</span>
+              <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <!-- Image and caption left -->
+                <div class="flex flex-col items-center sm:items-start w-full sm:w-1/3 mb-4 sm:mb-0">
+                  <img src="images/manjula_speak.jpeg" alt="Manjula Viswanath at Spacewalk event" class="rounded-2xl shadow-lg max-w-xs w-full h-auto mb-2" loading="lazy" />
+                  <p class="text-sm text-gray-800 text-center sm:text-left max-w-md">
+                    Manjula Viswanath addressing the audience as Events Director during ‘Spacewalk – A Cultural Fusion,’ featured in Desi Australia Magazine (July 2023).
+                  </p>
+                </div>
+                <!-- Description right -->
+                <div class="w-full sm:w-2/3">
+                  <p class="text-lg text-gray-800 leading-relaxed">
+                    Manjula performed her first solo at just 4.5 years old and completed her Maharangetram by 11. She later became an empanelled artist with the Indian Council for Cultural Relations and an A-graded dancer with India’s Doordarshan. Since moving to Australia, she has led over 25 full-length productions, 50+ Arangetrams, and hundreds of performances — including for prime ministers — all while growing a community of passionate dancers.
+                  </p>
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-gradient-to-b from-primary-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Our Legacy - working</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Three decades of preserving and promoting the rich tradition of Indian classical dance forms while embracing contemporary expressions.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-heart text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Passion for Excellence</h3>
-                                <p class="text-gray-600">Every movement tells a story, every gesture carries meaning. We nurture artists who understand the soul of dance.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-star text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">World-Class Training</h3>
-                                <p class="text-gray-600">Learn from renowned masters who have performed on international stages and carry forward centuries of tradition.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-globe text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Global Recognition</h3>
-                                <p class="text-gray-600">Our students have graced stages across continents, carrying the torch of Indian culture worldwide.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl">
-                        <div class="w-full h-full bg-gradient-to-br from-gold-200 to-primary-200 flex items-center justify-center">
-                            <i class="fas fa-om text-6xl text-white/80"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Our Legacy - working
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Three decades of preserving and promoting the rich tradition of
+            Indian classical dance forms while embracing contemporary
+            expressions.
+          </p>
         </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="space-y-8">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-heart text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    Passion for Excellence
+                  </h3>
+                  <p class="text-gray-600">
+                    Every movement tells a story, every gesture carries meaning.
+                    We nurture artists who understand the soul of dance.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-star text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    World-Class Training
+                  </h3>
+                  <p class="text-gray-600">
+                    Learn from renowned masters who have performed on
+                    international stages and carry forward centuries of
+                    tradition.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-globe text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    Global Recognition
+                  </h3>
+                  <p class="text-gray-600">
+                    Our students have graced stages across continents, carrying
+                    the torch of Indian culture worldwide.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <div
+                class="w-full h-full bg-gradient-to-br from-gold-200 to-primary-200 flex items-center justify-center"
+              >
+                <i class="fas fa-om text-6xl text-white/80"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Classes Section -->
     <section id="classes" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Dance Forms</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore the rich tapestry of Indian classical and contemporary dance forms, each with its unique charm and cultural significance.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Bharatanatyam -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-primary-500 to-rose-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-hands text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Bharatanatyam</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The classical temple dance of Tamil Nadu, characterized by fixed upper torso, bent legs, and sophisticated footwork.</p>
-                        <button class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Kathak -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-gold-500 to-yellow-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-yin-yang text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Kathak</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The storytelling dance from North India, known for its graceful spins, intricate footwork, and expressive gestures.</p>
-                        <button class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Odissi -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-purple-500 to-pink-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-lotus text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Odissi</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">The sculptural dance from Odisha, inspired by temple carvings and characterized by fluid movements and tribhangi postures.</p>
-                        <button class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Contemporary Fusion -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-teal-500 to-blue-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-sync-alt text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Contemporary Fusion</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Modern expressions blending classical techniques with contemporary movements, creating unique artistic experiences.</p>
-                        <button class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Folk Dance -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-orange-500 to-red-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-drumstick-bite text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Folk Traditions</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Vibrant regional folk dances celebrating the diverse cultural heritage of India through energetic and colorful performances.</p>
-                        <button class="bg-white text-orange-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Kids Classes -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-green-500 to-emerald-500">
-                    <div class="p-8 text-white">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-child text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-serif font-bold mb-4">Kids Special</h3>
-                        <p class="text-white/90 mb-6 leading-relaxed">Age-appropriate programs designed to introduce children to the joy of dance through fun, creative, and engaging methods.</p>
-                        <button class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">Learn More</button>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Dance Forms
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore the rich tapestry of Indian classical and contemporary dance
+            forms, each with its unique charm and cultural significance.
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Bharatanatyam -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-primary-500 to-rose-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-hands text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">Bharatanatyam</h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                The classical temple dance of Tamil Nadu, characterized by fixed
+                upper torso, bent legs, and sophisticated footwork.
+              </p>
+              <button
+                class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Kathak -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-gold-500 to-yellow-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-yin-yang text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">Kathak</h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                The storytelling dance from North India, known for its graceful
+                spins, intricate footwork, and expressive gestures.
+              </p>
+              <button
+                class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Odissi -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-purple-500 to-pink-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-lotus text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">Odissi</h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                The sculptural dance from Odisha, inspired by temple carvings
+                and characterized by fluid movements and tribhangi postures.
+              </p>
+              <button
+                class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Contemporary Fusion -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-teal-500 to-blue-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-sync-alt text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">
+                Contemporary Fusion
+              </h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                Modern expressions blending classical techniques with
+                contemporary movements, creating unique artistic experiences.
+              </p>
+              <button
+                class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Folk Dance -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-orange-500 to-red-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-drumstick-bite text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">
+                Folk Traditions
+              </h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                Vibrant regional folk dances celebrating the diverse cultural
+                heritage of India through energetic and colorful performances.
+              </p>
+              <button
+                class="bg-white text-orange-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Kids Classes -->
+          <div
+            class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-green-500 to-emerald-500"
+          >
+            <div class="p-8 text-white">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-child text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-serif font-bold mb-4">Kids Special</h3>
+              <p class="text-white/90 mb-6 leading-relaxed">
+                Age-appropriate programs designed to introduce children to the
+                joy of dance through fun, creative, and engaging methods.
+              </p>
+              <button
+                class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Moments of Grace</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Capturing the beauty and elegance of our performances, competitions, and memorable moments from our dance academy.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center">
-                        <i class="fas fa-camera text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold">View Gallery</button>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center">
-                        <i class="fas fa-video text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold">Watch Videos</button>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center">
-                        <i class="fas fa-trophy text-6xl text-white/80"></i>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold">See Awards</button>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Moments of Grace
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Capturing the beauty and elegance of our performances, competitions,
+            and memorable moments from our dance academy.
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+          >
+            <div
+              class="aspect-square bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center"
+            >
+              <i class="fas fa-camera text-6xl text-white/80"></i>
+            </div>
+            <div
+              class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <button
+                class="bg-white text-primary-600 px-6 py-2 rounded-full font-semibold"
+              >
+                View Gallery
+              </button>
+            </div>
+          </div>
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+          >
+            <div
+              class="aspect-square bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center"
+            >
+              <i class="fas fa-video text-6xl text-white/80"></i>
+            </div>
+            <div
+              class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <button
+                class="bg-white text-gold-600 px-6 py-2 rounded-full font-semibold"
+              >
+                Watch Videos
+              </button>
+            </div>
+          </div>
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+          >
+            <div
+              class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center"
+            >
+              <i class="fas fa-trophy text-6xl text-white/80"></i>
+            </div>
+            <div
+              class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <button
+                class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold"
+              >
+                See Awards
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Instructors Section -->
     <section id="instructors" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Master Teachers</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Learn from acclaimed artists and master teachers who have dedicated their lives to preserving and promoting the art of dance.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gold-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Founder
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Rashika Sharma</h3>
-                    <p class="text-primary-600 font-semibold mb-3">Principal & Artistic Director</p>
-                    <p class="text-gray-600 leading-relaxed">30+ years of experience in Bharatanatyam and contemporary dance. International performer and cultural ambassador.</p>
-                </div>
-
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Master
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Priya Nair</h3>
-                    <p class="text-gold-600 font-semibold mb-3">Kathak Specialist</p>
-                    <p class="text-gray-600 leading-relaxed">Trained under legendary Kathak maestros. Expert in both traditional and contemporary Kathak expressions.</p>
-                </div>
-
-                <div class="text-center group">
-                    <div class="relative mb-6">
-                        <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
-                            <i class="fas fa-user text-6xl text-white/80"></i>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                            Expert
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Anjali Das</h3>
-                    <p class="text-purple-600 font-semibold mb-3">Odissi & Folk Dance</p>
-                    <p class="text-gray-600 leading-relaxed">Renowned for her expertise in Odissi and various Indian folk dance forms. International award winner.</p>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Master Teachers
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Learn from acclaimed artists and master teachers who have dedicated
+            their lives to preserving and promoting the art of dance.
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div
+                class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary-200 to-rose-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+              >
+                <i class="fas fa-user text-6xl text-white/80"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gold-500 text-white px-4 py-1 rounded-full text-sm font-semibold"
+              >
+                Founder
+              </div>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">
+              Rashika Sharma
+            </h3>
+            <p class="text-primary-600 font-semibold mb-3">
+              Principal & Artistic Director
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              30+ years of experience in Bharatanatyam and contemporary dance.
+              International performer and cultural ambassador.
+            </p>
+          </div>
+
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div
+                class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-gold-200 to-yellow-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+              >
+                <i class="fas fa-user text-6xl text-white/80"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-semibold"
+              >
+                Master
+              </div>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">
+              Priya Nair
+            </h3>
+            <p class="text-gold-600 font-semibold mb-3">Kathak Specialist</p>
+            <p class="text-gray-600 leading-relaxed">
+              Trained under legendary Kathak maestros. Expert in both
+              traditional and contemporary Kathak expressions.
+            </p>
+          </div>
+
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div
+                class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+              >
+                <i class="fas fa-user text-6xl text-white/80"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold"
+              >
+                Expert
+              </div>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">
+              Anjali Das
+            </h3>
+            <p class="text-purple-600 font-semibold mb-3">
+              Odissi & Folk Dance
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              Renowned for her expertise in Odissi and various Indian folk dance
+              forms. International award winner.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-b from-primary-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Begin Your Journey</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ready to discover the dancer within you? Contact us today and take the first step towards artistic excellence.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Visit Our Studio</h3>
-                            <p class="text-gray-600">123 Cultural Arts Center<br>Dance District, Mumbai 400001<br>India</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
-                            <p class="text-gray-600">+91 98765 43210<br>+91 87654 32109</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
-                            <p class="text-gray-600">info@rashikadance.com<br>admissions@rashikadance.com</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Studio Hours</h3>
-                            <p class="text-gray-600">Mon - Fri: 6:00 AM - 10:00 PM<br>Sat - Sun: 8:00 AM - 8:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <div class="bg-white p-8 rounded-3xl shadow-xl">
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6">Send us a Message</h3>
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Dance Form of Interest</label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors">
-                                <option>Select a dance form</option>
-                                <option>Bharatanatyam</option>
-                                <option>Kathak</option>
-                                <option>Odissi</option>
-                                <option>Contemporary Fusion</option>
-                                <option>Folk Dance</option>
-                                <option>Kids Classes</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-primary-500 to-rose-500 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
+    <section
+      id="contact"
+      class="py-20 bg-gradient-to-b from-primary-50 to-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Begin Your Journey
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Ready to discover the dancer within you? Contact us today and take
+            the first step towards artistic excellence.
+          </p>
         </div>
+
+        <div class="grid lg:grid-cols-2 gap-16">
+          <!-- Contact Info -->
+          <div class="space-y-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-map-marker-alt text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Visit Our Studio
+                </h3>
+                <p class="text-gray-600">
+                  123 Cultural Arts Center<br />Dance District, Mumbai 400001<br />India
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-phone text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Call Us
+                </h3>
+                <p class="text-gray-600">
+                  +91 98765 43210<br />+91 87654 32109
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-envelope text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Email Us
+                </h3>
+                <p class="text-gray-600">
+                  info@rashikadance.com<br />admissions@rashikadance.com
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-clock text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Studio Hours
+                </h3>
+                <p class="text-gray-600">
+                  Mon - Fri: 6:00 AM - 10:00 PM<br />Sat - Sun: 8:00 AM - 8:00
+                  PM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6">
+              Send us a Message
+            </h3>
+            <form class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Dance Form of Interest</label
+                >
+                <select
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                >
+                  <option>Select a dance form</option>
+                  <option>Bharatanatyam</option>
+                  <option>Kathak</option>
+                  <option>Odissi</option>
+                  <option>Contemporary Fusion</option>
+                  <option>Folk Dance</option>
+                  <option>Kids Classes</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Message</label
+                >
+                <textarea
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-primary-500 to-rose-500 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- About -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-peace text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-serif font-bold">Rashika</h3>
-                            <p class="text-sm text-gold-400">Dance Academy</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 leading-relaxed">Preserving tradition, inspiring innovation. Join us in celebrating the divine art of dance.</p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-primary-400 transition-colors">Home</a></li>
-                        <li><a href="media-charity.html" class="text-gray-400 hover:text-primary-400 transition-colors">Media & Charity</a></li>
-                        <li><a href="#shows" class="text-gray-400 hover:text-primary-400 transition-colors">Shows</a></li>
-                        <li><a href="#news" class="text-gray-400 hover:text-primary-400 transition-colors">News</a></li>
-                        <li><a href="#gallery" class="text-gray-400 hover:text-primary-400 transition-colors">Gallery</a></li>
-                    </ul>
-                </div>
-
-                <!-- Additional Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Special Programs</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#manjula" class="text-gray-400 hover:text-gold-400 transition-colors">Manjula</a></li>
-                        <li><a href="#arangetram" class="text-gray-400 hover:text-gold-400 transition-colors">Arangetram</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Bharatanatyam</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Kathak</a></li>
-                        <li><a href="#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Odissi</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Get in Touch</h4>
-                    <div class="space-y-3">
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-map-marker-alt mr-3 text-primary-400"></i>
-                            Mumbai, India
-                        </p>
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-phone mr-3 text-gold-400"></i>
-                            +91 98765 43210
-                        </p>
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-envelope mr-3 text-rose-400"></i>
-                            info@rashikadance.com
-                        </p>
-                    </div>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#" class="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- About -->
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center"
+              >
+                <i class="fas fa-hand-peace text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-serif font-bold">Rashika</h3>
+                <p class="text-sm text-gold-400">Dance Academy</p>
+              </div>
             </div>
+            <p class="text-gray-400 leading-relaxed">
+              Preserving tradition, inspiring innovation. Join us in celebrating
+              the divine art of dance.
+            </p>
+          </div>
 
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2025 Rashika Dance Academy. All rights reserved. | Designed with ❤️ for the art of dance.</p>
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-400 hover:text-primary-400 transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="media-charity.html"
+                  class="text-gray-400 hover:text-primary-400 transition-colors"
+                  >Media & Charity</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#shows"
+                  class="text-gray-400 hover:text-primary-400 transition-colors"
+                  >Shows</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#news"
+                  class="text-gray-400 hover:text-primary-400 transition-colors"
+                  >News</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#gallery"
+                  class="text-gray-400 hover:text-primary-400 transition-colors"
+                  >Gallery</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Additional Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Special Programs</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#manjula"
+                  class="text-gray-400 hover:text-gold-400 transition-colors"
+                  >Manjula</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#arangetram"
+                  class="text-gray-400 hover:text-gold-400 transition-colors"
+                  >Arangetram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#classes"
+                  class="text-gray-400 hover:text-gold-400 transition-colors"
+                  >Bharatanatyam</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#classes"
+                  class="text-gray-400 hover:text-gold-400 transition-colors"
+                  >Kathak</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#classes"
+                  class="text-gray-400 hover:text-gold-400 transition-colors"
+                  >Odissi</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Get in Touch</h4>
+            <div class="space-y-3">
+              <p class="text-gray-400 flex items-center">
+                <i class="fas fa-map-marker-alt mr-3 text-primary-400"></i>
+                Mumbai, India
+              </p>
+              <p class="text-gray-400 flex items-center">
+                <i class="fas fa-phone mr-3 text-gold-400"></i>
+                +91 98765 43210
+              </p>
+              <p class="text-gray-400 flex items-center">
+                <i class="fas fa-envelope mr-3 text-rose-400"></i>
+                info@rashikadance.com
+              </p>
             </div>
+            <div class="flex space-x-4 mt-6">
+              <a
+                href="#"
+                class="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
         </div>
+
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p class="text-gray-400">
+            &copy; 2025 Rashika Dance Academy. All rights reserved. | Designed
+            with ❤️ for the art of dance.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <!-- JavaScript -->
+    <style>
+      /* Gold tint for white PNGs only on experimental-column images (no gold border) */
+      .gold-tint {
+        filter:
+          sepia(1)
+          saturate(6)
+          hue-rotate(10deg)
+          brightness(1.15);
+        transition: filter 0.6s;
+      }
+      .fade-scroll.visible.gold-tint {
+        filter:
+          sepia(1)
+          saturate(8)
+          hue-rotate(10deg)
+          brightness(1.22);
+      }
+      /* Fade in up and fade out down for scroll */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeOutDown {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+      }
+      .fade-scroll {
+        opacity: 0;
+        transition: opacity 0.6s, transform 0.6s, filter 0.6s, box-shadow 0.6s;
+      }
+      .fade-scroll.visible {
+        animation: fadeInUp 0.8s forwards;
+      }
+      .fade-scroll.invisible {
+        animation: fadeOutDown 0.8s forwards;
+      }
+    </style>
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+            // Close mobile menu if open
+            mobileMenu.classList.add("hidden");
+          }
         });
+      });
 
-        // Navbar background change on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                navbar.classList.add('bg-white/98');
-                navbar.classList.remove('bg-white/95');
-            } else {
-                navbar.classList.add('bg-white/95');
-                navbar.classList.remove('bg-white/98');
-            }
+      // Navbar background change on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          navbar.classList.add("bg-white/98");
+          navbar.classList.remove("bg-white/95");
+        } else {
+          navbar.classList.add("bg-white/95");
+          navbar.classList.remove("bg-white/98");
+        }
+      });
+
+      // Animation on scroll for fade-scroll images
+      const fadeEls = document.querySelectorAll('.fade-scroll');
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('invisible');
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+            entry.target.classList.add('invisible');
+          }
         });
+      }, { threshold: 0.1 });
+      fadeEls.forEach((el) => fadeObserver.observe(el));
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeInUp');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('section > div').forEach(el => {
-            observer.observe(el);
+      // Animation on scroll for other sections
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fadeInUp");
+          }
         });
+      }, observerOptions);
+      document.querySelectorAll("section > div").forEach((el) => {
+        observer.observe(el);
+      });
     </script>
-</body>
+  </body>
 </html>
