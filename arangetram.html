@@ -1,556 +1,847 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arangetram - Rashika Dance Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'serif': ['Cormorant Garamond', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                        },
-                        'gold': {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        },
-                        'rose': {
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'fadeInUp': 'fadeInUp 0.8s ease-out',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ["Cormorant Garamond", "serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                50: "#fdf2f8",
+                100: "#fce7f3",
+                500: "#ec4899",
+                600: "#db2777",
+                700: "#be185d",
+              },
+              gold: {
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+              },
+              rose: {
+                400: "#fb7185",
+                500: "#f43f5e",
+                600: "#e11d48",
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+              fadeInUp: "fadeInUp 0.8s ease-out",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
         }
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
-            to { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+        50% {
+          transform: translateY(-20px);
         }
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
         }
-        .hero-gradient {
-            background: linear-gradient(135deg, 
-                rgba(139, 69, 19, 0.9) 0%,
-                rgba(236, 72, 153, 0.85) 25%,
-                rgba(251, 191, 36, 0.8) 50%,
-                rgba(156, 39, 176, 0.85) 75%,
-                rgba(236, 72, 153, 0.9) 100%
-            );
+        to {
+          box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
         }
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .gallery-item {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+      }
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 69, 19, 0.9) 0%,
+          rgba(236, 72, 153, 0.85) 25%,
+          rgba(251, 191, 36, 0.8) 50%,
+          rgba(156, 39, 176, 0.85) 75%,
+          rgba(236, 72, 153, 0.9) 100%
+        );
+      }
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #fbbf24 50%,
+          #ffffff 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .gallery-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
     </style>
-</head>
-<body class="font-sans">
-
+  </head>
+  <body class="font-sans">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-hand-peace text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
-                        <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Home</a>
-                    <a href="media-charity.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Media & Charity</a>
-                    <a href="index.html#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
-                    <a href="news.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">News</a>
-                    <a href="videos.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Videos</a>
-                    <a href="index.html#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
-                    <a href="arangetram.html" class="text-primary-600 border-b-2 border-primary-600 font-medium transition-colors">Arangetram</a>
-                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+    <nav
+      class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-hand-peace text-white text-xl"></i>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
-                <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="news.html" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
-                <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="index.html#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
-                <a href="arangetram.html" class="block py-2 text-primary-600 font-medium">Arangetram</a>
-                <a href="index.html#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
+            <div>
+              <h2
+                class="text-4xl md:text-5xl font-serif font-extrabold text-gold-500 tracking-tight drop-shadow-lg"
+              >
+                Rashika
+              </h2>
+              <p
+                class="text-lg md:text-xl font-sans font-semibold text-primary-700 tracking-wide"
+              >
+                Dance Academy
+              </p>
             </div>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="index.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Home</a
+            >
+            <a
+              href="media-charity.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Media & Charity</a
+            >
+            <a
+              href="index.html#shows"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Shows</a
+            >
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >News</a
+            >
+            <a
+              href="videos.html"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Videos</a
+            >
+            <a
+              href="index.html#manjula"
+              class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >Manjula</a
+            >
+            <a
+              href="arangetram.html"
+              class="text-primary-600 border-b-2 border-primary-600 font-medium transition-colors"
+              >Arangetram</a
+            >
+            <a
+              href="index.html#contact"
+              class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-700 hover:text-primary-600"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
+        <div class="px-4 py-2 space-y-2">
+          <a
+            href="index.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Home</a
+          >
+          <a
+            href="media-charity.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Media & Charity</a
+          >
+          <a
+            href="index.html#shows"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Shows</a
+          >
+          <a
+            href="news.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >News</a
+          >
+          <a
+            href="videos.html"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Videos</a
+          >
+          <a
+            href="index.html#manjula"
+            class="block py-2 text-gray-700 hover:text-primary-600"
+            >Manjula</a
+          >
+          <a
+            href="arangetram.html"
+            class="block py-2 text-primary-600 font-medium"
+            >Arangetram</a
+          >
+          <a
+            href="index.html#contact"
+            class="block py-2 text-primary-600 font-medium"
+            >Contact</a
+          >
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen bg-gradient-to-br from-primary-50 via-rose-50 to-gold-50 flex items-center justify-center overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-100/50 to-gold-100/50"></div>
-        <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-300 to-rose-300 rounded-full opacity-20 animate-float"></div>
-        <div class="absolute bottom-40 right-20 w-24 h-24 bg-gradient-to-br from-gold-300 to-primary-300 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-rose-300 to-purple-300 rounded-full opacity-20 animate-float" style="animation-delay: 4s;"></div>
+    <section
+      class="relative min-h-screen bg-gradient-to-br from-primary-50 via-rose-50 to-gold-50 flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Elements -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-100/50 to-gold-100/50"
+      ></div>
+      <div
+        class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-300 to-rose-300 rounded-full opacity-20 animate-float"
+      ></div>
+      <div
+        class="absolute bottom-40 right-20 w-24 h-24 bg-gradient-to-br from-gold-300 to-primary-300 rounded-full opacity-20 animate-float"
+        style="animation-delay: 2s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-rose-300 to-purple-300 rounded-full opacity-20 animate-float"
+        style="animation-delay: 4s"
+      ></div>
 
-        <div class="relative max-w-6xl mx-auto px-4 text-center z-10">
-            <div class="mb-8">
-                <i class="fas fa-star text-6xl text-gold-500 mb-6 animate-glow"></i>
-            </div>
-            <h1 class="text-6xl md:text-8xl font-serif font-bold mb-6">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-rose-500 to-gold-600">
-                    Arangetram
-                </span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-                A sacred milestone in every dancer's journey - celebrating the transition from student to artist
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#featured-performances" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Watch Performances
-                </a>
-                <a href="#gallery" class="border-2 border-primary-500 text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-primary-50 transition-all duration-300">
-                    View Gallery
-                </a>
-            </div>
+      <div class="relative max-w-6xl mx-auto px-4 text-center z-10">
+        <div class="mb-8">
+          <i class="fas fa-star text-6xl text-gold-500 mb-6 animate-glow"></i>
         </div>
+        <h1 class="text-6xl md:text-8xl font-serif font-bold mb-6">
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-rose-500 to-gold-600"
+          >
+            Arangetram
+          </span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed"
+        >
+          A sacred milestone in every dancer's journey - celebrating the
+          transition from student to artist
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#featured-performances"
+            class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            Watch Performances
+          </a>
+          <a
+            href="#gallery"
+            class="border-2 border-primary-500 text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-primary-50 transition-all duration-300"
+          >
+            View Gallery
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- About Arangetram Section -->
     <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
-                    The Sacred Journey of <span class="text-primary-600">Arangetram</span>
-                </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-8"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        <strong class="text-primary-600">Arangetram</strong> is the pinnacle of a classical dance student's journey - a graduation ceremony that marks the transition from disciple to artist. The word combines "Arangu" (stage) and "Etram" (ascending), symbolizing the student's ascent to the sacred stage.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        At Rashika Dance Academy, this annual ceremony celebrates our senior students who have dedicated years to mastering the intricate art of classical Indian dance. Each Arangetram is a solo performance showcasing technical excellence, emotional depth, and spiritual connection.
-                    </p>
-                    <div class="bg-gradient-to-r from-primary-50 to-rose-50 p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold text-primary-600 mb-3">What Makes Our Arangetram Special</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li><i class="fas fa-star text-gold-500 mr-2"></i>Minimum 7-8 years of rigorous training</li>
-                            <li><i class="fas fa-star text-gold-500 mr-2"></i>Solo performances lasting 2-3 hours</li>
-                            <li><i class="fas fa-star text-gold-500 mr-2"></i>Traditional repertoire including Margam</li>
-                            <li><i class="fas fa-star text-gold-500 mr-2"></i>Blessing ceremonies with renowned gurus</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-200 to-gold-200 rounded-2xl transform rotate-3"></div>
-                    <img src="https://images.unsplash.com/photo-1583476327362-4db13e68bbcc?w=600&h=400&fit=crop" 
-                         alt="Classical dance performance" 
-                         class="relative rounded-2xl shadow-xl w-full h-96 object-cover">
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6"
+          >
+            The Sacred Journey of
+            <span class="text-primary-600">Arangetram</span>
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-8"
+          ></div>
         </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              <strong class="text-primary-600">Arangetram</strong> is the
+              pinnacle of a classical dance student's journey - a graduation
+              ceremony that marks the transition from disciple to artist. The
+              word combines "Arangu" (stage) and "Etram" (ascending),
+              symbolizing the student's ascent to the sacred stage.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              At Rashika Dance Academy, this annual ceremony celebrates our
+              senior students who have dedicated years to mastering the
+              intricate art of classical Indian dance. Each Arangetram is a solo
+              performance showcasing technical excellence, emotional depth, and
+              spiritual connection.
+            </p>
+            <div
+              class="bg-gradient-to-r from-primary-50 to-rose-50 p-6 rounded-xl"
+            >
+              <h3 class="text-xl font-semibold text-primary-600 mb-3">
+                What Makes Our Arangetram Special
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                <li>
+                  <i class="fas fa-star text-gold-500 mr-2"></i>Minimum 7-8
+                  years of rigorous training
+                </li>
+                <li>
+                  <i class="fas fa-star text-gold-500 mr-2"></i>Solo
+                  performances lasting 2-3 hours
+                </li>
+                <li>
+                  <i class="fas fa-star text-gold-500 mr-2"></i>Traditional
+                  repertoire including Margam
+                </li>
+                <li>
+                  <i class="fas fa-star text-gold-500 mr-2"></i>Blessing
+                  ceremonies with renowned gurus
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary-200 to-gold-200 rounded-2xl transform rotate-3"
+            ></div>
+            <img
+              src="https://images.unsplash.com/photo-1583476327362-4db13e68bbcc?w=600&h=400&fit=crop"
+              alt="Classical dance performance"
+              class="relative rounded-2xl shadow-xl w-full h-96 object-cover"
+            />
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Featured Performances Section -->
-    <section id="featured-performances" class="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
-                    Featured <span class="text-primary-600">Arangetram Performances</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Witness the culmination of years of dedication in these memorable performances
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Sagarika's Arangetram -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="aspect-video">
-                        <iframe 
-                            src="https://www.youtube.com/embed/neCbDXBYMH8" 
-                            title="Sagarika's Arangetram"
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            class="w-full h-full">
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-3">Sagarika's Arangetram</h3>
-                        <p class="text-gray-600 mb-4">
-                            A mesmerizing performance showcasing years of dedication and mastery in classical Indian dance. 
-                            Sagarika's journey from student to artist is beautifully captured in this traditional Arangetram ceremony.
-                        </p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>Graduation Ceremony 2023</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Madumitha's Arangetram -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="aspect-video bg-gradient-to-br from-primary-100 to-rose-100 flex items-center justify-center">
-                        <div class="text-center">
-                            <i class="fas fa-play-circle text-6xl text-primary-500 mb-4"></i>
-                            <p class="text-lg text-gray-700 font-medium">Madumitha Jayaraman Arangetram</p>
-                            <p class="text-sm text-gray-500">Performance Video</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-3">Madumitha Jayaraman's Arangetram</h3>
-                        <p class="text-gray-600 mb-4">
-                            An exceptional solo performance demonstrating technical excellence and emotional depth. 
-                            Madumitha's Arangetram represents the pinnacle of her classical dance education.
-                        </p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>Graduation Ceremony 2023</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call to Action -->
-            <div class="text-center mt-12">
-                <p class="text-lg text-gray-600 mb-6">Want to begin your own Arangetram journey?</p>
-                <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Start Your Training
-                </a>
-            </div>
+    <section
+      id="featured-performances"
+      class="py-20 bg-gradient-to-br from-gray-50 to-primary-50"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6"
+          >
+            Featured
+            <span class="text-primary-600">Arangetram Performances</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Witness the culmination of years of dedication in these memorable
+            performances
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Sagarika's Arangetram -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/neCbDXBYMH8"
+                title="Sagarika's Arangetram"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                class="w-full h-full"
+              >
+              </iframe>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-serif font-bold text-gray-800 mb-3">
+                Sagarika's Arangetram
+              </h3>
+              <p class="text-gray-600 mb-4">
+                A mesmerizing performance showcasing years of dedication and
+                mastery in classical Indian dance. Sagarika's journey from
+                student to artist is beautifully captured in this traditional
+                Arangetram ceremony.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                <span>Graduation Ceremony 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Madumitha's Arangetram -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div
+              class="aspect-video bg-gradient-to-br from-primary-100 to-rose-100 flex items-center justify-center"
+            >
+              <div class="text-center">
+                <i
+                  class="fas fa-play-circle text-6xl text-primary-500 mb-4"
+                ></i>
+                <p class="text-lg text-gray-700 font-medium">
+                  Madumitha Jayaraman Arangetram
+                </p>
+                <p class="text-sm text-gray-500">Performance Video</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-serif font-bold text-gray-800 mb-3">
+                Madumitha Jayaraman's Arangetram
+              </h3>
+              <p class="text-gray-600 mb-4">
+                An exceptional solo performance demonstrating technical
+                excellence and emotional depth. Madumitha's Arangetram
+                represents the pinnacle of her classical dance education.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                <span>Graduation Ceremony 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-12">
+          <p class="text-lg text-gray-600 mb-6">
+            Want to begin your own Arangetram journey?
+          </p>
+          <a
+            href="index.html#contact"
+            class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            Start Your Training
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Photo Gallery Section -->
     <section id="gallery" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
-                    Arangetram <span class="text-primary-600">Gallery</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Capturing the beauty, grace, and sacred moments of our graduation ceremonies
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Gallery Images -->
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_ae666fc5dbd049d98bf07c4df6b8d1fd~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_ae666fc5dbd049d98bf07c4df6b8d1fd~mv2.jpeg" 
-                         alt="Arangetram Performance" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_19208c2e6edb42fbbf37ea8623cdd5f2~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_19208c2e6edb42fbbf37ea8623cdd5f2~mv2.jpeg" 
-                         alt="Classical Dance Pose" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_074b858611c3411ca1113edf122300f0~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_074b858611c3411ca1113edf122300f0~mv2.jpeg" 
-                         alt="Graduation Ceremony" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_12a392d2500a4ad3af8e6a0f35bba8cd~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_12a392d2500a4ad3af8e6a0f35bba8cd~mv2.jpeg" 
-                         alt="Student Performance" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_3d54f9941ea1466183caada7f3d193bb~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_3d54f9941ea1466183caada7f3d193bb~mv2.jpeg" 
-                         alt="Dance Expression" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_c8993a20e54144c2b1daa770ba7d0be1~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_c8993a20e54144c2b1daa770ba7d0be1~mv2.jpeg" 
-                         alt="Arangetram Moment" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_c88fdbaadeb94f34b70b031f5955ff81~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_c88fdbaadeb94f34b70b031f5955ff81~mv2.jpeg" 
-                         alt="Traditional Costume" 
-                         class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://static.wixstatic.com/media/ade1be_885c7f4b23ca483a88f1c792d2d4d7f6~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_885c7f4b23ca483a88f1c792d2d4d7f6~mv2.jpeg" 
-                         alt="Dance Gesture" 
-                         class="w-full h-48 object-cover">
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6"
+          >
+            Arangetram <span class="text-primary-600">Gallery</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Capturing the beauty, grace, and sacred moments of our graduation
+            ceremonies
+          </p>
         </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Gallery Images -->
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_ae666fc5dbd049d98bf07c4df6b8d1fd~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_ae666fc5dbd049d98bf07c4df6b8d1fd~mv2.jpeg"
+              alt="Arangetram Performance"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_19208c2e6edb42fbbf37ea8623cdd5f2~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_19208c2e6edb42fbbf37ea8623cdd5f2~mv2.jpeg"
+              alt="Classical Dance Pose"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_074b858611c3411ca1113edf122300f0~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_074b858611c3411ca1113edf122300f0~mv2.jpeg"
+              alt="Graduation Ceremony"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_12a392d2500a4ad3af8e6a0f35bba8cd~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_12a392d2500a4ad3af8e6a0f35bba8cd~mv2.jpeg"
+              alt="Student Performance"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_3d54f9941ea1466183caada7f3d193bb~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_3d54f9941ea1466183caada7f3d193bb~mv2.jpeg"
+              alt="Dance Expression"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_c8993a20e54144c2b1daa770ba7d0be1~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_c8993a20e54144c2b1daa770ba7d0be1~mv2.jpeg"
+              alt="Arangetram Moment"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_c88fdbaadeb94f34b70b031f5955ff81~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_c88fdbaadeb94f34b70b031f5955ff81~mv2.jpeg"
+              alt="Traditional Costume"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="https://static.wixstatic.com/media/ade1be_885c7f4b23ca483a88f1c792d2d4d7f6~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ade1be_885c7f4b23ca483a88f1c792d2d4d7f6~mv2.jpeg"
+              alt="Dance Gesture"
+              class="w-full h-48 object-cover"
+            />
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Requirements Section -->
     <section class="py-20 bg-gradient-to-br from-primary-50 to-rose-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
-                    Arangetram <span class="text-primary-600">Requirements</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    The path to Arangetram requires dedication, discipline, and years of devoted practice
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-clock text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Training Duration</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Minimum 7-8 years of continuous training under qualified instructors. Students must demonstrate mastery of fundamental techniques, expressions, and traditional repertoire.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-gold-500 to-primary-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-music text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Repertoire Mastery</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Complete knowledge of classical compositions including Alarippu, Jatiswaram, Shabdam, Varnam, Padam, and Tillana. Each piece requires perfect technique and emotional expression.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-rose-500 to-gold-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-certificate text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Guru's Approval</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Final approval from the Guru is essential. Students must pass rigorous evaluations and demonstrate readiness for solo performance in both technical and spiritual aspects.
-                    </p>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6"
+          >
+            Arangetram <span class="text-primary-600">Requirements</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            The path to Arangetram requires dedication, discipline, and years of
+            devoted practice
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-clock text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              Training Duration
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Minimum 7-8 years of continuous training under qualified
+              instructors. Students must demonstrate mastery of fundamental
+              techniques, expressions, and traditional repertoire.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-gold-500 to-primary-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-music text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              Repertoire Mastery
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Complete knowledge of classical compositions including Alarippu,
+              Jatiswaram, Shabdam, Varnam, Padam, and Tillana. Each piece
+              requires perfect technique and emotional expression.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-rose-500 to-gold-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-certificate text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              Guru's Approval
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Final approval from the Guru is essential. Students must pass
+              rigorous evaluations and demonstrate readiness for solo
+              performance in both technical and spiritual aspects.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
-                    Student <span class="text-primary-600">Testimonials</span>
-                </h2>
-                <p class="text-xl text-gray-600">Hear from our graduated students about their Arangetram experience</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gradient-to-br from-primary-50 to-rose-50 rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616c67b9b96?w=80&h=80&fit=crop&crop=face" 
-                             alt="Student testimonial" 
-                             class="w-16 h-16 rounded-full object-cover mr-4">
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-800">Priya Sharma</h4>
-                            <p class="text-gray-600">Arangetram 2022</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">
-                        "My Arangetram was the most transformative experience of my life. Eight years of training culminated in that one sacred evening where I felt truly connected to the divine through dance. Rashika Ma'am's guidance made this dream possible."
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-gold-50 to-primary-50 rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" 
-                             alt="Student testimonial" 
-                             class="w-16 h-16 rounded-full object-cover mr-4">
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-800">Anjali Patel</h4>
-                            <p class="text-gray-600">Arangetram 2023</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">
-                        "The journey to Arangetram taught me discipline, dedication, and devotion. Performing solo for three hours was challenging yet deeply spiritual. I'm grateful to be part of this beautiful tradition."
-                    </p>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6"
+          >
+            Student <span class="text-primary-600">Testimonials</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Hear from our graduated students about their Arangetram experience
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="bg-gradient-to-br from-primary-50 to-rose-50 rounded-2xl p-8"
+          >
+            <div class="flex items-center mb-6">
+              <img
+                src="https://images.unsplash.com/photo-1494790108755-2616c67b9b96?w=80&h=80&fit=crop&crop=face"
+                alt="Student testimonial"
+                class="w-16 h-16 rounded-full object-cover mr-4"
+              />
+              <div>
+                <h4 class="text-xl font-semibold text-gray-800">
+                  Priya Sharma
+                </h4>
+                <p class="text-gray-600">Arangetram 2022</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic">
+              "My Arangetram was the most transformative experience of my life.
+              Eight years of training culminated in that one sacred evening
+              where I felt truly connected to the divine through dance. Rashika
+              Ma'am's guidance made this dream possible."
+            </p>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-gold-50 to-primary-50 rounded-2xl p-8"
+          >
+            <div class="flex items-center mb-6">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+                alt="Student testimonial"
+                class="w-16 h-16 rounded-full object-cover mr-4"
+              />
+              <div>
+                <h4 class="text-xl font-semibold text-gray-800">
+                  Anjali Patel
+                </h4>
+                <p class="text-gray-600">Arangetram 2023</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic">
+              "The journey to Arangetram taught me discipline, dedication, and
+              devotion. Performing solo for three hours was challenging yet
+              deeply spiritual. I'm grateful to be part of this beautiful
+              tradition."
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Call to Action Section -->
     <section class="py-20 bg-gradient-to-r from-primary-600 to-rose-600">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-                Begin Your Arangetram Journey
-            </h2>
-            <p class="text-xl text-white/90 mb-8 leading-relaxed">
-                Every master was once a beginner. Start your classical dance education today and work towards your own sacred graduation ceremony.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Enroll Now
-                </a>
-                <a href="videos.html" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300">
-                    Watch More Videos
-                </a>
-            </div>
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+          Begin Your Arangetram Journey
+        </h2>
+        <p class="text-xl text-white/90 mb-8 leading-relaxed">
+          Every master was once a beginner. Start your classical dance education
+          today and work towards your own sacred graduation ceremony.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="index.html#contact"
+            class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            Enroll Now
+          </a>
+          <a
+            href="videos.html"
+            class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300"
+          >
+            Watch More Videos
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-peace text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold">Rashika Dance Academy</h3>
-                            <p class="text-gray-400">Where Art Meets Soul</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Preserving the sacred tradition of Indian classical dance while nurturing the next generation of artists through dedicated training and spiritual guidance.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-300 hover:text-primary-400 transition-colors">Home</a></li>
-                        <li><a href="videos.html" class="text-gray-300 hover:text-primary-400 transition-colors">Videos</a></li>
-                        <li><a href="news.html" class="text-gray-300 hover:text-primary-400 transition-colors">News</a></li>
-                        <li><a href="arangetram.html" class="text-gray-300 hover:text-primary-400 transition-colors">Arangetram</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">
-                            <i class="fab fa-facebook-f text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">
-                            <i class="fab fa-youtube text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="col-span-2">
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center"
+              >
+                <i class="fas fa-hand-peace text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-serif font-bold">
+                  Rashika Dance Academy
+                </h3>
+                <p class="text-gray-400">Where Art Meets Soul</p>
+              </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2024 Rashika Dance Academy. All rights reserved.</p>
+            <p class="text-gray-300 mb-6">
+              Preserving the sacred tradition of Indian classical dance while
+              nurturing the next generation of artists through dedicated
+              training and spiritual guidance.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-gray-300 hover:text-primary-400 transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="videos.html"
+                  class="text-gray-300 hover:text-primary-400 transition-colors"
+                  >Videos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="news.html"
+                  class="text-gray-300 hover:text-primary-400 transition-colors"
+                  >News</a
+                >
+              </li>
+              <li>
+                <a
+                  href="arangetram.html"
+                  class="text-gray-300 hover:text-primary-400 transition-colors"
+                  >Arangetram</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Connect</h4>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-300 hover:text-primary-400 transition-colors"
+              >
+                <i class="fab fa-facebook-f text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-300 hover:text-primary-400 transition-colors"
+              >
+                <i class="fab fa-youtube text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-300 hover:text-primary-400 transition-colors"
+              >
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
             </div>
+          </div>
         </div>
+
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p class="text-gray-400">
+            &copy; 2024 Rashika Dance Academy. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+          }
         });
+      });
 
-        // Gallery hover effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            
-            galleryItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-        });
+      // Gallery hover effects
+      document.addEventListener("DOMContentLoaded", function () {
+        const galleryItems = document.querySelectorAll(".gallery-item");
 
-        // Navbar background change on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/98');
-                navbar.classList.remove('bg-white/95');
-            } else {
-                navbar.classList.add('bg-white/95');
-                navbar.classList.remove('bg-white/98');
-            }
+        galleryItems.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.05)";
+          });
+
+          item.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
         });
+      });
+
+      // Navbar background change on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector("nav");
+        if (window.scrollY > 50) {
+          navbar.classList.add("bg-white/98");
+          navbar.classList.remove("bg-white/95");
+        } else {
+          navbar.classList.add("bg-white/95");
+          navbar.classList.remove("bg-white/98");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
