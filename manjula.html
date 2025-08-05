@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjula Viswanath - Rashika Dance Academy</title>
+    
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Shared Configuration and Styles -->
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
+            to { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, 
+                rgba(139, 69, 19, 0.9) 0%,
+                rgba(236, 72, 153, 0.85) 25%,
+                rgba(251, 191, 36, 0.8) 50%,
+                rgba(156, 39, 176, 0.85) 75%,
+                rgba(236, 72, 153, 0.9) 100%
+            );
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #f59e0b 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .biography-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+            backdrop-filter: blur(10px);
+        }
+        
+        .biography-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .achievement-card {
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quote-style {
+            position: relative;
+            font-style: italic;
+        }
+        
+        .quote-style::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(236, 72, 153, 0.3);
+            position: absolute;
+            left: -2rem;
+            top: -1rem;
+            font-family: serif;
+        }
+        
+        .decorative-border {
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #ec4899, #f59e0b, #ec4899) 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50" data-page="manjula">
+    <!-- Navigation Component Container -->
+    <div id="navigation-container"></div>
+
+    <!-- Hero Header Section -->
+    <section class="relative pt-24 pb-16 hero-gradient overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-16 h-16 bg-gold-400 rounded-full animate-float"></div>
+            <div class="absolute top-40 right-20 w-12 h-12 bg-rose-400 rounded-full animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-20 left-20 w-20 h-20 bg-primary-400 rounded-full animate-float" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <span class="inline-block px-4 py-2 bg-white/20 text-white rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-crown mr-2"></i>Founder & Artistic Director
+                </span>
+                <h1 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
+                    <span class="text-white">Manjula Viswanath</span>
+                </h1>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+                    A revered Bharata Natyam dancer, teacher, and choreographer, globally renowned for her ability to blend tradition with innovative contemporary expression
+                </p>
+                
+                <!-- Achievements Summary -->
+                <div class="flex flex-wrap justify-center gap-6 mb-8">
+                    <div class="glass-effect px-6 py-3 rounded-2xl">
+                        <div class="text-2xl font-bold text-white mb-1">600+</div>
+                        <div class="text-white/80 text-sm">Solo Performances</div>
+                    </div>
+                    <div class="glass-effect px-6 py-3 rounded-2xl">
+                        <div class="text-2xl font-bold text-white mb-1">30+</div>
+                        <div class="text-white/80 text-sm">Years of Excellence</div>
+                    </div>
+                    <div class="glass-effect px-6 py-3 rounded-2xl">
+                        <div class="text-2xl font-bold text-white mb-1">Global</div>
+                        <div class="text-white/80 text-sm">Recognition</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Biography Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4">Biography</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Discover the extraordinary journey of a master artist who has dedicated her life to preserving and innovating classical Indian dance
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <!-- Portrait Image -->
+                <div class="relative">
+                    <div class="aspect-square rounded-3xl shadow-2xl overflow-hidden">
+                        <img src="images/leo/leo-1.jpg" alt="Smt. Manjula Viswanath - Bharatanatyam Dancer" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-gold-400 rounded-full opacity-20 animate-float"></div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary-400 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
+                </div>
+
+                <!-- Main Biography -->
+                <div class="space-y-6">
+                    <div class="biography-card p-8 rounded-3xl">
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4 text-gradient">The Artist's Journey</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Manjula Viswanath is a revered Bharata Natyam dancer, teacher and choreographer, globally renowned for her ability to use tradition and innovate that into a refreshing contemporary ballet. Her dance, while deeply entrenched within the boundaries, is continuously evolving and able to attract audiences from dance connoisseurs to amateurs.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Having trained under legendary guru, Smt Padmini Ravi (Bangalore), Manjula's exceptional ability in dance draws connections between the physical and emotional aspects. The style of dance Manjula brings across has been described as someone who has the unique talent to give audiences freshness, and this is where her genius comes to the foreground.
+                        </p>
+                    </div>
+
+                    <div class="biography-card p-8 rounded-3xl">
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4 text-gradient">Recognition & Excellence</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Her relentless pursuit of using dance as a platform supporting charitable causes is legendary in Australia. Her contribution to dance started with recognition in Karnataka State as <strong>"Natya Kishori" (Queen of Dance)</strong> and selection as an international artiste by the Indian Council of Cultural Relations (ICCR).
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Smt Manjula Viswanath combines the elegance, grace and suppleness of the Vazhoor School with the distinctive ability to express all shades of emotions with sensitivity and intuition. Through Manjula's evocative rendition, Bharathanatyam has crossed international boundaries and touched the hearts of dignitaries and art enthusiasts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance & Choreography -->
+            <div class="biography-card p-10 rounded-3xl mb-16">
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4 text-gradient">
+                            <i class="fas fa-theater-masks mr-3 text-primary-500"></i>
+                            Performance & Choreography
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            As a performer for over 30 years and as a choreographer, she has produced and choreographed numerous productions exploring Indian ballet through dance and showcasing various aspects of Hindu Mythology and contemporary themes.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            She has <strong>over 600 solo performances</strong> to her credit, each one a testament to her artistic excellence and dedication to the craft.
+                        </p>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="aspect-square rounded-2xl shadow-lg overflow-hidden">
+                            <img src="images/leo/leo-3.jpg" alt="Manjula Viswanath Performance" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Decorative overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent rounded-2xl"></div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4 text-gradient">
+                            <i class="fas fa-music mr-3 text-gold-500"></i>
+                            Connection to Music
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            An uncanny ability and connection to music has helped shape her dance style and honed her approach to dance. It is this relationship with music that has a deep-rooted awareness and a seamless connection between dance and music that inspires Manjula.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dance & Charity Section -->
+    <section class="py-20 bg-gradient-to-b from-primary-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">Dance & Charitable Work</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
+                <div class="max-w-3xl mx-auto">
+                    <p class="quote-style text-2xl text-gray-700 font-serif leading-relaxed">
+                        Manjula's passion is giving back. She has worked with many charitable organizations and is dedicated to giving back.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="achievement-card bg-white p-8 rounded-3xl shadow-lg">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-rose-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-heart text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Charitable Foundation</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    In 2007, the relationship between dance and charity began with the Leukaemia Foundation and continues strong today, supporting numerous organizations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card bg-white p-8 rounded-3xl shadow-lg">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-graduation-cap text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Rasika Dance Academy</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Founder of Rasika Dance Academy, a not-for-profit organization dedicated to the promotion and protection of Indian classical arts and helping charity organizations using dance as a platform.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card bg-white p-8 rounded-3xl shadow-lg">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gold-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-hands-helping text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Annual Productions</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Every year, Manjula organizes dance productions presenting leading younger dancers from her academy while raising funds to support various deserving organizations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="aspect-square rounded-3xl shadow-2xl overflow-hidden">
+                        <img src="images/leo/leo-2.jpg" alt="Manjula Viswanath - Dance for Charity" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recognition Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-500 to-rose-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-serif font-bold text-white mb-8">International Recognition</h2>
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-10">
+                <div class="mb-8">
+                    <i class="fas fa-flag-usa text-6xl text-white/80 mb-6"></i>
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4">Recognition in the USA</h3>
+                </div>
+                <p class="text-xl text-white/95 leading-relaxed">
+                    This passion and commitment to dance goes beyond boundaries and was heard across the oceans in the United States of America, recognizing her as a <strong>"Person of Extraordinary Ability"</strong> and granting her the <strong>US Permanent Residency (Green Card)</strong> immediately.
+                </p>
+                <div class="mt-8 inline-flex items-center space-x-2 bg-white/20 px-6 py-3 rounded-full">
+                    <i class="fas fa-star text-gold-400"></i>
+                    <span class="text-white font-semibold">Person of Extraordinary Ability</span>
+                    <i class="fas fa-star text-gold-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-serif font-bold text-gray-900 mb-6">
+                Experience the Art of Manjula
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Join us in celebrating the extraordinary journey of a master artist who continues to inspire through dance and charitable endeavors.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="videos.html" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center">
+                    <i class="fas fa-play mr-2"></i>
+                    Watch Performances
+                </a>
+                <a href="index.html#contact" class="border-2 border-primary-500 text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-primary-50 transition-all duration-300 flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+        <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+
+    <!-- Load Components -->
+    <script src="js/components.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.biography-card, .achievement-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.biography-card, .achievement-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/98');
+                navbar.classList.remove('bg-white/95');
+            } else {
+                navbar.classList.add('bg-white/95');
+                navbar.classList.remove('bg-white/98');
+            }
+        });
+    </script>
+</body>
+</html>
