@@ -4,66 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latest News - Rashika Dance Academy</title>
+    
+    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'serif': ['Cormorant Garamond', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                        },
-                        'gold': {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        },
-                        'rose': {
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'fadeInUp': 'fadeInUp 0.8s ease-out',
-                        'slideInLeft': 'slideInLeft 0.6s ease-out',
-                        'slideInRight': 'slideInRight 0.6s ease-out',
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Shared Configuration and Styles -->
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
-            to { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
-        }
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -84,157 +35,11 @@
                 transform: translateX(0);
             }
         }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, 
-                rgba(139, 69, 19, 0.9) 0%,
-                rgba(236, 72, 153, 0.85) 25%,
-                rgba(251, 191, 36, 0.8) 50%,
-                rgba(156, 39, 176, 0.85) 75%,
-                rgba(236, 72, 153, 0.9) 100%
-            );
-        }
-        
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .news-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
-        }
-        
-        .news-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        .featured-news {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
-            border: 2px solid rgba(236, 72, 153, 0.2);
-        }
-        
-        .category-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .tag-achievement {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: white;
-        }
-        
-        .tag-performance {
-            background: linear-gradient(135deg, #ec4899, #f43f5e);
-            color: white;
-        }
-        
-        .tag-workshop {
-            background: linear-gradient(135deg, #8b5cf6, #a855f7);
-            color: white;
-        }
-        
-        .tag-announcement {
-            background: linear-gradient(135deg, #10b981, #34d399);
-            color: white;
-        }
-        
-        .tag-media {
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            color: white;
-        }
-        
-        .filter-btn {
-            transition: all 0.3s ease;
-            border: 2px solid #e5e7eb;
-        }
-        
-        .filter-btn.active {
-            background: linear-gradient(135deg, #ec4899, #f43f5e);
-            color: white;
-            border-color: #ec4899;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
-        }
-        
-        .read-more-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .read-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .read-more-btn:hover::before {
-            left: 100%;
-        }
     </style>
 </head>
-<body class="font-sans bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-hand-peace text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
-                        <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Home</a>
-                    <a href="media-charity.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Media & Charity</a>
-                    <a href="index.html#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
-                    <a href="news.html" class="text-primary-600 font-semibold border-b-2 border-primary-600">News</a>
-                    <a href="videos.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Videos</a>
-                    <a href="index.html#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
-                    <a href="arangetram.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Arangetram</a>
-                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
-                <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="news.html" class="block py-2 text-primary-600 font-semibold">News</a>
-                <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="index.html#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
-                <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
-                <a href="index.html#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
-            </div>
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50" data-page="news">
+    <!-- Navigation Component Container -->
+    <div id="navigation-container"></div>
 
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 hero-gradient overflow-hidden">
@@ -261,15 +66,15 @@
             <!-- Stats -->
             <div class="flex flex-wrap justify-center gap-8 mt-12">
                 <div class="glass-effect px-6 py-4 rounded-2xl">
-                    <div class="text-3xl font-bold text-white mb-1">50+</div>
+                    <div class="text-3xl font-bold text-white mb-1">100+</div>
                     <div class="text-white/80 text-sm">News Articles</div>
                 </div>
                 <div class="glass-effect px-6 py-4 rounded-2xl">
-                    <div class="text-3xl font-bold text-white mb-1">25+</div>
+                    <div class="text-3xl font-bold text-white mb-1">100+</div>
                     <div class="text-white/80 text-sm">Awards Won</div>
                 </div>
                 <div class="glass-effect px-6 py-4 rounded-2xl">
-                    <div class="text-3xl font-bold text-white mb-1">100+</div>
+                    <div class="text-3xl font-bold text-white mb-1">2000+</div>
                     <div class="text-white/80 text-sm">Performances</div>
                 </div>
             </div>
@@ -560,185 +365,84 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- About -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-peace text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-serif font-bold">Rashika</h3>
-                            <p class="text-sm text-gold-400">Dance Academy</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 leading-relaxed">Preserving tradition, inspiring innovation. Join us in celebrating the divine art of dance.</p>
-                </div>
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-primary-400 transition-colors">Home</a></li>
-                        <li><a href="media-charity.html" class="text-gray-400 hover:text-primary-400 transition-colors">Media & Charity</a></li>
-                        <li><a href="index.html#shows" class="text-gray-400 hover:text-primary-400 transition-colors">Shows</a></li>
-                        <li><a href="news.html" class="text-gray-400 hover:text-primary-400 transition-colors">News</a></li>
-                        <li><a href="videos.html" class="text-gray-400 hover:text-primary-400 transition-colors">Videos</a></li>
-                    </ul>
-                </div>
-
-                <!-- Additional Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Special Programs</h4>
-                    <ul class="space-y-3">
-                        <li><a href="index.html#manjula" class="text-gray-400 hover:text-gold-400 transition-colors">Manjula</a></li>
-                        <li><a href="arangetram.html" class="text-gray-400 hover:text-gold-400 transition-colors">Arangetram</a></li>
-                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Bharatanatyam</a></li>
-                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Kathak</a></li>
-                        <li><a href="index.html#classes" class="text-gray-400 hover:text-gold-400 transition-colors">Odissi</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Get in Touch</h4>
-                    <div class="space-y-3">
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-map-marker-alt mr-3 text-primary-400"></i>
-                            Bellavista, NSW, Australia
-                        </p>
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-phone mr-3 text-gold-400"></i>
-                            0433 005 131
-                        </p>
-                        <p class="text-gray-400 flex items-center">
-                            <i class="fas fa-envelope mr-3 text-rose-400"></i>
-                            info@rashikadance.com
-                        </p>
-                    </div>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#" class="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2025 Rashika Dance Academy. All rights reserved. | Designed with ❤️ for the art of dance.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
+    <!-- Load Components -->
+    <script src="js/components.js"></script>
+    
+    <!-- Page-specific JavaScript -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Wait for components to load, then add news-specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const newsCards = document.querySelectorAll('.news-card');
 
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const newsCards = document.querySelectorAll('.news-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.getAttribute('data-category');
-                
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Filter news articles
-                newsCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    if (category === 'all' || cardCategory === category) {
-                        card.style.display = 'block';
-                        card.classList.add('animate-fadeInUp');
-                    } else {
-                        card.style.display = 'none';
-                        card.classList.remove('animate-fadeInUp');
-                    }
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.getAttribute('data-category');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter news articles
+                    newsCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (category === 'all' || cardCategory === category) {
+                            card.style.display = 'block';
+                            card.classList.add('animate-fadeInUp');
+                        } else {
+                            card.style.display = 'none';
+                            card.classList.remove('animate-fadeInUp');
+                        }
+                    });
                 });
             });
-        });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    if (mobileMenu) {
-                        mobileMenu.classList.add('hidden');
+            // Animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
                     }
-                }
+                });
+            }, observerOptions);
+
+            // Observe news cards for animation
+            document.querySelectorAll('.news-card').forEach(card => {
+                observer.observe(card);
             });
-        });
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            // Newsletter subscription
+            const subscribeBtn = document.querySelector('button[type="button"]');
+            const emailInput = document.querySelector('input[type="email"]');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeInUp');
-                }
-            });
-        }, observerOptions);
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', () => {
+                    const email = emailInput.value.trim();
+                    if (email && email.includes('@')) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        emailInput.value = '';
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
+                });
+            }
 
-        // Observe news cards for animation
-        document.querySelectorAll('.news-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Newsletter subscription
-        const subscribeBtn = document.querySelector('button[type="button"]');
-        const emailInput = document.querySelector('input[type="email"]');
-
-        if (subscribeBtn) {
-            subscribeBtn.addEventListener('click', () => {
-                const email = emailInput.value.trim();
-                if (email && email.includes('@')) {
-                    alert('Thank you for subscribing to our newsletter!');
-                    emailInput.value = '';
-                } else {
-                    alert('Please enter a valid email address.');
-                }
-            });
-        }
-
-        // Read more functionality
-        document.querySelectorAll('.read-more-btn, .news-card button').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // This would typically open a full article page or modal
-                alert('This would open the full article. Feature to be implemented!');
+            // Read more functionality
+            document.querySelectorAll('.read-more-btn, .news-card button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // This would typically open a full article page or modal
+                    alert('This would open the full article. Feature to be implemented!');
+                });
             });
         });
     </script>

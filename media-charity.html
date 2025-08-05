@@ -4,345 +4,356 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media & Charity - Rashika Dance Academy</title>
+    
+    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'serif': ['Cormorant Garamond', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                        },
-                        'gold': {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        },
-                        'rose': {
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'fadeInUp': 'fadeInUp 0.8s ease-out',
-                        'slideInLeft': 'slideInLeft 0.8s ease-out',
-                        'slideInRight': 'slideInRight 0.8s ease-out',
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Shared Configuration and Styles -->
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .stats-bar {
+            background: linear-gradient(135deg, #8b4513, #ec4899, #fbbf24);
+            color: white;
+            padding: 1rem 0;
+            margin-top: 80px; /* Account for fixed navigation */
         }
         
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #ec4899, 0 0 30px #ec4899, 0 0 40px #ec4899; }
-            to { text-shadow: 0 0 30px #f59e0b, 0 0 40px #f59e0b, 0 0 50px #f59e0b; }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .card-hover {
+        .achievement-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
             transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
         }
         
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .achievement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+            border-color: #fbbf24;
         }
         
-        .award-badge {
-            background: #6b7280;
+        .charity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+        }
+        
+        .charity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+            border-color: #ec4899;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .charity-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #8b4513, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
             color: white;
         }
         
-        .section-divider {
-            background: #e5e7eb;
-            height: 1px;
-            margin: 1.5rem 0;
+        .production-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #fbbf24, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
         
-        .tag {
-            background: #f3f4f6;
-            color: #374151;
-            font-size: 0.75rem;
+        .category-badge {
+            background: linear-gradient(135deg, #fbbf24, #ec4899);
+            color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+        
+        .charity-badge {
+            background: rgba(139, 69, 19, 0.1);
+            color: #8b4513;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-bar {
+                margin-top: 70px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
     </style>
+    </style>
 </head>
-<body class="font-sans bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
+<body class="font-sans bg-gray-50" data-page="media">
+    <!-- Navigation Component Container -->
+    <div id="navigation-container"></div>
+
+    <!-- Statistics Bar -->
+    <section class="stats-bar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-hand-peace text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
-                        <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
-                    </div>
+            <div class="flex justify-center items-center gap-8 md:gap-16">
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-bold mb-1">10+</div>
+                    <div class="text-sm opacity-90">Productions</div>
                 </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Home</a>
-                    <a href="media-charity.html" class="text-primary-600 font-medium border-b-2 border-primary-600">Media & Charity</a>
-                    <a href="index.html#shows" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Shows</a>
-                    <a href="news.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">News</a>
-                    <a href="videos.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Videos</a>
-                    <a href="index.html#manjula" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Manjula</a>
-                    <a href="arangetram.html" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Arangetram</a>
-                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
+                <div class="w-px h-12 bg-white/30"></div>
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-bold mb-1">5</div>
+                    <div class="text-sm opacity-90">Charities</div>
                 </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+                <div class="w-px h-12 bg-white/30"></div>
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-bold mb-1">30+</div>
+                    <div class="text-sm opacity-90">Years</div>
                 </div>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
-                <a href="media-charity.html" class="block py-2 text-primary-600 font-medium">Media & Charity</a>
-                <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="news.html" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
-                <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="index.html#manjula" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
-                <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
-                <a href="index.html#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Compact Hero Section -->
-    <section class="relative pt-24 pb-8 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-3">
-                Media Coverage & Charitable Impact
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Recognized excellence in classical dance and meaningful social contribution
-            </p>
         </div>
     </section>
 
-    <!-- Media Section -->
-    <section id="media" class="py-8 bg-gray-50">
+    <!-- Main Content Section -->
+    <section class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
             <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-2">
-                    Press Recognition & Awards
-                </h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Our productions have received recognition for artistic excellence and social impact.
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4">Our Journey & Impact</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Explore our artistic productions and community initiatives that blend cultural excellence with social responsibility
                 </p>
             </div>
 
-            <!-- Media Awards Grid - Compact Cards -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Kshetram Production -->
-                <div class="card-hover bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
-                    <div class="relative">
-                        <img src="https://static.wixstatic.com/media/ade1be_fa390fa3ffd94affac2e9b3d2fcd6ebe~mv2.png/v1/fill/w_300,h_200,al_c,q_80,usm_0.66_1.00_0.01/ade1be_fa390fa3ffd94affac2e9b3d2fcd6ebe~mv2.png" 
-                             alt="Kshetram - A Spiritual Ballet" 
-                             class="w-full h-40 object-cover">
-                        <div class="absolute top-2 left-2 award-badge text-white px-2 py-1 rounded text-xs font-medium">
-                            2011
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-2">
-                            Kshetram – A Spiritual Ballet
-                        </h3>
-                        <div class="tag inline-block mb-2">
-                            Thematic Choreography
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3 line-clamp-3">
-                            A Bharatanatyam ballet journey through South India's sacred temples, supporting AIM for Seva's education initiatives.
-                        </p>
-                        <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_790e4e1e96974a3d9e802e9e332f0434.pdf" 
-                           target="_blank"
-                           class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
-                            <i class="fas fa-file-pdf mr-1"></i>
-                            View Coverage
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sri Chakra Production -->
-                <div class="card-hover bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
-                    <div class="relative">
-                        <img src="https://static.wixstatic.com/media/ade1be_e75f3c3c7574488e9589827b3a4f3f76~mv2.png/v1/fill/w_300,h_200,al_c,q_80,usm_0.66_1.00_0.01/ade1be_e75f3c3c7574488e9589827b3a4f3f76~mv2.png" 
-                             alt="Sri Chakra: When Gods Dance" 
-                             class="w-full h-40 object-cover">
-                        <div class="absolute top-2 left-2 award-badge text-white px-2 py-1 rounded text-xs font-medium">
-                            2015
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-2">
-                            Sri Chakra: When Gods Dance
-                        </h3>
-                        <div class="tag inline-block mb-2">
-                            Classical Choreography
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3 line-clamp-3">
-                            A grand Bharatanatyam ballet blending feminine divine and Vishnu's incarnations, supporting Northwest Disability Services.
-                        </p>
-                        <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_432b37f2677e40d49716f0e5e669958d.pdf" 
-                           target="_blank"
-                           class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
-                            <i class="fas fa-file-pdf mr-1"></i>
-                            View Coverage
-                        </a>
-                    </div>
-                </div>
-
-                <!-- The Sacred Grahas Production -->
-                <div class="card-hover bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
-                    <div class="relative">
-                        <img src="https://static.wixstatic.com/media/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png/v1/fill/w_300,h_200,al_c,q_80,usm_0.66_1.00_0.01/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png" 
-                             alt="The Sacred Grahas" 
-                             class="w-full h-40 object-cover">
-                        <div class="absolute top-2 left-2 award-badge text-white px-2 py-1 rounded text-xs font-medium">
-                            2014
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-2">
-                            The Sacred Grahas
-                        </h3>
-                        <div class="tag inline-block mb-2">
-                            Hindu Cosmology
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3 line-clamp-3">
-                            Cosmic stories of nine planets in Hindu mythology through innovative Bharatanatyam, supporting OZINDCARE.
-                        </p>
-                        <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_69d9ba1f30424fcd991a978861f32ba3.pdf" 
-                           target="_blank"
-                           class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
-                            <i class="fas fa-file-pdf mr-1"></i>
-                            View Coverage
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Additional Coverage -->
-                <div class="card-hover bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
-                    <div class="relative">
-                        <img src="https://static.wixstatic.com/media/ade1be_9b8f5314b1d54061997d6181ad6d98ef~mv2.png/v1/fill/w_300,h_200,al_c,q_80,usm_0.66_1.00_0.01/ade1be_9b8f5314b1d54061997d6181ad6d98ef~mv2.png" 
-                             alt="The Sacred Grahas - Extended Coverage" 
-                             class="w-full h-40 object-cover">
-                        <div class="absolute top-2 left-2 award-badge text-white px-2 py-1 rounded text-xs font-medium">
-                            2014
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-2">
-                            Extended Media Coverage
-                        </h3>
-                        <div class="tag inline-block mb-2">
-                            Solo Performances
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3 line-clamp-3">
-                            Highlighting intergenerational talent and exceptional solo performances, featuring standout dancer Anjana Chandran.
-                        </p>
-                        <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_e359b88a821a4fba87a5ac4f109cf6fa.pdf" 
-                           target="_blank"
-                           class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
-                            <i class="fas fa-file-pdf mr-1"></i>
-                            View Coverage
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Katha Vismaya -->
-                <div class="card-hover bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 md:col-span-2">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-1/3">
-                            <div class="relative h-40 md:h-full">
-                                <img src="https://static.wixstatic.com/media/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png/v1/fill/w_540,h_536,al_c,q_80,usm_0.66_1.00_0.01/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png" 
-                                     alt="Katha Vismaya - Tales of Wonder" 
-                                     class="w-full h-full object-cover">
-                                <div class="absolute top-2 left-2 award-badge text-white px-2 py-1 rounded text-xs font-medium">
-                                    2016
+            <!-- All Content - No Tabs -->
+            <div class="space-y-12">
+                <!-- Artistic Productions Section -->
+                <div>
+                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
+                        <i class="fas fa-theater-masks mr-3 text-primary-600"></i>
+                        Artistic Productions
+                    </h3>
+                    <div class="content-grid">
+                        <!-- Kshetram -->
+                        <div class="achievement-card">
+                            <div class="flex items-center justify-end mb-3">
+                                <div class="production-icon">
+                                    <i class="fas fa-om"></i>
                                 </div>
                             </div>
-                        </div>
-                        <div class="md:w-2/3 p-4">
-                            <h3 class="text-lg font-serif font-semibold text-gray-900 mb-2">
-                                Katha Vismaya – Tales of Wonder
-                            </h3>
-                            <div class="tag inline-block mb-2">
-                                Mythological Storytelling
+                            <div class="category-badge mb-3">
+                                Thematic Choreography - 2011
                             </div>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Exploring feminine strength through stories of Sita, Radha, and Draupadi, with proceeds supporting the Resourceful Australian Indian Network (RAIN).
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Kshetram – A Spiritual Ballet</h4>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                A mesmerizing Bharatanatyam ballet journey through South India's sacred temples, blending spirituality with artistic excellence.
                             </p>
-                            <div class="flex gap-2">
-                                <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                    Learn More
+                            <div class="flex items-center justify-between">
+                                <span class="charity-badge">
+                                    <i class="fas fa-heart mr-1"></i>AIM for Seva
+                                </span>
+                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_790e4e1e96974a3d9e802e9e332f0434.pdf" 
+                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- The Sacred Grahas -->
+                        <div class="achievement-card">
+                            <div class="flex items-center justify-end mb-3">
+                                <div class="production-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                            </div>
+                            <div class="category-badge mb-3">
+                                Hindu Cosmology - 2014
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">The Sacred Grahas</h4>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Cosmic stories of nine planets in Hindu mythology brought to life through innovative Bharatanatyam choreography.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="charity-badge">
+                                    <i class="fas fa-heart mr-1"></i>OZINDCARE
+                                </span>
+                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_69d9ba1f30424fcd991a978861f32ba3.pdf" 
+                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Sri Chakra -->
+                        <div class="achievement-card">
+                            <div class="flex items-center justify-end mb-3">
+                                <div class="production-icon">
+                                    <i class="fas fa-lotus"></i>
+                                </div>
+                            </div>
+                            <div class="category-badge mb-3">
+                                Classical Choreography - 2015
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Sri Chakra: When Gods Dance</h4>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                A grand Bharatanatyam ballet masterfully blending feminine divine energy with Vishnu's powerful incarnations.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="charity-badge">
+                                    <i class="fas fa-heart mr-1"></i>Disability Services
+                                </span>
+                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_432b37f2677e40d49716f0e5e669958d.pdf" 
+                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Katha Vismaya -->
+                        <div class="achievement-card">
+                            <div class="flex items-center justify-end mb-3">
+                                <div class="production-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </div>
+                            <div class="category-badge mb-3">
+                                Mythological Storytelling - 2016
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Katha Vismaya – Tales of Wonder</h4>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Exploring feminine strength through the inspiring stories of Sita, Radha, and Draupadi in a powerful narrative.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="charity-badge">
+                                    <i class="fas fa-heart mr-1"></i>RAIN Network
+                                </span>
+                                <button class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                                    <i class="fas fa-play mr-1"></i>Watch Highlights
                                 </button>
-                                <button class="text-gray-600 hover:text-gray-800 text-sm font-medium">
-                                    Watch Highlights
-                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Impact Section -->
+                <div>
+                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
+                        <i class="fas fa-heart mr-3 text-primary-600"></i>
+                        Community Impact
+                    </h3>
+                    <div class="content-grid">
+                        <!-- AIM for Seva -->
+                        <div class="charity-card">
+                            <div class="charity-icon">
+                                <i class="fas fa-graduation-cap text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">AIM for Seva</h4>
+                            <div class="category-badge">
+                                Education & Development
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Supporting education initiatives in rural India through our spiritual ballet "Kshetram", helping provide quality education to underprivileged children.
+                            </p>
+                            <div class="charity-badge">
+                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2011
+                            </div>
+                        </div>
+
+                        <!-- OZINDCARE -->
+                        <div class="charity-card">
+                            <div class="charity-icon">
+                                <i class="fas fa-stethoscope text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">OZINDCARE</h4>
+                            <div class="category-badge">
+                                Healthcare Services
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Partnering through "The Sacred Grahas" performance to support healthcare initiatives, bringing medical care to underserved communities.
+                            </p>
+                            <div class="charity-badge">
+                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2014
+                            </div>
+                        </div>
+
+                        <!-- Northwest Disability Services -->
+                        <div class="charity-card">
+                            <div class="charity-icon">
+                                <i class="fas fa-wheelchair text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Northwest Disability Services</h4>
+                            <div class="category-badge">
+                                Accessibility & Inclusion
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                "Sri Chakra: When Gods Dance" helped raise funds for disability services, promoting inclusion and accessibility in our community.
+                            </p>
+                            <div class="charity-badge">
+                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2015
+                            </div>
+                        </div>
+
+                        <!-- RAIN -->
+                        <div class="charity-card">
+                            <div class="charity-icon">
+                                <i class="fas fa-network-wired text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">RAIN Network</h4>
+                            <div class="category-badge">
+                                Community Building
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Through "Katha Vismaya", supporting the Resourceful Australian Indian Network in building stronger community connections and cultural understanding.
+                            </p>
+                            <div class="charity-badge">
+                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2016
+                            </div>
+                        </div>
+
+                        <!-- Cancer Council -->
+                        <div class="charity-card">
+                            <div class="charity-icon">
+                                <i class="fas fa-ribbon text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Cancer Council</h4>
+                            <div class="category-badge">
+                                Health & Wellness
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                Our ongoing charity partner supporting cancer research, prevention, and patient care. Together we dance for hope and healing.
+                            </p>
+                            <div class="charity-badge">
+                                <i class="fas fa-heart mr-1"></i>Current Partner
                             </div>
                         </div>
                     </div>
@@ -351,66 +362,49 @@
         </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Charity Section -->
-    <section id="charity" class="py-8 bg-white">
+    <!-- Supporters Section -->
+    <section class="py-12 bg-gradient-to-br from-primary-50 to-rose-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
             <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-2">
-                    Charitable Impact
-                </h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Supporting meaningful causes through the power of classical dance.
+                <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4">
+                    <i class="fas fa-hands-helping mr-3 text-primary-600"></i>
+                    Proudly Supported By
+                </h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Our community partners who help make our mission possible
                 </p>
             </div>
 
-            <!-- Philosophy Quote -->
-            <div class="text-center mb-8">
-                <div class="bg-gray-50 rounded-lg p-6 max-w-2xl mx-auto border border-gray-200">
-                    <blockquote class="text-lg font-serif italic text-gray-800 mb-2">
-                        "We at Rasika see the need not the cause"
-                    </blockquote>
-                    <p class="text-sm text-gray-600">
-                        Using dance as a platform to create positive social impact through artistic excellence.
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Sydney Community Group -->
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-gold-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Sydney Community Group (SCG)</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Supporting community arts and cultural initiatives throughout Sydney, helping preserve and promote Indian classical dance heritage.
                     </p>
-                </div>
-            </div>
-
-            <!-- Charity Organizations Grid -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-graduation-cap text-white"></i>
+                    <div class="charity-badge">
+                        <i class="fas fa-handshake mr-1"></i>Community Partner
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-1">AIM for Seva</h3>
-                    <p class="text-gray-600 text-sm">Education for underprivileged children</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-wheelchair text-white"></i>
+                <!-- Pack & Send -->
+                <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-gold-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-1">Northwest Disability</h3>
-                    <p class="text-gray-600 text-sm">Empowering individuals with disabilities</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-hands-helping text-white"></i>
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Pack & Send</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Unit 15, 11 Holbeche Road, Arndell Park<br>
+                        Supporting our logistics and operational needs for performances and events.
+                    </p>
+                    <div class="flex justify-center items-center gap-4">
+                        <div class="charity-badge">
+                            <i class="fas fa-phone mr-1"></i>02 8660 2544
+                        </div>
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-1">OZINDCARE</h3>
-                    <p class="text-gray-600 text-sm">Indian community welfare initiatives</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-network-wired text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 mb-1">RAIN</h3>
-                    <p class="text-gray-600 text-sm">Cultural unity and community support</p>
                 </div>
             </div>
         </div>
@@ -438,119 +432,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Logo & Description -->
-                <div class="md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-peace text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-white">Rashika</h3>
-                            <p class="text-sm text-gold-400 font-medium">Dance Academy</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        Celebrating the art of Bharatanatyam while creating positive social impact through charitable initiatives and cultural excellence.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="https://www.youtube.com/c/RasikaDanceAcademy" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-youtube text-2xl"></i>
-                        </a>
-                        <a href="https://www.facebook.com/Rasika-Dance-Academy-152216374983421/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="media-charity.html" class="text-gray-300 hover:text-white transition-colors">Media & Charity</a></li>
-                        <li><a href="videos.html" class="text-gray-300 hover:text-white transition-colors">Videos</a></li>
-                        <li><a href="arangetram.html" class="text-gray-300 hover:text-white transition-colors">Arangetram</a></li>
-                        <li><a href="news.html" class="text-gray-300 hover:text-white transition-colors">News</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                    <div class="space-y-2 text-gray-300">
-                        <p><i class="fas fa-envelope mr-2 text-primary-400"></i> info@rashikadance.com</p>
-                        <p><i class="fas fa-phone mr-2 text-primary-400"></i> 0433 005 131</p>
-                        <p><i class="fas fa-map-marker-alt mr-2 text-primary-400"></i> Bellavista, NSW, Australia</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    © 2025 Rashika Dance Academy. All rights reserved. | Where Art Meets Soul
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            observer.observe(el);
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/98');
-                navbar.classList.remove('bg-white/95');
-            } else {
-                navbar.classList.add('bg-white/95');
-                navbar.classList.remove('bg-white/98');
-            }
-        });
-    </script>
+    <!-- Load Components -->
+    <script src="js/components.js"></script>
 </body>
 </html>

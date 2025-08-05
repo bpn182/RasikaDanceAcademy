@@ -1,0 +1,893 @@
+/* Shared Custom Styles for Rashika Dance Academy */
+
+/* Common Keyframe Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
+    to { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Common Utility Classes */
+.hero-gradient {
+    background: linear-gradient(135deg, 
+        rgba(139, 69, 19, 0.9) 0%,
+        rgba(236, 72, 153, 0.85) 25%,
+        rgba(251, 191, 36, 0.8) 50%,
+        rgba(156, 39, 176, 0.85) 75%,
+        rgba(236, 72, 153, 0.9) 100%
+    );
+}
+
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gallery-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation specific styles */
+.nav-link {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-1px);
+}
+
+/* Common Card Styles */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+.loading {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .mobile-padding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* News Page Specific Styles */
+.news-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.featured-news {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
+    border: 2px solid rgba(236, 72, 153, 0.2);
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-achievement {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: white;
+}
+
+.tag-performance {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+}
+
+.tag-workshop {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    color: white;
+}
+
+.tag-announcement {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+}
+
+.tag-media {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+}
+
+.filter-btn {
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+    border-color: #ec4899;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+}
+
+.read-more-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.read-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.read-more-btn:hover::before {
+    left: 100%;
+}
+
+/* Media & Charity Page Specific Styles */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.award-badge {
+    background: #6b7280;
+    color: white;
+}
+
+.section-divider {
+    background: #e5e7eb;
+    height: 1px;
+    margin: 1.5rem 0;
+}
+
+.tag {
+    background: #f3f4f6;
+    color: #374151;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+/* Videos Page Specific Styles */
+.video-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.video-thumbnail {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    aspect-ratio: 16/9;
+}
+
+.video-thumbnail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.video-card:hover .video-thumbnail::before {
+    opacity: 1;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 3;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.play-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: white;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.play-icon {
+    color: #ec4899;
+    font-size: 24px;
+    margin-left: 3px;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 2;
+}
+
+.category-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.modal-backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.filter-button {
+    transition: all 0.3s ease;
+}
+
+.filter-button.active {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+}
+
+/* Custom scrollbar for modal */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #db2777, #e11d48);
+}
+
+/* ======================
+   Index Page Styles 
+   ====================== */
+.dancer-image {
+    transition: all 0.8s ease;
+    width: 100%;
+    height: 100%;
+    filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+    animation: dancerGlow 4s ease-in-out infinite alternate;
+}
+
+.dancer-image:hover {
+    transform: scale(1.02) rotate(0.5deg);
+    filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 40px rgba(251, 191, 36, 0.5));
+}
+
+/* Handle PNG with transparent background */
+.dancer-container .dancer-image {
+    object-fit: contain;
+    object-position: center center;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/* For PNG images, use contain to preserve transparency */
+.dancer-container .dancer-image[src*=".png"] {
+    object-fit: contain;
+    object-position: center center;
+    background: transparent;
+}
+
+/* For portrait images, adjust positioning */
+.dancer-container .dancer-image[src*=".gif"] {
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Dancer glow animation */
+@keyframes dancerGlow {
+    0% { 
+        filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% { 
+        filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 35px rgba(236, 72, 153, 0.4));
+        transform: translateY(-5px) rotate(0.3deg);
+    }
+    100% { 
+        filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.3));
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Incense smoke animation */
+@keyframes smokeRise {
+    0% {
+        opacity: 0.8;
+        transform: translateY(0px) translateX(0px) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-100px) translateX(10px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) translateX(-5px) scale(1.5);
+    }
+}
+
+/* Gallery styles */
+.gallery-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    color: #6b7280;
+}
+
+.gallery-nav-btn:hover {
+    background: rgba(236, 72, 153, 0.1);
+    color: #ec4899;
+    border-color: rgba(236, 72, 153, 0.3);
+}
+
+.gallery-nav-btn.active {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+    border-color: #ec4899;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+
+.gallery-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.gallery-item {
+    flex: 0 0 auto;
+    width: 320px;
+    height: 320px;
+    margin: 0 8px;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-nav-arrow {
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.gallery-nav-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-indicator {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-indicator:hover {
+    transform: scale(1.2);
+}
+
+.smoke-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(251, 191, 36, 0.2) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: smokeRise 6s ease-out infinite;
+    filter: blur(1px);
+}
+
+.smoke-particle:nth-child(1) { animation-delay: 0s; left: 20%; }
+.smoke-particle:nth-child(2) { animation-delay: 1s; left: 80%; }
+.smoke-particle:nth-child(3) { animation-delay: 2s; left: 30%; }
+.smoke-particle:nth-child(4) { animation-delay: 3s; left: 70%; }
+.smoke-particle:nth-child(5) { animation-delay: 4s; left: 50%; }
+
+/* Divine light rays */
+@keyframes lightRays {
+    0%, 100% {
+        opacity: 0.3;
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: rotate(2deg) scale(1.05);
+    }
+}
+
+.divine-light {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(from 0deg, transparent, rgba(251, 191, 36, 0.1), transparent, rgba(236, 72, 153, 0.1), transparent);
+    border-radius: 50%;
+    animation: lightRays 8s ease-in-out infinite;
+    filter: blur(2px);
+}
+
+/* Sunlight animations and effects */
+@keyframes sunlightBeam {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    25% {
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1) rotate(2deg);
+    }
+    75% {
+        opacity: 0.3;
+        transform: scale(1) rotate(1deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+}
+
+@keyframes sunlightRays {
+    0%, 100% {
+        opacity: 0.2;
+        transform: translateX(0px) translateY(0px) rotate(0deg);
+    }
+    33% {
+        opacity: 0.5;
+        transform: translateX(-10px) translateY(5px) rotate(1deg);
+    }
+    66% {
+        opacity: 0.7;
+        transform: translateX(5px) translateY(-3px) rotate(-1deg);
+    }
+}
+
+.sunlight-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.sunlight-beam {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 300px;
+    height: 600px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.3) 0%,
+        rgba(251, 191, 36, 0.2) 25%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(251, 191, 36, 0.15) 75%,
+        transparent 100%
+    );
+    transform-origin: top right;
+    animation: sunlightBeam 12s ease-in-out infinite;
+    filter: blur(1px);
+}
+
+.sunlight-ray {
+    position: absolute;
+    background: linear-gradient(
+        to bottom left,
+        rgba(255, 215, 0, 0.4),
+        rgba(251, 191, 36, 0.2),
+        transparent
+    );
+    transform-origin: top right;
+    animation: sunlightRays 8s ease-in-out infinite;
+    filter: blur(0.5px);
+}
+
+.sunlight-ray:nth-child(1) {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 400px;
+    animation-delay: 0s;
+}
+
+.sunlight-ray:nth-child(2) {
+    top: 10px;
+    right: 20px;
+    width: 1px;
+    height: 350px;
+    animation-delay: 1s;
+}
+
+.sunlight-ray:nth-child(3) {
+    top: 5px;
+    right: 40px;
+    width: 1.5px;
+    height: 380px;
+    animation-delay: 2s;
+}
+
+.sunlight-ray:nth-child(4) {
+    top: 15px;
+    right: 60px;
+    width: 1px;
+    height: 320px;
+    animation-delay: 3s;
+}
+
+.sunlight-ray:nth-child(5) {
+    top: 20px;
+    right: 80px;
+    width: 2px;
+    height: 360px;
+    animation-delay: 4s;
+}
+
+.sunlight-particles {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(251, 191, 36, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: sunlightRays 6s ease-out infinite;
+}
+
+.sunlight-particles:nth-child(6) { top: 30px; right: 30px; animation-delay: 0.5s; }
+.sunlight-particles:nth-child(7) { top: 60px; right: 50px; animation-delay: 1.5s; }
+.sunlight-particles:nth-child(8) { top: 90px; right: 70px; animation-delay: 2.5s; }
+.sunlight-particles:nth-child(9) { top: 45px; right: 90px; animation-delay: 3.5s; }
+.sunlight-particles:nth-child(10) { top: 75px; right: 110px; animation-delay: 4.5s; }
+
+.sunlight-rays {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: conic-gradient(
+        from 45deg at 100% 0%,
+        transparent 0deg,
+        rgba(251, 191, 36, 0.15) 30deg,
+        rgba(255, 255, 255, 0.1) 45deg,
+        rgba(251, 191, 36, 0.15) 60deg,
+        transparent 90deg
+    );
+    animation: sunlightRays 12s ease-in-out infinite;
+    transform-origin: 100% 0%;
+}
+
+/* DJ-style smoke effects */
+@keyframes djSmoke {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) translateX(0px) scale(0.8) rotate(0deg);
+    }
+    25% {
+        opacity: 0.7;
+        transform: translateY(-20px) translateX(10px) scale(1.2) rotate(5deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-60px) translateX(-5px) scale(1.5) rotate(-3deg);
+    }
+    75% {
+        opacity: 0.3;
+        transform: translateY(-100px) translateX(15px) scale(1.8) rotate(8deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) translateX(-10px) scale(2.2) rotate(-5deg);
+    }
+}
+
+@keyframes djSmokeHorizontal {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px) translateY(0px) scale(0.5) rotate(0deg);
+    }
+    25% {
+        opacity: 0.6;
+        transform: translateX(20px) translateY(-10px) scale(1) rotate(10deg);
+    }
+    50% {
+        opacity: 0.4;
+        transform: translateX(80px) translateY(-25px) scale(1.5) rotate(-5deg);
+    }
+    75% {
+        opacity: 0.2;
+        transform: translateX(140px) translateY(-40px) scale(2) rotate(15deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(200px) translateY(-60px) scale(2.5) rotate(-10deg);
+    }
+}
+
+@keyframes djSmokeBurst {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg);
+    }
+    20% {
+        opacity: 0.8;
+        transform: scale(1) rotate(45deg);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.8) rotate(90deg);
+    }
+    80% {
+        opacity: 0.3;
+        transform: scale(2.5) rotate(135deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3) rotate(180deg);
+    }
+}
+
+.dj-smoke-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.dj-smoke {
+    position: absolute;
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(200, 200, 255, 0.6) 30%, 
+        rgba(150, 150, 200, 0.4) 60%, 
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(3px);
+}
+
+.dj-smoke-bottom {
+    width: 60px;
+    height: 30px;
+    bottom: 10px;
+    animation: djSmoke 8s ease-out infinite;
+}
+
+.dj-smoke-side {
+    width: 80px;
+    height: 40px;
+    top: 50%;
+    animation: djSmokeHorizontal 10s ease-out infinite;
+}
+
+.dj-smoke-burst {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: djSmokeBurst 6s ease-out infinite;
+}
+
+/* Individual smoke particles with delays */
+.dj-smoke:nth-child(1) { 
+    animation-delay: 0s; 
+    left: 20%; 
+}
+.dj-smoke:nth-child(2) { 
+    animation-delay: 1.5s; 
+    left: 80%; 
+}
+.dj-smoke:nth-child(3) { 
+    animation-delay: 3s; 
+    left: 40%; 
+}
+.dj-smoke:nth-child(4) { 
+    animation-delay: 4.5s; 
+    left: 70%; 
+}
+.dj-smoke:nth-child(5) { 
+    animation-delay: 6s; 
+    left: 10%; 
+}
+.dj-smoke:nth-child(6) { 
+    animation-delay: 2s; 
+    right: 20%; 
+}
+.dj-smoke:nth-child(7) { 
+    animation-delay: 3.5s; 
+    right: 10%; 
+}
+.dj-smoke:nth-child(8) { 
+    animation-delay: 5s; 
+    left: 60%; 
+}
+.dj-smoke:nth-child(9) { 
+    animation-delay: 1s; 
+    right: 40%; 
+}
+.dj-smoke:nth-child(10) { 
+    animation-delay: 4s; 
+    left: 30%; 
+}
+
+/* Enhanced smoke for larger screens */
+@media (min-width: 1024px) {
+    .dj-smoke-bottom {
+        width: 80px;
+        height: 40px;
+    }
+    .dj-smoke-side {
+        width: 100px;
+        height: 50px;
+    }
+    .dj-smoke-burst {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Namaste background image responsive handling */
+.namaste-background {
+    /* For portrait orientation images like 1024x1536 */
+    max-height: 85vh;
+    max-width: 85vw;
+    width: auto;
+    height: auto;
+    animation: namasteAppear 8s ease-out forwards;
+}
+
+@keyframes namasteAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+        filter: sepia(100%) hue-rotate(280deg) saturate(0.1) brightness(2.5) contrast(0.3);
+    }
+    100% {
+        opacity: 0.25;
+        transform: scale(1);
+        filter: sepia(100%) hue-rotate(280deg) saturate(0.6) brightness(1.4) contrast(0.8);
+    }
+}
+
+@media (max-width: 768px) {
+    .namaste-background {
+        max-height: 80vh;
+        max-width: 80vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .namaste-background {
+        max-height: 90vh;
+        max-width: 90vw;
+    }
+}
