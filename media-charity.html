@@ -104,18 +104,90 @@
             font-weight: 600;
             display: inline-block;
         }
+
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .media-item {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px) rotate(0deg) !important;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.2);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(236, 72, 153, 0.8));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .media-item:hover .media-overlay {
+            opacity: 1;
+        }
+
+        /* Community Impact gallery - no overlay effects */
+        .community-gallery .media-item:hover .media-overlay {
+            opacity: 0;
+        }
+
+        .media-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
         
         @media (max-width: 768px) {
             .stats-bar {
                 margin-top: 70px;
             }
             
-            .content-grid {
+            .content-grid, .media-gallery {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
+            .media-item {
+                transform: none !important;
+            }
         }
-    </style>
     </style>
 </head>
 <body class="font-sans bg-gray-50" data-page="media">
@@ -155,206 +227,112 @@
                 </p>
             </div>
 
-            <!-- All Content - No Tabs -->
-            <div class="space-y-12">
-                <!-- Artistic Productions Section -->
-                <div>
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
-                        <i class="fas fa-theater-masks mr-3 text-primary-600"></i>
-                        Artistic Productions
-                    </h3>
-                    <div class="content-grid">
-                        <!-- Kshetram -->
-                        <div class="achievement-card">
-                            <div class="flex items-center justify-end mb-3">
-                                <div class="production-icon">
-                                    <i class="fas fa-om"></i>
-                                </div>
-                            </div>
-                            <div class="category-badge mb-3">
-                                Thematic Choreography - 2011
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Kshetram – A Spiritual Ballet</h4>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                A mesmerizing Bharatanatyam ballet journey through South India's sacred temples, blending spirituality with artistic excellence.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="charity-badge">
-                                    <i class="fas fa-heart mr-1"></i>AIM for Seva
-                                </span>
-                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_790e4e1e96974a3d9e802e9e332f0434.pdf" 
-                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
-                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
-                                </a>
-                            </div>
+            <!-- Media Gallery Section -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
+                    <i class="fas fa-newspaper mr-3 text-primary-600"></i>
+                    Media Coverage & Press
+                </h3>
+                
+                <div class="media-gallery">
+                    <!-- Sri Chakra -->
+                    <div class="media-item" style="transform: rotate(-2deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_432b37f2677e40d49716f0e5e669958d.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_27082ab044af40fcae3727305e59a077~mv2.png/v1/fill/w_540,h_360,al_c,q_80,usm_0.66_1.00_0.01/ade1be_27082ab044af40fcae3727305e59a077~mv2.png" alt="Sri Chakra">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
                         </div>
+                        <div class="media-title">Sri Chakra</div>
+                    </div>
 
-                        <!-- The Sacred Grahas -->
-                        <div class="achievement-card">
-                            <div class="flex items-center justify-end mb-3">
-                                <div class="production-icon">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                            </div>
-                            <div class="category-badge mb-3">
-                                Hindu Cosmology - 2014
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">The Sacred Grahas</h4>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Cosmic stories of nine planets in Hindu mythology brought to life through innovative Bharatanatyam choreography.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="charity-badge">
-                                    <i class="fas fa-heart mr-1"></i>OZINDCARE
-                                </span>
-                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_69d9ba1f30424fcd991a978861f32ba3.pdf" 
-                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
-                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
-                                </a>
-                            </div>
+                    <!-- Manjula Arangetram -->
+                    <div class="media-item" style="transform: rotate(2deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_394387b971e14ba9a2fdcd6f6fc9f9b1.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_75a6f111bfdd4954af19fe5919accf26~mv2_d_1429_1788_s_2.jpg/v1/fill/w_430,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_75a6f111bfdd4954af19fe5919accf26~mv2_d_1429_1788_s_2.jpg" alt="Manjula Arangetram">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
                         </div>
+                        <div class="media-title">Manjula Arangetram</div>
+                    </div>
 
-                        <!-- Sri Chakra -->
-                        <div class="achievement-card">
-                            <div class="flex items-center justify-end mb-3">
-                                <div class="production-icon">
-                                    <i class="fas fa-lotus"></i>
-                                </div>
-                            </div>
-                            <div class="category-badge mb-3">
-                                Classical Choreography - 2015
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Sri Chakra: When Gods Dance</h4>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                A grand Bharatanatyam ballet masterfully blending feminine divine energy with Vishnu's powerful incarnations.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="charity-badge">
-                                    <i class="fas fa-heart mr-1"></i>Disability Services
-                                </span>
-                                <a href="https://www.rasikadance.com.au/_files/ugd/ade1be_432b37f2677e40d49716f0e5e669958d.pdf" 
-                                   target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
-                                    <i class="fas fa-external-link-alt mr-1"></i>View Coverage
-                                </a>
-                            </div>
+                    <!-- Indian Express -->
+                    <div class="media-item" style="transform: rotate(-3deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_737911fc82ac4053aadd06c6f375cf2f.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_d9b88ed5932f476ba23093572b5d8444~mv2_d_1358_2233_s_2.jpg/v1/fill/w_328,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_d9b88ed5932f476ba23093572b5d8444~mv2_d_1358_2233_s_2.jpg" alt="Indian Express">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
                         </div>
+                        <div class="media-title">Indian Express</div>
+                    </div>
 
-                        <!-- Katha Vismaya -->
-                        <div class="achievement-card">
-                            <div class="flex items-center justify-end mb-3">
-                                <div class="production-icon">
-                                    <i class="fas fa-crown"></i>
-                                </div>
-                            </div>
-                            <div class="category-badge mb-3">
-                                Mythological Storytelling - 2016
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-2">Katha Vismaya – Tales of Wonder</h4>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Exploring feminine strength through the inspiring stories of Sita, Radha, and Draupadi in a powerful narrative.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="charity-badge">
-                                    <i class="fas fa-heart mr-1"></i>RAIN Network
-                                </span>
-                                <button class="text-primary-600 hover:text-primary-700 text-sm font-medium">
-                                    <i class="fas fa-play mr-1"></i>Watch Highlights
-                                </button>
-                            </div>
+                    <!-- Sacred Grahas -->
+                    <div class="media-item" style="transform: rotate(1deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_e359b88a821a4fba87a5ac4f109cf6fa.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_9b8f5314b1d54061997d6181ad6d98ef~mv2.png/v1/fill/w_540,h_310,al_c,q_80,usm_0.66_1.00_0.01/ade1be_9b8f5314b1d54061997d6181ad6d98ef~mv2.png" alt="Sacred Grahas">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
                         </div>
+                        <div class="media-title">Sacred Grahas</div>
+                    </div>
+
+                    <!-- Sri Chakra (Second) -->
+                    <div class="media-item" style="transform: rotate(-1deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_432b37f2677e40d49716f0e5e669958d.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_e75f3c3c7574488e9589827b3a4f3f76~mv2.png/v1/fill/w_534,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_e75f3c3c7574488e9589827b3a4f3f76~mv2.png" alt="Sri Chakra">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
+                        </div>
+                        <div class="media-title">Sri Chakra</div>
+                    </div>
+
+                    <!-- Katha Vismaya -->
+                    <div class="media-item" style="transform: rotate(3deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_69d9ba1f30424fcd991a978861f32ba3.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png/v1/fill/w_540,h_536,al_c,q_80,usm_0.66_1.00_0.01/ade1be_d47384bab1754d97b6a4d64badb78071~mv2.png" alt="Katha Vismaya">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
+                        </div>
+                        <div class="media-title">Katha Vismaya</div>
+                    </div>
+
+                    <!-- Kshetram -->
+                    <div class="media-item" style="transform: rotate(-3deg);" onclick="window.open('https://www.rasikadance.com.au/_files/ugd/ade1be_790e4e1e96974a3d9e802e9e332f0434.pdf', '_blank')">
+                        <img src="https://static.wixstatic.com/media/ade1be_fa390fa3ffd94affac2e9b3d2fcd6ebe~mv2.png/v1/fill/w_538,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_fa390fa3ffd94affac2e9b3d2fcd6ebe~mv2.png" alt="Kshetram">
+                        <div class="media-overlay">
+                            <i class="fas fa-external-link-alt text-white text-2xl"></i>
+                        </div>
+                        <div class="media-title">Kshetram</div>
                     </div>
                 </div>
+            </div>
 
+            <!-- All Content - No Tabs -->
+            <div class="space-y-12">
                 <!-- Community Impact Section -->
                 <div>
                     <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
                         <i class="fas fa-heart mr-3 text-primary-600"></i>
                         Community Impact
                     </h3>
-                    <div class="content-grid">
-                        <!-- AIM for Seva -->
-                        <div class="charity-card">
-                            <div class="charity-icon">
-                                <i class="fas fa-graduation-cap text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">AIM for Seva</h4>
-                            <div class="category-badge">
-                                Education & Development
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Supporting education initiatives in rural India through our spiritual ballet "Kshetram", helping provide quality education to underprivileged children.
-                            </p>
-                            <div class="charity-badge">
-                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2011
-                            </div>
+                    
+                    <!-- Charity Events Gallery -->
+                    <div class="media-gallery community-gallery mb-12">
+                        <!-- Rasika Charity Event -->
+                        <div class="media-item" style="transform: rotate(-30deg);">
+                            <img src="https://static.wixstatic.com/media/ade1be_b274b028d0f14c5199af149178f69d4b~mv2.jpeg/v1/fill/w_540,h_368,al_c,q_80,usm_0.66_1.00_0.01/ade1be_b274b028d0f14c5199af149178f69d4b~mv2.jpeg" alt="Rasika Charity Event">
+                            <div class="media-title">Rasika Charity Event</div>
                         </div>
 
-                        <!-- OZINDCARE -->
-                        <div class="charity-card">
-                            <div class="charity-icon">
-                                <i class="fas fa-stethoscope text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">OZINDCARE</h4>
-                            <div class="category-badge">
-                                Healthcare Services
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Partnering through "The Sacred Grahas" performance to support healthcare initiatives, bringing medical care to underserved communities.
-                            </p>
-                            <div class="charity-badge">
-                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2014
-                            </div>
+                        <!-- OzIndcare -->
+                        <div class="media-item" style="transform: rotate(-2deg);">
+                            <img src="https://static.wixstatic.com/media/ade1be_fdc9ab9bf8ce44d1a4a0e89286afc508~mv2.jpeg/v1/fill/w_404,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_fdc9ab9bf8ce44d1a4a0e89286afc508~mv2.jpeg" alt="OzIndcare">
+                            <div class="media-title">OzIndcare</div>
                         </div>
 
-                        <!-- Northwest Disability Services -->
-                        <div class="charity-card">
-                            <div class="charity-icon">
-                                <i class="fas fa-wheelchair text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Northwest Disability Services</h4>
-                            <div class="category-badge">
-                                Accessibility & Inclusion
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                "Sri Chakra: When Gods Dance" helped raise funds for disability services, promoting inclusion and accessibility in our community.
-                            </p>
-                            <div class="charity-badge">
-                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2015
-                            </div>
+                        <!-- NWDS Charity -->
+                        <div class="media-item" style="transform: rotate(-27deg);">
+                            <img src="https://static.wixstatic.com/media/ade1be_b5aac1fdda44485cb26aa78e54ad993d~mv2.jpeg/v1/fill/w_540,h_406,al_c,q_80,usm_0.66_1.00_0.01/ade1be_b5aac1fdda44485cb26aa78e54ad993d~mv2.jpeg" alt="NWDS Charity">
+                            <div class="media-title">NWDS Charity</div>
                         </div>
 
-                        <!-- RAIN -->
-                        <div class="charity-card">
-                            <div class="charity-icon">
-                                <i class="fas fa-network-wired text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">RAIN Network</h4>
-                            <div class="category-badge">
-                                Community Building
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Through "Katha Vismaya", supporting the Resourceful Australian Indian Network in building stronger community connections and cultural understanding.
-                            </p>
-                            <div class="charity-badge">
-                                <i class="fas fa-calendar-alt mr-1"></i>Supported since 2016
-                            </div>
-                        </div>
-
-                        <!-- Cancer Council -->
-                        <div class="charity-card">
-                            <div class="charity-icon">
-                                <i class="fas fa-ribbon text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-serif font-bold text-gray-900 mb-3">Cancer Council</h4>
-                            <div class="category-badge">
-                                Health & Wellness
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Our ongoing charity partner supporting cancer research, prevention, and patient care. Together we dance for hope and healing.
-                            </p>
-                            <div class="charity-badge">
-                                <i class="fas fa-heart mr-1"></i>Current Partner
-                            </div>
+                        <!-- Leukemia Foundation -->
+                        <div class="media-item" style="transform: rotate(28deg);">
+                            <img src="https://static.wixstatic.com/media/ade1be_a1fb033730154d37ac4ff61c650fd75f~mv2.jpeg/v1/fill/w_380,h_540,al_c,q_80,usm_0.66_1.00_0.01/ade1be_a1fb033730154d37ac4ff61c650fd75f~mv2.jpeg" alt="Leukemia Foundation">
+                            <div class="media-title">Leukemia Foundation</div>
                         </div>
                     </div>
                 </div>

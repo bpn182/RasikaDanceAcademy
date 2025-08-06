@@ -141,7 +141,7 @@ const FooterComponent = {
                         <a href="https://facebook.com/rasikadanceacademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Facebook">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
-                        <a href="https://youtube.com/@rasikadanceacademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Subscribe to our YouTube">
+                        <a href="https://www.youtube.com/c/RasikaDanceAcademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Subscribe to our YouTube">
                             <i class="fab fa-youtube text-xl"></i>
                         </a>
                         <a href="https://instagram.com/rasikadanceacademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Instagram">
