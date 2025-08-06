@@ -967,7 +967,7 @@
       // Helper to create event card (image fully visible)
       function createEventCard(event) {
         return `
-          <div class="event-card bg-white rounded-3xl shadow-xl flex flex-col overflow-hidden min-w-[320px] max-w-xs cursor-pointer" tabindex="0" role="button" aria-label="View event details" data-event='${JSON.stringify(event)}'>
+          <div class="event-card bg-white rounded-3xl shadow-xl flex flex-col overflow-hidden min-w-[320px] max-w-xs cursor-pointer" tabindex="0" role="button" aria-label="View event details" data-event="${encodeURIComponent(JSON.stringify(event))}">
             <div class="bg-gray-100 flex items-center justify-center overflow-hidden" style="height:220px;">
               <img src="${event.image || 'images/shows/default.jpg'}" alt="${event.title}" class="object-contain w-full h-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-primary-200 to-rose-200">
@@ -1062,18 +1062,18 @@
           overlay.innerHTML = `
             <div class="event-modal" role="dialog" aria-modal="true">
               <button class="event-modal-close" aria-label="Close event details">&times;</button>
-              <img src="${eventData.image || 'images/shows/default.jpg'}" alt="${eventData.title}" class="event-modal-img" onerror="this.style.display='none';">
-              <h2 class="text-3xl font-bold text-primary-700 mb-4 text-center">${eventData.title}</h2>
-              <div class="text-base text-gray-700 mb-4 text-center">${eventData.description}</div>
+              <img src="${eventData.image ? eventData.image : 'images/shows/default.jpg'}" alt="${eventData.title ? eventData.title : 'Event'}" class="event-modal-img" onerror="this.style.display='none';">
+              <h2 class="text-3xl font-bold text-primary-700 mb-4 text-center">${eventData.title ? eventData.title : 'Untitled Event'}</h2>
+              <div class="text-base text-gray-700 mb-4 text-center">${eventData.description ? eventData.description : ''}</div>
               <div class="flex flex-wrap justify-center gap-6 mb-2">
                 <div class="text-sm text-gray-500 flex items-center gap-2">
-                  <i class="fas fa-calendar-alt"></i> <span>${eventData.date}</span>
+                  <i class="fas fa-calendar-alt"></i> <span>${eventData.date ? eventData.date : ''}</span>
                 </div>
                 <div class="text-sm text-gray-500 flex items-center gap-2">
-                  <i class="fas fa-clock"></i> <span>${eventData.time}</span>
+                  <i class="fas fa-clock"></i> <span>${eventData.time ? eventData.time : ''}</span>
                 </div>
                 <div class="text-sm text-gray-600 flex items-center gap-2">
-                  <i class="fas fa-map-marker-alt"></i> <span>${eventData.location}</span>
+                  <i class="fas fa-map-marker-alt"></i> <span>${eventData.location ? eventData.location : ''}</span>
                 </div>
               </div>
             </div>
@@ -1093,12 +1093,21 @@
         function attachCardClickHandlers(carouselId) {
           const carousel = document.getElementById(carouselId);
           if (!carousel) return;
-          carousel.addEventListener('click', function(e) {
-            const card = e.target.closest('.event-card');
-            if (card && card.dataset.event) {
-              const eventData = JSON.parse(card.dataset.event);
-              showEventModal(eventData);
-            }
+          const cards = carousel.querySelectorAll('.event-card');
+          cards.forEach(card => {
+            // Remove previous click listeners if any
+            card.onclick = null;
+            card.addEventListener('click', function(e) {
+              if (card.dataset.event) {
+                let eventData;
+                try {
+                  eventData = JSON.parse(decodeURIComponent(card.dataset.event));
+                } catch (err) {
+                  eventData = {};
+                }
+                showEventModal(eventData);
+              }
+            });
           });
         }
         // Attach click handlers after events are rendered, and re-attach if cards change
@@ -1111,8 +1120,11 @@
           });
           observer.observe(carousel, { childList: true });
         }
-        observeCards('upcoming-events-carousel');
-        observeCards('past-events-carousel');
+        // Ensure event listeners are attached after cards are rendered
+        setTimeout(() => {
+          observeCards('upcoming-events-carousel');
+          observeCards('past-events-carousel');
+        }, 0);
       });
     </script>
     <script>
