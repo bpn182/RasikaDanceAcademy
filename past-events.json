@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Arangetram of Nikitha Sesha",
+    "date": "2024-03-10",
+    "time": "5:00 PM",
+    "location": "Riverside Theatres, Parramatta",
+    "image": "images/shows/past-events/arangetram-nikitha-sesha.jpg",
+    "description": "Rasika Dance Academy proudly presents Nikitha Sesha in her solo debut. Entry by invitation only. RSVP compulsory for seating."
+  },
+  {
+    "title": "Arangetram of Smt. Swapna Ravish",
+    "date": "2023-03-18",
+    "time": "6:00 PM",
+    "location": "NIDA Parade Theatre",
+    "image": "images/shows/past-events/swapna-ravish.jpg",
+    "description": "Bharathanatyam Arangetram of Smt. Swapna Ravish presented by Rasika Dance Academy."
+  },
+  {
+    "title": "Arangetram of Netra Halagalli",
+    "date": "2023-03-11",
+    "time": "6:00 PM",
+    "location": "UNSW Science Theatre",
+    "image": "images/shows/past-events/netra-halagali.jpg",
+    "description": "Rasika Dance Academy presents Arangetram of Netra Halagalli."
+  },
+  {
+    "title": "Arangetram of Anusha Kumar",
+    "date": "2022-03-05",
+    "time": "6:00 PM",
+    "location": "Riverside Theatres",
+    "image": "images/shows/past-events/anusha-kumar.jpg",
+    "description": "Solo debut performance by disciple of Manjula Viswanath."
+  },
+  {
+    "title": "Arangetram of Divya Krishnan",
+    "date": "2022-01-15",
+    "time": "6:00 PM",
+    "location": "National Institute of Dramatic Art (NIDA)",
+    "image": "images/shows/past-events/divya-krishnan.jpg",
+    "description": "In her Arangetram 'SAMBRAMA' - a celebration of passion."
+  },
+  {
+    "title": "Utsav – Online Event",
+    "date": "2020-12-05",
+    "time": "6:00 PM",
+    "location": "Online (Facebook & YouTube Live)",
+    "image": "images/shows/past-events/utsav.jpg",
+    "description": "Rasika’s largest online event streamed live on Facebook & YouTube."
+  },
+  {
+    "title": "Varna Vivaha",
+    "date": "2019-10-05",
+    "time": "6:00 PM",
+    "location": "UNSW Kensington",
+    "image": "images/shows/past-events/varna-vivaha.jpg",
+    "description": "A celestial celebration featuring talented dancers of Rasika Dance Academy."
+  },
+  {
+    "title": "Tamil Isai Natya Vizha",
+    "date": "2018-02-11",
+    "time": "4:00 PM",
+    "location": "Castle Hill High School",
+    "image": "images/shows/past-events/tamil-isai-natya-vizha.jpg",
+    "description": "Supported by Rasika Dance Academy. Featuring Manjula Viswanath & Disciples."
+  }
+]

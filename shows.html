@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shows - Rasika Dance Academy</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 69, 19, 0.9) 0%,
+          rgba(236, 72, 153, 0.85) 25%,
+          rgba(251, 191, 36, 0.8) 50%,
+          rgba(156, 39, 176, 0.85) 75%,
+          rgba(236, 72, 153, 0.9) 100%
+        );
+      }
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #fbbf24 50%,
+          #ffffff 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50" data-page="shows">
+    <!-- Navigation Component Container -->
+    <div id="navigation-container"></div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden"
+    >
+      <div
+        class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center justify-center text-center"
+      >
+        <h1
+          class="text-5xl lg:text-7xl font-serif font-bold text-gradient mb-6 leading-tight"
+        >
+          Upcoming Shows & Events
+        </h1>
+        <p class="text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
+          Discover our latest performances, workshops, and community events.
+          Stay connected and join us for an unforgettable dance experience!
+        </p>
+        <div class="w-full flex justify-center items-center">
+          <div class="bg-white/80 rounded-3xl shadow-xl p-6 w-full max-w-2xl">
+            <h2 class="text-2xl font-bold text-primary-600 mb-4">Facebook Events</h2>
+            <div class="flex justify-center">
+              <iframe 
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRasikaDanceAcademy&tabs=events&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                width="100%" height="600" style="border:none;overflow:hidden" 
+                scrolling="no" frameborder="0" allowfullscreen="true">
+              </iframe>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-gradient-to-b from-white to-amber-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">
+            Academy Events
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore our upcoming and past events, including arangetrams, performances, and special celebrations.
+          </p>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="mb-16">
+          <h3 class="text-2xl font-bold text-primary-600 mb-6 flex items-center gap-2">
+            <i class="fas fa-calendar-alt text-primary-500"></i> Upcoming Events
+          </h3>
+          <div id="upcoming-events-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Cards will be injected here by JS -->
+            <div class="col-span-full text-center text-gray-400" id="upcoming-events-placeholder">No upcoming events at this time.</div>
+          </div>
+        </div>
+
+        <!-- Past Events -->
+        <div>
+          <h3 class="text-2xl font-bold text-rose-600 mb-6 flex items-center gap-2">
+            <i class="fas fa-history text-rose-500"></i> Past Events
+          </h3>
+          <div id="past-events-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Cards will be injected here by JS -->
+            <div class="col-span-full text-center text-gray-400" id="past-events-placeholder">Loading past events...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Classical Heritage Strip -->
+    <section
+      class="py-12 bg-gradient-to-r from-amber-50 via-rose-50 to-purple-50 border-t border-amber-200"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <!-- Sanskrit Blessing -->
+          <div class="text-center group">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-om text-white text-2xl"></i>
+            </div>
+            <p class="font-serif text-lg text-amber-700 font-bold mb-2">
+              यत्र नृत्यं तत्र नृत्यम्
+            </p>
+            <p class="text-sm text-gray-600">
+              Where there is dance, there is divinity
+            </p>
+          </div>
+
+          <!-- Heritage -->
+          <div class="text-center group">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-lotus text-white text-2xl"></i>
+            </div>
+            <p class="font-serif text-lg text-rose-700 font-bold mb-2">
+              30+ Years
+            </p>
+            <p class="text-sm text-gray-600">Preserving Classical Traditions</p>
+          </div>
+
+          <!-- Mudra -->
+          <div class="text-center group">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-hand-peace text-white text-2xl"></i>
+            </div>
+            <p class="font-serif text-lg text-purple-700 font-bold mb-2">
+              Sacred Mudras
+            </p>
+            <p class="text-sm text-gray-600">Ancient Hand Gestures</p>
+          </div>
+
+          <!-- Temple Heritage -->
+          <div class="text-center group">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-bell text-white text-2xl"></i>
+            </div>
+            <p class="font-serif text-lg text-green-700 font-bold mb-2">
+              Temple Origins
+            </p>
+            <p class="text-sm text-gray-600">Sacred Dance Tradition</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-b from-primary-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Our Legacy
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <strong class="text-primary-600">Established in 2001</strong>, we
+            have been preserving and promoting the rich tradition of Indian
+            classical dance forms for over two decades while embracing
+            contemporary expressions.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="space-y-8">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-heart text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    Nurtures Wellness
+                  </h3>
+                  <p class="text-gray-600">
+                    Every movement tells a story, every gesture carries meaning.
+                    We nurture physical and mental wellness through the art of
+                    dance.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-lightbulb text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    Fosters Entrepreneurship
+                  </h3>
+                  <p class="text-gray-600">
+                    Learn from renowned masters while developing leadership
+                    skills and creative entrepreneurial thinking through
+                    artistic excellence.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-users text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    Holistic Team Building
+                  </h3>
+                  <p class="text-gray-600">
+                    Our holistic method creates strong team bonds and
+                    well-rounded experiences that last a lifetime.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl relative"
+            >
+              <!-- DJ Smoke Effects -->
+              <div class="dj-smoke-container">
+                <!-- Bottom rising smoke -->
+                <div class="dj-smoke dj-smoke-bottom"></div>
+                <div class="dj-smoke dj-smoke-bottom"></div>
+                <div class="dj-smoke dj-smoke-bottom"></div>
+                <div class="dj-smoke dj-smoke-bottom"></div>
+                <div class="dj-smoke dj-smoke-bottom"></div>
+
+                <!-- Side flowing smoke -->
+                <div class="dj-smoke dj-smoke-side"></div>
+                <div class="dj-smoke dj-smoke-side"></div>
+
+                <!-- Burst effects -->
+                <div class="dj-smoke dj-smoke-burst"></div>
+                <div class="dj-smoke dj-smoke-burst"></div>
+                <div class="dj-smoke dj-smoke-burst"></div>
+              </div>
+
+              <img
+                src="images/dance-home.png"
+                alt="Classical Dance Performance"
+                class="w-full h-full object-cover relative z-10"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- Fallback content if image fails to load -->
+              <div
+                class="hidden w-full h-full bg-gradient-to-br from-gold-200 to-primary-200 items-center justify-center"
+              >
+                <i class="fas fa-om text-6xl text-white/80"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Our Dance Gallery
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Experience the beauty and grace of classical Indian dance through
+            our interactive gallery showcasing performances, students, and
+            memorable moments.
+          </p>
+        </div>
+
+        <!-- Gallery Navigation -->
+        <div class="flex justify-center mb-8">
+          <div class="bg-gray-100 rounded-full p-1 flex space-x-1">
+            <button
+              class="gallery-nav-btn active px-6 py-2 rounded-full font-medium transition-all duration-300"
+              data-category="all"
+            >
+              All
+            </button>
+            <button
+              class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300"
+              data-category="performances"
+            >
+              Performances
+            </button>
+            <button
+              class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300"
+              data-category="students"
+            >
+              Students
+            </button>
+            <button
+              class="gallery-nav-btn px-6 py-2 rounded-full font-medium transition-all duration-300"
+              data-category="awards"
+            >
+              Awards
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Sliding Gallery -->
+        <div class="relative">
+          <!-- Gallery Container -->
+          <div class="gallery-container overflow-hidden">
+            <div
+              class="gallery-track flex transition-transform duration-500 ease-in-out"
+              id="gallery-track"
+            >
+              <!-- Performance Images -->
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="performances"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance1.jpg"
+                    alt="Classical Dance Performance 1"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-primary-200 to-rose-200 items-center justify-center"
+                  >
+                    <i class="fas fa-theater-masks text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">
+                        Bharatanatyam Performance
+                      </h3>
+                      <p class="text-sm">Classical temple dance showcase</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="performances"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance2.jpg"
+                    alt="Classical Dance Performance 2"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-gold-200 to-yellow-200 items-center justify-center"
+                  >
+                    <i class="fas fa-music text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">
+                        Bharatanatyam Grace
+                      </h3>
+                      <p class="text-sm">Classical temple dance expressions</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="performances"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance3.jpg"
+                    alt="Classical Dance Performance 3"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-purple-200 to-pink-200 items-center justify-center"
+                  >
+                    <i class="fas fa-lotus text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Odissi Elegance</h3>
+                      <p class="text-sm">Sculptural dance movements</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Student Images -->
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="students"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance4.jpg"
+                    alt="Student Performance 1"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-teal-200 to-blue-200 items-center justify-center"
+                  >
+                    <i class="fas fa-users text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Student Showcase</h3>
+                      <p class="text-sm">Young talent in action</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="students"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance5.jpg"
+                    alt="Student Performance 2"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-green-200 to-emerald-200 items-center justify-center"
+                  >
+                    <i class="fas fa-child text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Kids Classes</h3>
+                      <p class="text-sm">Nurturing young dancers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="students"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-orange-200 to-red-200 flex items-center justify-center relative"
+                >
+                  <i class="fas fa-graduation-cap text-6xl text-white/80"></i>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Graduation Day</h3>
+                      <p class="text-sm">Celebrating achievements</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Award Images -->
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="awards"
+              >
+                <div class="w-full h-full relative">
+                  <img
+                    src="images/dance6.jpg"
+                    alt="Award Winning Performance"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Fallback if image fails to load -->
+                  <div
+                    class="hidden w-full h-full bg-gradient-to-br from-yellow-200 to-amber-200 items-center justify-center"
+                  >
+                    <i class="fas fa-trophy text-6xl text-white/80"></i>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Excellence Awards</h3>
+                      <p class="text-sm">Recognition for outstanding work</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="awards"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-indigo-200 to-purple-200 flex items-center justify-center relative"
+                >
+                  <i class="fas fa-medal text-6xl text-white/80"></i>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">
+                        Competition Winners
+                      </h3>
+                      <p class="text-sm">National dance championships</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="awards"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-rose-200 to-pink-200 flex items-center justify-center relative"
+                >
+                  <i class="fas fa-star text-6xl text-white/80"></i>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Hall of Fame</h3>
+                      <p class="text-sm">Legendary performers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Performance Images -->
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="performances"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-cyan-200 to-blue-200 flex items-center justify-center relative"
+                >
+                  <i class="fas fa-hands-praying text-6xl text-white/80"></i>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Devotional Dance</h3>
+                      <p class="text-sm">
+                        Spiritual expressions through movement
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gallery-item min-w-80 h-80 mx-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                data-category="performances"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-lime-200 to-green-200 flex items-center justify-center relative"
+                >
+                  <i class="fas fa-leaf text-6xl text-white/80"></i>
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  >
+                    <div class="text-center text-white">
+                      <h3 class="text-xl font-bold mb-2">Nature-Inspired</h3>
+                      <p class="text-sm">Contemporary fusion pieces</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button
+            class="gallery-nav-arrow gallery-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+          >
+            <i class="fas fa-chevron-left text-gray-600"></i>
+          </button>
+          <button
+            class="gallery-nav-arrow gallery-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+          >
+            <i class="fas fa-chevron-right text-gray-600"></i>
+          </button>
+        </div>
+
+        <!-- Gallery Indicators -->
+        <div class="flex justify-center mt-8 space-x-2" id="gallery-indicators">
+          <button
+            class="gallery-indicator w-3 h-3 rounded-full bg-primary-500 transition-all duration-300"
+          ></button>
+          <button
+            class="gallery-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"
+          ></button>
+          <button
+            class="gallery-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-20 bg-gradient-to-b from-primary-50 to-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Begin Your Journey
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Ready to discover the dancer within you? Contact us today and take
+            the first step towards artistic excellence.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16">
+          <!-- Contact Info -->
+          <div class="space-y-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-map-marker-alt text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Visit Our Studio
+                </h3>
+                <p class="text-gray-600">
+                  Bellavista, New South Wales<br />Australia<br />Classes at
+                  BellaVista & Baulkham Hills
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-phone text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Call Us
+                </h3>
+                <p class="text-gray-600">0461 409 099</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-envelope text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Email Us
+                </h3>
+                <p class="text-gray-600">
+                  info@rashikadance.com<br />admissions@rashikadance.com
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-globe text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Website
+                </h3>
+                <p class="text-gray-600">
+                  <a
+                    href="https://www.rasikadance.com.au"
+                    target="_blank"
+                    class="text-primary-600 hover:text-primary-700 transition-colors"
+                  >
+                    www.rasikadance.com.au
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-clock text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  Studio Hours
+                </h3>
+                <p class="text-gray-600">
+                  Mon - Fri: 6:00 AM - 10:00 PM<br />Sat - Sun: 8:00 AM - 8:00
+                  PM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-6">
+              Send us a Message
+            </h3>
+            <form class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Dance Form of Interest</label
+                >
+                <select
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                >
+                  <option>Select a dance form</option>
+                  <option>Bharatanatyam</option>
+                  <option>Kathak</option>
+                  <option>Odissi</option>
+                  <option>Contemporary Fusion</option>
+                  <option>Folk Dance</option>
+                  <option>Kids Classes</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Message</label
+                >
+                <textarea
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-primary-500 to-rose-500 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+
+    <!-- Component Scripts -->
+    <script src="js/components.js"></script>
+
+    <!-- Events Section Script -->
+    <script>
+      // Helper to create event card
+      function createEventCard(event) {
+        return `
+          <div class="bg-white rounded-3xl shadow-xl flex flex-col overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+            <div class="h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
+              <img src="${event.image || 'images/shows/default.jpg'}" alt="${event.title}" class="object-cover w-full h-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-primary-200 to-rose-200">
+                <i class='fas fa-image text-5xl text-white/80'></i>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h4 class="text-xl font-bold text-primary-700 mb-2">${event.title}</h4>
+              <div class="text-sm text-gray-500 mb-2 flex items-center gap-2">
+                <i class="fas fa-calendar-alt"></i> ${event.date} &nbsp; <i class="fas fa-clock"></i> ${event.time}
+              </div>
+              <div class="text-sm text-gray-600 mb-2 flex items-center gap-2">
+                <i class="fas fa-map-marker-alt"></i> ${event.location}
+              </div>
+              <p class="text-gray-700 mb-4 flex-1">${event.description}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Render events from JSON
+      function renderEvents(jsonPath, containerId, placeholderId) {
+        fetch(jsonPath)
+          .then(res => res.json())
+          .then(events => {
+            const container = document.getElementById(containerId);
+            const placeholder = document.getElementById(placeholderId);
+            if (events.length === 0) {
+              if (placeholder) placeholder.style.display = '';
+              return;
+            }
+            if (placeholder) placeholder.style.display = 'none';
+            container.innerHTML = events.map(createEventCard).join('');
+          })
+          .catch(() => {
+            const placeholder = document.getElementById(placeholderId);
+            if (placeholder) placeholder.textContent = 'Could not load events.';
+          });
+      }
+
+      // On DOM ready, render both event lists
+      document.addEventListener('DOMContentLoaded', function() {
+        renderEvents('upcoming-events.json', 'upcoming-events-list', 'upcoming-events-placeholder');
+        renderEvents('past-events.json', 'past-events-list', 'past-events-placeholder');
+      });
+    </script>
+    <script>
+      // Dancing Hero Image Carousel
+      class DancingHeroCarousel {
+        constructor() {
+          this.currentIndex = 0;
+          this.images = document.querySelectorAll(".dancing-image");
+          this.indicators = document.querySelectorAll(".dance-indicator");
+          this.isPlaying = true;
+          this.autoPlayInterval = null;
+
+          this.init();
+        }
+
+        init() {
+          // Set up event listeners
+          document
+            .getElementById("nextBtn")
+            .addEventListener("click", () => this.next());
+          document
+            .getElementById("prevBtn")
+            .addEventListener("click", () => this.prev());
+          document
+            .getElementById("playPauseBtn")
+            .addEventListener("click", () => this.togglePlayPause());
+
+          // Indicator clicks
+          this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener("click", () => this.goToSlide(index));
+          });
+
+          // Start autoplay
+          this.startAutoPlay();
+
+          // Update initial state
+          this.updateSlide();
+        }
+
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+          this.updateSlide();
+        }
+
+        prev() {
+          this.currentIndex =
+            (this.currentIndex - 1 + this.images.length) % this.images.length;
+          this.updateSlide();
+        }
+
+        goToSlide(index) {
+          this.currentIndex = index;
+          this.updateSlide();
+        }
+
+        updateSlide() {
+          // Update images
+          this.images.forEach((image, index) => {
+            image.classList.remove("active", "prev", "next");
+
+            if (index === this.currentIndex) {
+              image.classList.add("active");
+            } else if (
+              index ===
+              (this.currentIndex - 1 + this.images.length) % this.images.length
+            ) {
+              image.classList.add("prev");
+            } else if (index === (this.currentIndex + 1) % this.images.length) {
+              image.classList.add("next");
+            }
+          });
+
+          // Update indicators
+          this.indicators.forEach((indicator, index) => {
+            indicator.classList.toggle("active", index === this.currentIndex);
+          });
+        }
+
+        startAutoPlay() {
+          if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+          }
+
+          this.autoPlayInterval = setInterval(() => {
+            if (this.isPlaying) {
+              this.next();
+            }
+          }, 4000); // Change image every 4 seconds
+        }
+
+        togglePlayPause() {
+          this.isPlaying = !this.isPlaying;
+          const playIcon = document.getElementById("playIcon");
+
+          if (this.isPlaying) {
+            playIcon.className = "fas fa-pause";
+          } else {
+            playIcon.className = "fas fa-play";
+          }
+        }
+      }
+
+      // Initialize the dancing carousel when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        new DancingHeroCarousel();
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fadeInUp");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.querySelectorAll("section > div").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Interactive Gallery Functionality
+      let currentSlide = 0;
+      let currentFilter = "all";
+      const galleryTrack = document.getElementById("gallery-track");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      const galleryNavBtns = document.querySelectorAll(".gallery-nav-btn");
+      const galleryPrevBtn = document.querySelector(".gallery-prev");
+      const galleryNextBtn = document.querySelector(".gallery-next");
+      const galleryIndicators = document.querySelectorAll(".gallery-indicator");
+
+      // Calculate visible items and slides
+      function getVisibleItems() {
+        const containerWidth = galleryTrack.parentElement.offsetWidth;
+        const itemWidth = 320 + 16; // min-w-80 (320px) + margin (16px)
+        return Math.floor(containerWidth / itemWidth);
+      }
+
+      // Filter gallery items
+      function filterGallery(category) {
+        currentFilter = category;
+        currentSlide = 0;
+
+        galleryItems.forEach((item) => {
+          if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        updateGalleryPosition();
+        updateNavigationButtons();
+        updateIndicators();
+      }
+
+      // Update gallery position
+      function updateGalleryPosition() {
+        const visibleItems = getVisibleItems();
+        const itemWidth = 320 + 16; // min-w-80 + margin
+        const translateX = -currentSlide * itemWidth;
+        galleryTrack.style.transform = `translateX(${translateX}px)`;
+      }
+
+      // Update navigation buttons
+      function updateNavigationButtons() {
+        const visibleItems = getVisibleItems();
+        const totalVisibleItems = Array.from(galleryItems).filter(
+          (item) => item.style.display !== "none"
+        ).length;
+        const maxSlides = Math.max(0, totalVisibleItems - visibleItems);
+
+        if (galleryPrevBtn) {
+          galleryPrevBtn.style.opacity = currentSlide === 0 ? "0.5" : "1";
+          galleryPrevBtn.style.pointerEvents =
+            currentSlide === 0 ? "none" : "auto";
+        }
+
+        if (galleryNextBtn) {
+          galleryNextBtn.style.opacity =
+            currentSlide >= maxSlides ? "0.5" : "1";
+          galleryNextBtn.style.pointerEvents =
+            currentSlide >= maxSlides ? "none" : "auto";
+        }
+      }
+
+      // Update indicators
+      function updateIndicators() {
+        const visibleItems = getVisibleItems();
+        const totalVisibleItems = Array.from(galleryItems).filter(
+          (item) => item.style.display !== "none"
+        ).length;
+        const totalSlides = Math.max(
+          1,
+          Math.ceil(totalVisibleItems / visibleItems)
+        );
+
+        galleryIndicators.forEach((indicator, index) => {
+          if (index < totalSlides) {
+            indicator.style.display = "block";
+            indicator.classList.toggle(
+              "bg-primary-500",
+              index === Math.floor(currentSlide / visibleItems)
+            );
+            indicator.classList.toggle(
+              "bg-gray-300",
+              index !== Math.floor(currentSlide / visibleItems)
+            );
+          } else {
+            indicator.style.display = "none";
+          }
+        });
+      }
+
+      // Gallery navigation event listeners
+      if (galleryPrevBtn) {
+        galleryPrevBtn.addEventListener("click", () => {
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+          }
+        });
+      }
+
+      if (galleryNextBtn) {
+        galleryNextBtn.addEventListener("click", () => {
+          const visibleItems = getVisibleItems();
+          const totalVisibleItems = Array.from(galleryItems).filter(
+            (item) => item.style.display !== "none"
+          ).length;
+          const maxSlides = Math.max(0, totalVisibleItems - visibleItems);
+
+          if (currentSlide < maxSlides) {
+            currentSlide++;
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+          }
+        });
+      }
+
+      // Gallery filter buttons
+      galleryNavBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          galleryNavBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          filterGallery(btn.dataset.category);
+        });
+      });
+
+      // Gallery indicators
+      galleryIndicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          const visibleItems = getVisibleItems();
+          currentSlide = index * visibleItems;
+          updateGalleryPosition();
+          updateNavigationButtons();
+          updateIndicators();
+        });
+      });
+
+      // Initialize gallery
+      function initGallery() {
+        updateGalleryPosition();
+        updateNavigationButtons();
+        updateIndicators();
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        updateGalleryPosition();
+        updateNavigationButtons();
+        updateIndicators();
+      });
+
+      // Initialize gallery when page loads
+      initGallery();
+    </script>
+  </body>
+</html>
