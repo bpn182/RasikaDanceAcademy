@@ -222,11 +222,21 @@
 
     <!-- Facebook SDK (for the embeds) -->
     <div id="fb-root"></div>
+    <script>
+      // Ensure FB.init is called when the SDK loads
+      window.fbAsyncInit =
+        window.fbAsyncInit ||
+        function () {
+          try {
+            FB.init({ xfbml: true, version: "v20.0" });
+          } catch (e) {}
+        };
+    </script>
     <script
       async
       defer
       crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0&cb=1"
     ></script>
 
     <script>
