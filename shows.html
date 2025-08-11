@@ -101,7 +101,10 @@
     <div id="navigation-container"></div>
 
     <!-- Events Section -->
-    <section id="events" class="py-20 bg-gradient-to-b from-white to-amber-50">
+    <section
+      id="events"
+      class="pt-28 md:pt-32 pb-20 bg-gradient-to-b from-white to-amber-50"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2
@@ -117,7 +120,6 @@
             performances, and special celebrations.
           </p>
         </div>
-
         <!-- Upcoming Events Carousel -->
         <div class="mb-16">
           <h3
@@ -190,11 +192,185 @@
       </div>
     </section>
 
-    <!-- Footer Component Container -->
-    <div id="footer-container"></div>
+    <!-- Facebook Posts Section -->
+    <section id="facebook-posts" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-serif font-bold text-gray-900 mb-3">
+            Facebook Posts
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto"
+          ></div>
+          <p class="text-gray-600 mt-4">
+            Recent highlights from our Facebook page.
+          </p>
+        </div>
+        <div id="fb-posts-grid" class="grid md:grid-cols-2 gap-8"></div>
+        <div class="text-center mt-10">
+          <a
+            href="https://www.facebook.com/profile.php?id=100063549374638"
+            target="_blank"
+            class="inline-flex items-center bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+          >
+            <i class="fab fa-facebook mr-3 text-xl"></i>
+            Visit Our Facebook Page
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facebook SDK (for the embeds) -->
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
+    ></script>
+
+    <script>
+      // Render Facebook posts from JSON into the grid with a built-in fallback for local/dev
+      document.addEventListener("DOMContentLoaded", function () {
+        var grid = document.getElementById("fb-posts-grid");
+        if (!grid) return;
+
+        var fallbackPosts = [
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0PkKmS2NTBFcZUgeATvho4asttdV33LH2u2jyZyJDthFfuvWzsDqfwtVcSWCQZX6hl&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02aH8ozKhn7jVk7VT82rd2AsX84zsyKhrkV759y4jXWegda9g3HycLKEtSdRQegAHVl&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/photo?fbid=1379841844144115&set=a.532448252216816",
+          },
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02ranXhDxGsTrJCXWsDSfyQE8qA5ohswsCaeygqRw6EryBdMESviZCcB6DGuKG4eKtl&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02BUi9cDcpVPaJhZPDeoWJfSWKmYmAajqvTAVCGRnaMCAMndgpMNyaMW6p9DU3TbZFl&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid035Yb4vPYomM2TMg6RZLmUbVeZdYzhHCksJSAFYu6h5cchMbE4EqSo1zYseVx5cCWml&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02346yWFJ38LWUyzwd241EqUpnTB4wyqjfXUJ9hhonZLUFEAX6p8TY6Xnf8TJcvCZXl&id=100063549374638",
+          },
+          {
+            url: "https://www.facebook.com/photo/?fbid=1352429870218646&set=a.532448252216816",
+          },
+          {
+            url: "https://www.facebook.com/photo?fbid=1349898083805158&set=a.532448252216816",
+          },
+        ];
+
+        function render(posts) {
+          if (!Array.isArray(posts) || posts.length === 0) {
+            grid.innerHTML =
+              '<div class="text-center text-gray-500">No Facebook posts to show.</div>';
+            return;
+          }
+          grid.innerHTML = posts
+            .map(function (item, idx) {
+              var href = item && item.url ? item.url : "";
+              var safeHref = href.replace(/&/g, "&amp;");
+              return (
+                '\n          <div class="bg-white rounded-2xl shadow-lg p-4 relative group">\n            <a href="' +
+                safeHref +
+                '" target="_blank" rel="noopener" class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-rose-500 text-white rounded-full px-3 py-1.5 shadow-lg flex items-center gap-2" aria-label="View this post on Facebook" title="View on Facebook">\n              <i class="fab fa-facebook-f"></i>\n              <span class="hidden sm:inline">View on Facebook</span>\n            </a>\n            <div class="fb-post" data-href="' +
+                safeHref +
+                '" data-width="700" data-show-text="true"></div>\n          </div>\n        '
+              );
+            })
+            .join("");
+
+          // After injecting, trigger responsive sizing once SDK is ready
+          function reflowFacebookEmbeds() {
+            var section = document.getElementById("facebook-posts");
+            if (!section || !(window.FB && FB.XFBML && FB.XFBML.parse)) return;
+            var embeds = section.querySelectorAll(".fb-post");
+            embeds.forEach(function (embed) {
+              var card = embed.closest(".rounded-2xl");
+              var available =
+                (card ? card.clientWidth : section.clientWidth) - 32; // padding
+              var width = Math.max(320, Math.min(750, Math.floor(available)));
+              embed.setAttribute("data-width", width);
+              FB.XFBML.parse(embed.parentNode);
+            });
+          }
+          function debounce(fn, delay) {
+            var t;
+            return function () {
+              clearTimeout(t);
+              t = setTimeout(fn, delay);
+            };
+          }
+          setTimeout(reflowFacebookEmbeds, 800);
+          if (!window.fbAsyncInit) {
+            window.fbAsyncInit = function () {
+              reflowFacebookEmbeds();
+            };
+          } else {
+            var prev = window.fbAsyncInit;
+            window.fbAsyncInit = function () {
+              try {
+                prev();
+              } catch (e) {}
+              reflowFacebookEmbeds();
+            };
+          }
+          window.addEventListener(
+            "resize",
+            debounce(reflowFacebookEmbeds, 300)
+          );
+
+          // If embeds don't render (e.g., blocked by extensions), show fallbacks
+          setTimeout(function () {
+            var anyIframe = document.querySelector(
+              "#facebook-posts .fb_iframe_widget iframe"
+            );
+            if (!anyIframe) {
+              grid.querySelectorAll(".group").forEach(function (card) {
+                var cta = card.querySelector(
+                  'a[aria-label="View this post on Facebook"]'
+                );
+                if (cta) {
+                  cta.style.opacity = "1";
+                }
+                var note = document.createElement("div");
+                note.className = "mt-3 text-sm text-gray-500";
+                note.textContent =
+                  "Embed not available here. Open on Facebook.";
+                card.appendChild(note);
+              });
+            }
+          }, 3500);
+        }
+
+        // Try to fetch JSON; fall back to built-in list if blocked (e.g., file://)
+        fetch("shows-facebook-posts.json", { cache: "no-store" })
+          .then(function (r) {
+            return r.ok ? r.json() : Promise.reject();
+          })
+          .then(function (items) {
+            if (Array.isArray(items) && items.length > 0) {
+              render(items);
+            } else {
+              render(fallbackPosts);
+            }
+          })
+          .catch(function () {
+            render(fallbackPosts);
+          });
+      });
+    </script>
 
     <!-- Component Scripts -->
     <script src="js/components.js"></script>
+
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
 
     <!-- Events Section Script -->
     <script>
