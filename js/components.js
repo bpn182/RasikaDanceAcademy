@@ -22,7 +22,6 @@ const NavigationComponent = {
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
                     <a href="media-charity.html" class="nav-link" data-page="media">Media & Charity</a>
                     <a href="index.html#shows" class="nav-link" data-page="shows">Shows</a>
-                    <a href="news.html" class="nav-link" data-page="news">News</a>
                     <a href="videos.html" class="nav-link" data-page="videos">Videos</a>
                     <a href="manjula.html" class="nav-link" data-page="manjula">Manjula</a>
                     <a href="arangetram.html" class="nav-link" data-page="arangetram">Arangetram</a>
@@ -44,7 +43,6 @@ const NavigationComponent = {
                 <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
                 <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
                 <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="news.html" class="block py-2 text-gray-700 hover:text-primary-600">News</a>
                 <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
                 <a href="manjula.html" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
                 <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
