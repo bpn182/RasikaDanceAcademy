@@ -119,6 +119,31 @@
         flex-direction: column;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       }
+
+      /* Ensure Facebook iframes never overflow their cards */
+      .fb_iframe_widget,
+      .fb_iframe_widget span,
+      .fb_iframe_widget iframe {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* Small-screen refinements */
+      @media (max-width: 480px) {
+        .event-modal {
+          padding: 1.5rem 1rem 1rem 1rem;
+          border-radius: 1.25rem;
+        }
+        .event-modal-img {
+          border-radius: 1rem;
+          margin-bottom: 1.25rem;
+          min-height: 160px;
+        }
+        .event-carousel-arrow {
+          width: 40px;
+          height: 40px;
+        }
+      }
     </style>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -422,6 +447,7 @@
           this.batchSize = 2; // add per click
           this.gridEl = null;
           this.loadMoreBtn = null;
+          this.resizeObserver = null;
         }
 
         async loadPosts() {
@@ -492,6 +518,9 @@
           this.updateLoadMoreVisibility();
 
           this.isRendered = true;
+
+          // Observe size changes to keep embeds responsive
+          this.initResizeObserver();
 
           // Initialize Facebook embeds when SDK is ready
           this.sdkManager.onReady(() => {
@@ -580,8 +609,11 @@
             if (card) {
               const availableWidth = card.clientWidth - 32; // padding
               const width = Math.max(
-                320,
-                Math.min(700, Math.floor(availableWidth))
+                280,
+                Math.min(
+                  700,
+                  Math.floor(isNaN(availableWidth) ? 280 : availableWidth)
+                )
               );
               embed.setAttribute("data-width", width.toString());
             }
@@ -590,6 +622,18 @@
           // Re-parse after width changes
           if (window.FB && FB.XFBML && FB.XFBML.parse) {
             FB.XFBML.parse(section);
+          }
+        }
+
+        initResizeObserver() {
+          if (this.resizeObserver || !this.gridEl) return;
+          try {
+            this.resizeObserver = new ResizeObserver(() => {
+              this.setupResponsiveEmbeds();
+            });
+            this.resizeObserver.observe(this.gridEl);
+          } catch (_) {
+            // Fallback to window resize listener already present
           }
         }
 
