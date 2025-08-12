@@ -1,19 +1,83 @@
-// Reusable Components for Rashika Dance Academy
+// Set favicon with theme background using canvas
+function setFaviconWithBg() {
+    // Remove any existing favicon links
+    document.querySelectorAll("link[rel='icon'], link[rel='shortcut icon']").forEach(el => el.remove());
 
-// Navigation Component
+    // Helper to create favicon with background
+    function createFavicon(src, size, bgColor) {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        // Draw circular background
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(size/2, size/2, size/2, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.fillStyle = bgColor;
+        ctx.fill();
+        ctx.restore();
+        // Draw image (centered, clipped to circle)
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(size/2, size/2, size/2 * 0.85, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.clip();
+        const img = new window.Image();
+        img.src = src;
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, size, size);
+            ctx.restore();
+            const link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.sizes = `${size}x${size}`;
+            link.href = canvas.toDataURL('image/png');
+            document.head.appendChild(link);
+        };
+    }
+
+    // Use theme color for background
+    const themeColor = '#e11d48'; // rose-500
+    createFavicon('images/logo/favicon-16x16.png', 16, themeColor);
+    createFavicon('images/logo/favicon-32x32.png', 32, themeColor);
+
+    // Set theme color for browser UI
+    let themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (!themeMeta) {
+        themeMeta = document.createElement('meta');
+        themeMeta.name = 'theme-color';
+        document.head.appendChild(themeMeta);
+    }
+    themeMeta.content = themeColor;
+}
+
+document.addEventListener('DOMContentLoaded', setFaviconWithBg);
+// Navigation Component (keeping as is)
 const NavigationComponent = {
     template: `
     <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-hand-peace text-white text-xl"></i>
-                    </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="focus:outline-none">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                            <!-- Animated background with fire-like glow -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-600 to-rose-500 rounded-full shadow-lg logo-fire-animation">
+                                <div class="w-full h-full flex items-center justify-center relative">
+                                    <!-- Traditional pattern borders -->
+                                    <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
+                                    <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
+                                    <!-- Logo with gentle glow animation -->
+                                    <img src="images/logo/logo.png" alt="Rashika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                     <div>
                         <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
-                        <p class="text-sm text-gold-600 font-medium">Dance Academy</p>
+                        <p class="text-sm text-amber-600 font-medium">Dance Academy</p>
                     </div>
                 </div>
 
@@ -90,16 +154,25 @@ const NavigationComponent = {
     }
 };
 
-// Footer Component
+// Updated Footer Component to match navbar logo
 const FooterComponent = {
     template: `
     <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-rose-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-peace text-white text-xl"></i>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                            <!-- Same design as navbar but for dark footer -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-600 to-rose-500 rounded-full shadow-lg">
+                                <div class="w-full h-full flex items-center justify-center relative">
+                                    <!-- Traditional pattern borders -->
+                                    <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
+                                    <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
+                                    <!-- Logo -->
+                                    <img src="images/logo/logo.png" alt="Rashika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-serif font-bold">Rashika Dance Academy</h3>
@@ -128,21 +201,15 @@ const FooterComponent = {
                         <p class="text-gray-300 text-sm">
                             <i class="fas fa-phone mr-2"></i>0461 409 099
                         </p>
-                        <p class="text-gray-300 text-sm">
-                            <i class="fas fa-globe mr-2"></i>
-                            <a href="https://www.rasikadance.com.au" target="_blank" class="hover:text-primary-400 transition-colors">
-                                www.rasikadance.com.au
-                            </a>
-                        </p>
                     </div>
                     <div class="flex space-x-4">
-                        <a href="https://facebook.com/rasikadanceacademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=100063549374638" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Facebook">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
                         <a href="https://www.youtube.com/c/RasikaDanceAcademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Subscribe to our YouTube">
                             <i class="fab fa-youtube text-xl"></i>
                         </a>
-                        <a href="https://instagram.com/rasikadanceacademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Instagram">
+                        <a href="https://www.instagram.com/rasikadanceacademy/" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Instagram">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
                     </div>
@@ -160,7 +227,7 @@ const FooterComponent = {
     }
 };
 
-// Component loader function
+// Rest of your component loader code stays the same...
 function loadComponent(componentName, containerId, options = {}) {
     const container = document.getElementById(containerId);
     if (!container) {
