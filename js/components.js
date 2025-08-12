@@ -70,13 +70,13 @@ const NavigationComponent = {
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
                                     <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
                                     <!-- Logo with gentle glow animation -->
-                                    <img src="images/logo/logo.png" alt="Rashika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
+                                    <img src="images/logo/logo.png" alt="rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
                                 </div>
                             </div>
                         </div>
                     </a>
                     <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rashika</h2>
+                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rasika</h2>
                         <p class="text-sm text-amber-600 font-medium">Dance Academy</p>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ const NavigationComponent = {
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
                     <a href="media-charity.html" class="nav-link" data-page="media">Media & Charity</a>
-                    <a href="index.html#shows" class="nav-link" data-page="shows">Shows</a>
+                    <a href="shows.html" class="nav-link" data-page="shows">Shows</a>
                     <a href="videos.html" class="nav-link" data-page="videos">Videos</a>
                     <a href="manjula.html" class="nav-link" data-page="manjula">Manjula</a>
                     <a href="arangetram.html" class="nav-link" data-page="arangetram">Arangetram</a>
@@ -170,12 +170,12 @@ const FooterComponent = {
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
                                     <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
                                     <!-- Logo -->
-                                    <img src="images/logo/logo.png" alt="Rashika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
+                                    <img src="images/logo/logo.png" alt="rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif font-bold">Rashika Dance Academy</h3>
+                            <h3 class="text-2xl font-serif font-bold">rasika Dance Academy</h3>
                             <p class="text-gray-400">Where Art Meets Soul</p>
                         </div>
                     </div>
@@ -217,7 +217,7 @@ const FooterComponent = {
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2001-2024 Rashika Dance Academy. All rights reserved. | Established 2001</p>
+                <p class="text-gray-400">&copy; 2001-2024 rasika Dance Academy. All rights reserved. | Established 2001</p>
             </div>
         </div>
     </footer>`,

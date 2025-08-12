@@ -1,10 +1,10 @@
-# Rashika Dance Academy Website
+# rasika Dance Academy Website
 
-A modern, elegant website for Rashika Dance Academy - a premier institution for Indian classical dance education, founded by the internationally acclaimed dancer and choreographer Rashika Sharma.
+A modern, elegant website for rasika Dance Academy - a premier institution for Indian classical dance education, founded by the internationally acclaimed dancer and choreographer rasika Sharma.
 
 ## About the Academy
 
-Rashika Dance Academy is a beacon of Indian classical dance excellence, established over three decades ago. Founded by Rashika Sharma, a highly accomplished dancer with multiple national awards and international recognition, the academy has trained more than 500 students who have performed on global stages.
+rasika Dance Academy is a beacon of Indian classical dance excellence, established over three decades ago. Founded by rasika Sharma, a highly accomplished dancer with multiple national awards and international recognition, the academy has trained more than 500 students who have performed on global stages.
 
 ### Contact Information
 
@@ -19,10 +19,10 @@ Bellavista, New South Wales, Australia
 - Baulkham Hills
 
 **Email:**  
-info@rashikadance.com
+info@rasikadance.com
 
 ### What Makes This Academy Special
-- **Award-Winning Founder**: Led by Rashika Sharma, a multi-award-winning dancer recognized internationally
+- **Award-Winning Founder**: Led by rasika Sharma, a multi-award-winning dancer recognized internationally
 - **International Training**: Students trained to perform at international levels
 - **Cultural Preservation**: Dedicated to preserving and promoting Indian classical dance traditions
 - **Global Impact**: Alumni performing on stages across continents
@@ -113,7 +113,7 @@ The comprehensive academy history is documented in `ACADEMY_HISTORY.md`, which i
 ## File Structure
 
 ```
-RashikaDanceAcademy/
+rasikaDanceAcademy/
 ├── index.html                     # Main website file
 ├── styles.css                     # Custom CSS styles
 ├── README.md                      # This documentation
