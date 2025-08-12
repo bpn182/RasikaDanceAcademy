@@ -448,6 +448,7 @@
           this.gridEl = null;
           this.loadMoreBtn = null;
           this.resizeObserver = null;
+          this.buttonLoading = false;
         }
 
         async loadPosts() {
@@ -533,27 +534,58 @@
           }, 8000);
         }
 
-        appendBatch(start, end) {
+        appendBatch(start, end, onParsed) {
           for (let i = start; i < end; i++) {
             const postElement = this.createPostElement(this.posts[i], i);
             this.gridEl.appendChild(postElement);
           }
           // After appending, if SDK ready, parse only the new nodes
           if (window.FB && FB.XFBML && FB.XFBML.parse) {
-            FB.XFBML.parse(this.gridEl);
-            // Adjust widths for responsiveness
-            setTimeout(() => this.setupResponsiveEmbeds(), 500);
+            FB.XFBML.parse(this.gridEl, () => {
+              // Adjust widths for responsiveness
+              setTimeout(() => this.setupResponsiveEmbeds(), 500);
+              if (typeof onParsed === "function") onParsed();
+            });
+          } else {
+            // Fallback: ensure layout updates and callback still run
+            setTimeout(() => {
+              this.setupResponsiveEmbeds();
+              if (typeof onParsed === "function") onParsed();
+            }, 500);
           }
         }
 
         loadMore() {
+          if (!this.gridEl) return;
+          const remaining = this.posts.length - this.visibleCount;
+          if (remaining <= 0) return;
+
+          // Button loading state
+          this.setButtonLoading(true);
+
+          // Add temporary loading placeholders
+          const count = Math.min(this.batchSize, remaining);
+          const placeholders = this.addLoadingPlaceholders(count);
+
           const prevCount = this.visibleCount;
           this.visibleCount = Math.min(
             this.posts.length,
             this.visibleCount + this.batchSize
           );
-          this.appendBatch(prevCount, this.visibleCount);
-          this.updateLoadMoreVisibility();
+
+          const cleanup = () => {
+            this.removePlaceholders(placeholders);
+            this.setButtonLoading(false);
+            this.updateLoadMoreVisibility();
+          };
+
+          // Safety timeout in case parse callback doesn't fire
+          let timeoutId = setTimeout(cleanup, 7000);
+
+          this.appendBatch(prevCount, this.visibleCount, () => {
+            clearTimeout(timeoutId);
+            cleanup();
+          });
         }
 
         updateLoadMoreVisibility() {
@@ -575,6 +607,55 @@
             <div class="fb-post" data-href="${post.url}" data-width="700" data-show-text="true"></div>
           `;
           return div;
+        }
+
+        // Add N loading placeholders to the grid and return the elements
+        addLoadingPlaceholders(count) {
+          const placeholders = [];
+          for (let i = 0; i < count; i++) {
+            const ph = document.createElement("div");
+            ph.className = "fb-post-loading";
+            ph.innerHTML = `
+              <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+              <p>Loading Facebook post...</p>
+            `;
+            this.gridEl.appendChild(ph);
+            placeholders.push(ph);
+          }
+          return placeholders;
+        }
+
+        // Remove provided placeholders from the DOM
+        removePlaceholders(placeholders) {
+          (placeholders || []).forEach((el) => el && el.remove());
+        }
+
+        // Toggle "More posts" button loading state
+        setButtonLoading(isLoading) {
+          if (!this.loadMoreBtn) return;
+          if (isLoading === this.buttonLoading) return;
+          if (isLoading) {
+            if (!this.loadMoreBtn.dataset.originalHtml) {
+              this.loadMoreBtn.dataset.originalHtml =
+                this.loadMoreBtn.innerHTML;
+            }
+            this.loadMoreBtn.disabled = true;
+            this.loadMoreBtn.classList.add("opacity-80", "cursor-not-allowed");
+            this.loadMoreBtn.innerHTML = `
+              <i class="fas fa-spinner fa-spin mr-2"></i>
+              Loading...
+            `;
+          } else {
+            this.loadMoreBtn.disabled = false;
+            this.loadMoreBtn.classList.remove(
+              "opacity-80",
+              "cursor-not-allowed"
+            );
+            this.loadMoreBtn.innerHTML =
+              this.loadMoreBtn.dataset.originalHtml ||
+              this.loadMoreBtn.innerHTML;
+          }
+          this.buttonLoading = isLoading;
         }
 
         initializeFacebookEmbeds() {
