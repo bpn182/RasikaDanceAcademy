@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shows - Rasika Dance Academy</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Shared Configuration and Styles -->
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/shared.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* Modal overlay styles */
+      .event-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .event-modal {
+        background: #fff;
+        border-radius: 2rem;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22);
+        max-width: 700px;
+        width: 95vw;
+        padding: 3rem 2rem 2rem 2rem;
+        position: relative;
+        animation: modalPop 0.3s;
+        max-height: 90vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .event-modal-img {
+        width: 100%;
+        max-height: 50vh;
+        min-height: 200px;
+        object-fit: contain;
+        border-radius: 2.5rem;
+        margin-bottom: 3rem;
+        background: #f3f3f3;
+        box-shadow: 0 8px 48px rgba(0, 0, 0, 0.14);
+        display: block;
+      }
+      @keyframes modalPop {
+        from {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .event-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #d32f2f;
+        cursor: pointer;
+        z-index: 10;
+        transition: color 0.2s;
+      }
+      .event-modal-close:hover {
+        color: #b71c1c;
+      }
+
+      /* Facebook posts loading and fallback styles */
+      .fb-post-loading {
+        background: #f8f9fa;
+        border: 1px solid #e3e6ea;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        color: #65676b;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .fb-post-fallback {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        text-align: center;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Ensure Facebook iframes never overflow their cards */
+      .fb_iframe_widget,
+      .fb_iframe_widget span,
+      .fb_iframe_widget iframe {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* Small-screen refinements */
+      @media (max-width: 480px) {
+        .event-modal {
+          padding: 1.5rem 1rem 1rem 1rem;
+          border-radius: 1.25rem;
+        }
+        .event-modal-img {
+          border-radius: 1rem;
+          margin-bottom: 1.25rem;
+          min-height: 160px;
+        }
+        .event-carousel-arrow {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-sans bg-gray-50" data-page="shows">
+    <!-- Navigation Component Container -->
+    <div id="navigation-container"></div>
+
+    <!-- Events Section -->
+    <section
+      id="events"
+      class="pt-28 md:pt-32 pb-20 bg-gradient-to-b from-white to-amber-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Academy Events
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore our upcoming and past events, including arangetrams,
+            performances, and special celebrations.
+          </p>
+        </div>
+        <!-- Upcoming Events Carousel -->
+        <div class="mb-16">
+          <h3
+            class="text-2xl font-bold text-primary-600 mb-6 flex items-center gap-2"
+          >
+            <i class="fas fa-calendar-alt text-primary-500"></i> Upcoming Events
+          </h3>
+          <div class="relative">
+            <button
+              class="event-carousel-arrow event-upcoming-prev absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+              aria-label="Previous"
+            >
+              <i class="fas fa-chevron-left text-primary-500"></i>
+            </button>
+            <div
+              id="upcoming-events-carousel"
+              class="flex overflow-x-auto gap-8 pb-4 scroll-smooth"
+            >
+              <!-- Cards will be injected here by JS -->
+              <div
+                class="text-center text-gray-400 w-full"
+                id="upcoming-events-placeholder"
+              >
+                No upcoming events at this time.
+              </div>
+            </div>
+            <button
+              class="event-carousel-arrow event-upcoming-next absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+              aria-label="Next"
+            >
+              <i class="fas fa-chevron-right text-primary-500"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Past Events Carousel -->
+        <div>
+          <h3
+            class="text-2xl font-bold text-rose-600 mb-6 flex items-center gap-2"
+          >
+            <i class="fas fa-history text-rose-500"></i> Past Events
+          </h3>
+          <div class="relative">
+            <button
+              class="event-carousel-arrow event-past-prev absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+              aria-label="Previous"
+            >
+              <i class="fas fa-chevron-left text-rose-500"></i>
+            </button>
+            <div
+              id="past-events-carousel"
+              class="flex overflow-x-auto gap-8 pb-4 scroll-smooth"
+            >
+              <!-- Cards will be injected here by JS -->
+              <div
+                class="text-center text-gray-400 w-full"
+                id="past-events-placeholder"
+              >
+                Loading past events...
+              </div>
+            </div>
+            <button
+              class="event-carousel-arrow event-past-next absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 z-10"
+              aria-label="Next"
+            >
+              <i class="fas fa-chevron-right text-rose-500"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facebook Posts Section -->
+    <section id="facebook-posts" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-serif font-bold text-gray-900 mb-3">
+            Facebook Posts
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto"
+          ></div>
+          <p class="text-gray-600 mt-4">
+            Recent highlights from our Facebook page.
+          </p>
+        </div>
+        <div id="fb-posts-grid" class="grid md:grid-cols-2 gap-8">
+          <!-- Loading state -->
+          <div class="fb-post-loading">
+            <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+            <p>Loading Facebook posts...</p>
+          </div>
+          <div class="fb-post-loading">
+            <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+            <p>Loading Facebook posts...</p>
+          </div>
+        </div>
+        <!-- Load More Button -->
+        <div class="text-center mt-6">
+          <button
+            id="load-more-posts"
+            class="inline-flex items-center bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+          >
+            <i class="fas fa-plus mr-2"></i>
+            More posts
+          </button>
+        </div>
+        <div class="text-center mt-10">
+          <a
+            href="https://www.facebook.com/profile.php?id=100063549374638"
+            target="_blank"
+            class="inline-flex items-center bg-gradient-to-r from-primary-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+          >
+            <i class="fab fa-facebook mr-3 text-xl"></i>
+            Visit Our Facebook Page
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+
+    <script>
+      // Facebook SDK Manager
+      class FacebookSDKManager {
+        constructor() {
+          this.isSDKLoaded = false;
+          this.isSDKInitialized = false;
+          this.initCallbacks = [];
+          this.loadTimeout = null;
+        }
+
+        init() {
+          // Clear any existing FB object
+          if (window.FB) {
+            delete window.FB;
+          }
+
+          // Set up the async init callback
+          window.fbAsyncInit = () => {
+            try {
+              if (window.FB && !this.isSDKInitialized) {
+                FB.init({
+                  xfbml: true,
+                  version: "v18.0",
+                });
+                this.isSDKInitialized = true;
+                this.executeCallbacks();
+              }
+            } catch (error) {
+              console.warn("Facebook SDK initialization failed:", error);
+              this.handleSDKError();
+            }
+          };
+
+          // Load the SDK
+          this.loadSDK();
+        }
+
+        loadSDK() {
+          // Remove existing script if any
+          const existingScript = document.querySelector(
+            'script[src*="connect.facebook.net"]'
+          );
+          if (existingScript) {
+            existingScript.remove();
+          }
+
+          // Create new script
+          const script = document.createElement("script");
+          script.async = true;
+          script.defer = true;
+          script.crossOrigin = "anonymous";
+          script.src = `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&autoLogAppEvents=1`;
+
+          script.onload = () => {
+            this.isSDKLoaded = true;
+            clearTimeout(this.loadTimeout);
+          };
+
+          script.onerror = () => {
+            console.warn("Facebook SDK failed to load");
+            this.handleSDKError();
+          };
+
+          // Set timeout for SDK loading
+          this.loadTimeout = setTimeout(() => {
+            if (!this.isSDKLoaded) {
+              console.warn("Facebook SDK loading timeout");
+              this.handleSDKError();
+            }
+          }, 10000);
+
+          document.head.appendChild(script);
+        }
+
+        onReady(callback) {
+          if (this.isSDKInitialized && window.FB) {
+            callback();
+          } else {
+            this.initCallbacks.push(callback);
+          }
+        }
+
+        executeCallbacks() {
+          this.initCallbacks.forEach((callback) => {
+            try {
+              callback();
+            } catch (error) {
+              console.error("Facebook callback error:", error);
+            }
+          });
+          this.initCallbacks = [];
+        }
+
+        handleSDKError() {
+          // Show fallback content when SDK fails
+          this.showFallbackContent();
+        }
+
+        showFallbackContent() {
+          const grid = document.getElementById("fb-posts-grid");
+          if (!grid) return;
+
+          const fallbackPosts = [
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0PkKmS2NTBFcZUgeATvho4asttdV33LH2u2jyZyJDthFfuvWzsDqfwtVcSWCQZX6hl&id=100063549374638",
+              title: "Recent Performance",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02aH8ozKhn7jVk7VT82rd2AsX84zsyKhrkV759y4jXWegda9g3HycLKEtSdRQegAHVl&id=100063549374638",
+              title: "Dance Academy Updates",
+            },
+            {
+              url: "https://www.facebook.com/photo?fbid=1379841844144115&set=a.532448252216816",
+              title: "Student Showcase",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02ranXhDxGsTrJCXWsDSfyQE8qA5ohswsCaeygqRw6EryBdMESviZCcB6DGuKG4eKtl&id=100063549374638",
+              title: "Academy News",
+            },
+          ];
+
+          grid.innerHTML = fallbackPosts
+            .map(
+              (post) => `
+            <div class="fb-post-fallback">
+              <i class="fab fa-facebook text-4xl mb-4"></i>
+              <h3 class="text-lg font-semibold mb-3">${post.title}</h3>
+              <p class="text-sm mb-4 opacity-90">Facebook post content is not available in this view.</p>
+              <a href="${post.url}" target="_blank" rel="noopener" 
+                 class="inline-flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm hover:bg-opacity-30 transition-all">
+                <i class="fab fa-facebook-f mr-2"></i>
+                View on Facebook
+              </a>
+            </div>
+          `
+            )
+            .join("");
+        }
+      }
+
+      // Facebook Posts Renderer
+      class FacebookPostsRenderer {
+        constructor(sdkManager) {
+          this.sdkManager = sdkManager;
+          this.posts = [];
+          this.isRendered = false;
+          this.visibleCount = 2; // show initially
+          this.batchSize = 2; // add per click
+          this.gridEl = null;
+          this.loadMoreBtn = null;
+          this.resizeObserver = null;
+          this.buttonLoading = false;
+        }
+
+        async loadPosts() {
+          const fallbackPosts = [
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0PkKmS2NTBFcZUgeATvho4asttdV33LH2u2jyZyJDthFfuvWzsDqfwtVcSWCQZX6hl&id=100063549374638",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02aH8ozKhn7jVk7VT82rd2AsX84zsyKhrkV759y4jXWegda9g3HycLKEtSdRQegAHVl&id=100063549374638",
+            },
+            {
+              url: "https://www.facebook.com/photo?fbid=1379841844144115&set=a.532448252216816",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02ranXhDxGsTrJCXWsDSfyQE8qA5ohswsCaeygqRw6EryBdMESviZCcB6DGuKG4eKtl&id=100063549374638",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02BUi9cDcpVPaJhZPDeoWJfSWKmYmAajqvTAVCGRnaMCAMndgpMNyaMW6p9DU3TbZFl&id=100063549374638",
+            },
+            {
+              url: "https://www.facebook.com/permalink.php?story_fbid=pfbid035Yb4vPYomM2TMg6RZLmUbVeZdYzhHCksJSAFYu6h5cchMbE4EqSo1zYseVx5cCWml&id=100063549374638",
+            },
+          ];
+
+          try {
+            const response = await fetch("shows-facebook-posts.json", {
+              cache: "no-store",
+              headers: {
+                "Cache-Control": "no-cache",
+                Pragma: "no-cache",
+              },
+            });
+
+            if (response.ok) {
+              const posts = await response.json();
+              this.posts =
+                Array.isArray(posts) && posts.length > 0
+                  ? posts
+                  : fallbackPosts;
+            } else {
+              this.posts = fallbackPosts;
+            }
+          } catch (error) {
+            console.warn("Failed to load posts JSON:", error);
+            this.posts = fallbackPosts;
+          }
+        }
+
+        render() {
+          if (this.isRendered) return;
+
+          this.gridEl = document.getElementById("fb-posts-grid");
+          this.loadMoreBtn = document.getElementById("load-more-posts");
+          if (!this.gridEl || this.posts.length === 0) return;
+
+          // Clear loading state
+          this.gridEl.innerHTML = "";
+
+          // Initial batch
+          this.appendBatch(0, Math.min(this.visibleCount, this.posts.length));
+
+          // Wire up Load More
+          if (this.loadMoreBtn) {
+            this.loadMoreBtn.addEventListener("click", () => this.loadMore());
+          }
+
+          // Hide button if nothing else to load
+          this.updateLoadMoreVisibility();
+
+          this.isRendered = true;
+
+          // Observe size changes to keep embeds responsive
+          this.initResizeObserver();
+
+          // Initialize Facebook embeds when SDK is ready
+          this.sdkManager.onReady(() => {
+            this.initializeFacebookEmbeds();
+          });
+
+          // Set fallback timeout
+          setTimeout(() => {
+            this.checkAndShowFallbacks();
+          }, 8000);
+        }
+
+        appendBatch(start, end, onParsed) {
+          for (let i = start; i < end; i++) {
+            const postElement = this.createPostElement(this.posts[i], i);
+            this.gridEl.appendChild(postElement);
+          }
+          // After appending, if SDK ready, parse only the new nodes
+          if (window.FB && FB.XFBML && FB.XFBML.parse) {
+            FB.XFBML.parse(this.gridEl, () => {
+              // Adjust widths for responsiveness
+              setTimeout(() => this.setupResponsiveEmbeds(), 500);
+              if (typeof onParsed === "function") onParsed();
+            });
+          } else {
+            // Fallback: ensure layout updates and callback still run
+            setTimeout(() => {
+              this.setupResponsiveEmbeds();
+              if (typeof onParsed === "function") onParsed();
+            }, 500);
+          }
+        }
+
+        loadMore() {
+          if (!this.gridEl) return;
+          const remaining = this.posts.length - this.visibleCount;
+          if (remaining <= 0) return;
+
+          // Button loading state
+          this.setButtonLoading(true);
+
+          // Add temporary loading placeholders
+          const count = Math.min(this.batchSize, remaining);
+          const placeholders = this.addLoadingPlaceholders(count);
+
+          const prevCount = this.visibleCount;
+          this.visibleCount = Math.min(
+            this.posts.length,
+            this.visibleCount + this.batchSize
+          );
+
+          const cleanup = () => {
+            this.removePlaceholders(placeholders);
+            this.setButtonLoading(false);
+            this.updateLoadMoreVisibility();
+          };
+
+          // Safety timeout in case parse callback doesn't fire
+          let timeoutId = setTimeout(cleanup, 7000);
+
+          this.appendBatch(prevCount, this.visibleCount, () => {
+            clearTimeout(timeoutId);
+            cleanup();
+          });
+        }
+
+        updateLoadMoreVisibility() {
+          if (!this.loadMoreBtn) return;
+          const hasMore = this.visibleCount < this.posts.length;
+          this.loadMoreBtn.style.display = hasMore ? "inline-flex" : "none";
+        }
+
+        createPostElement(post, index) {
+          const div = document.createElement("div");
+          div.className = "bg-white rounded-2xl shadow-lg p-4 relative group";
+          div.innerHTML = `
+            <a href="${post.url}" target="_blank" rel="noopener" 
+               class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-rose-500 text-white rounded-full px-3 py-1.5 shadow-lg flex items-center gap-2" 
+               aria-label="View this post on Facebook" title="View on Facebook">
+              <i class="fab fa-facebook-f"></i>
+              <span class="hidden sm:inline">View on Facebook</span>
+            </a>
+            <div class="fb-post" data-href="${post.url}" data-width="700" data-show-text="true"></div>
+          `;
+          return div;
+        }
+
+        // Add N loading placeholders to the grid and return the elements
+        addLoadingPlaceholders(count) {
+          const placeholders = [];
+          for (let i = 0; i < count; i++) {
+            const ph = document.createElement("div");
+            ph.className = "fb-post-loading";
+            ph.innerHTML = `
+              <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+              <p>Loading Facebook post...</p>
+            `;
+            this.gridEl.appendChild(ph);
+            placeholders.push(ph);
+          }
+          return placeholders;
+        }
+
+        // Remove provided placeholders from the DOM
+        removePlaceholders(placeholders) {
+          (placeholders || []).forEach((el) => el && el.remove());
+        }
+
+        // Toggle "More posts" button loading state
+        setButtonLoading(isLoading) {
+          if (!this.loadMoreBtn) return;
+          if (isLoading === this.buttonLoading) return;
+          if (isLoading) {
+            if (!this.loadMoreBtn.dataset.originalHtml) {
+              this.loadMoreBtn.dataset.originalHtml =
+                this.loadMoreBtn.innerHTML;
+            }
+            this.loadMoreBtn.disabled = true;
+            this.loadMoreBtn.classList.add("opacity-80", "cursor-not-allowed");
+            this.loadMoreBtn.innerHTML = `
+              <i class="fas fa-spinner fa-spin mr-2"></i>
+              Loading...
+            `;
+          } else {
+            this.loadMoreBtn.disabled = false;
+            this.loadMoreBtn.classList.remove(
+              "opacity-80",
+              "cursor-not-allowed"
+            );
+            this.loadMoreBtn.innerHTML =
+              this.loadMoreBtn.dataset.originalHtml ||
+              this.loadMoreBtn.innerHTML;
+          }
+          this.buttonLoading = isLoading;
+        }
+
+        initializeFacebookEmbeds() {
+          if (!window.FB || !FB.XFBML || !FB.XFBML.parse) {
+            setTimeout(() => this.initializeFacebookEmbeds(), 1000);
+            return;
+          }
+
+          try {
+            const section = document.getElementById("facebook-posts");
+            if (section) {
+              // Parse all Facebook embeds
+              FB.XFBML.parse(section);
+
+              // Set up responsive sizing
+              setTimeout(() => {
+                this.setupResponsiveEmbeds();
+              }, 2000);
+            }
+          } catch (error) {
+            console.warn("Facebook embed initialization failed:", error);
+          }
+        }
+
+        setupResponsiveEmbeds() {
+          const section = document.getElementById("facebook-posts");
+          if (!section) return;
+
+          const embeds = section.querySelectorAll(".fb-post");
+          embeds.forEach((embed) => {
+            const card = embed.closest(".rounded-2xl");
+            if (card) {
+              const availableWidth = card.clientWidth - 32; // padding
+              const width = Math.max(
+                280,
+                Math.min(
+                  700,
+                  Math.floor(isNaN(availableWidth) ? 280 : availableWidth)
+                )
+              );
+              embed.setAttribute("data-width", width.toString());
+            }
+          });
+
+          // Re-parse after width changes
+          if (window.FB && FB.XFBML && FB.XFBML.parse) {
+            FB.XFBML.parse(section);
+          }
+        }
+
+        initResizeObserver() {
+          if (this.resizeObserver || !this.gridEl) return;
+          try {
+            this.resizeObserver = new ResizeObserver(() => {
+              this.setupResponsiveEmbeds();
+            });
+            this.resizeObserver.observe(this.gridEl);
+          } catch (_) {
+            // Fallback to window resize listener already present
+          }
+        }
+
+        checkAndShowFallbacks() {
+          const section = document.getElementById("facebook-posts");
+          if (!section) return;
+
+          const iframes = section.querySelectorAll(".fb_iframe_widget iframe");
+          if (iframes.length === 0) {
+            // No embeds loaded, show fallback buttons
+            const cards = section.querySelectorAll(".group");
+            cards.forEach((card) => {
+              const viewButton = card.querySelector(
+                'a[aria-label="View this post on Facebook"]'
+              );
+              if (viewButton) {
+                viewButton.style.opacity = "1";
+                viewButton.style.position = "relative";
+                viewButton.style.top = "auto";
+                viewButton.style.right = "auto";
+                viewButton.style.display = "flex";
+                viewButton.style.justifyContent = "center";
+                viewButton.style.margin = "20px auto";
+              }
+
+              const fbPost = card.querySelector(".fb-post");
+              if (fbPost) {
+                fbPost.innerHTML = `
+                  <div class="text-center py-8">
+                    <i class="fab fa-facebook text-4xl text-blue-600 mb-3"></i>
+                    <p class="text-gray-600">Facebook post content</p>
+                    <p class="text-sm text-gray-500">Click "View on Facebook" to see the full post</p>
+                  </div>
+                `;
+              }
+            });
+          }
+        }
+      }
+
+      // Initialize everything when DOM is ready
+      document.addEventListener("DOMContentLoaded", async function () {
+        const sdkManager = new FacebookSDKManager();
+        const postsRenderer = new FacebookPostsRenderer(sdkManager);
+
+        // Load posts and render
+        await postsRenderer.loadPosts();
+        postsRenderer.render();
+
+        // Initialize Facebook SDK
+        sdkManager.init();
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            if (postsRenderer.isRendered) {
+              postsRenderer.setupResponsiveEmbeds();
+            }
+          }, 300);
+        });
+      });
+    </script>
+
+    <!-- Component Scripts -->
+    <script src="js/components.js"></script>
+
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+
+    <!-- Events Section Script -->
+    <script>
+      // Helper to create event card (image fully visible)
+      function createEventCard(event) {
+        const ticketUrl =
+          [
+            event.ticketUrl,
+            event.ticketsUrl,
+            event.buyTicketsUrl,
+            event.tickets,
+          ].find((u) => typeof u === "string" && /^https?:\/\//i.test(u)) ||
+          null;
+        const ticketBtn = ticketUrl
+          ? `<div class="mt-3">
+               <a href="${ticketUrl}" target="_blank" rel="noopener"
+                  onclick="event.stopPropagation();"
+                  class="inline-flex items-center bg-gradient-to-r from-primary-500 to-rose-500 hover:from-primary-600 hover:to-rose-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow hover:shadow-lg transform hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200">
+                 <i class="fas fa-ticket-alt mr-2"></i>
+                 Buy Tickets
+               </a>
+             </div>`
+          : "";
+        return `
+          <div class="event-card bg-white rounded-3xl shadow-xl flex flex-col overflow-hidden min-w-[320px] max-w-xs cursor-pointer" tabindex="0" role="button" aria-label="View event details" data-event="${encodeURIComponent(
+            JSON.stringify(event)
+          )}">
+            <div class="bg-gray-100 flex items-center justify-center overflow-hidden" style="height:220px;">
+              <img src="${event.image || "images/shows/default.jpg"}" alt="${
+          event.title
+        }" class="object-contain w-full h-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-primary-200 to-rose-200">
+                <i class='fas fa-image text-5xl text-white/80'></i>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h4 class="text-xl font-bold text-primary-700 mb-2">${
+                event.title
+              }</h4>
+              <div class="text-sm text-gray-500 mb-2 flex items-center gap-2">
+                <i class="fas fa-calendar-alt"></i> ${
+                  event.date
+                } &nbsp; <i class="fas fa-clock"></i> ${event.time}
+              </div>
+              <div class="text-sm text-gray-600 mb-2 flex items-center gap-2">
+                <i class="fas fa-map-marker-alt"></i> ${event.location}
+              </div>
+              <p class="text-gray-700 mb-4 flex-1">${event.description}</p>
+              ${ticketBtn}
+            </div>
+          </div>
+        `;
+      }
+
+      // Render events from JSON into carousel
+      function renderEvents(jsonPath, carouselId, placeholderId) {
+        fetch(jsonPath)
+          .then((res) => res.json())
+          .then((events) => {
+            const carousel = document.getElementById(carouselId);
+            const placeholder = document.getElementById(placeholderId);
+            if (events.length === 0) {
+              if (placeholder) placeholder.style.display = "";
+              return;
+            }
+            if (placeholder) placeholder.style.display = "none";
+            carousel.innerHTML = events.map(createEventCard).join("");
+          })
+          .catch(() => {
+            const placeholder = document.getElementById(placeholderId);
+            if (placeholder) placeholder.textContent = "Could not load events.";
+          });
+      }
+
+      // Carousel scroll logic
+      function setupCarouselScroll(carouselId, prevBtnClass, nextBtnClass) {
+        const carousel = document.getElementById(carouselId);
+        const prevBtn = document.querySelector(prevBtnClass);
+        const nextBtn = document.querySelector(nextBtnClass);
+        if (!carousel || !prevBtn || !nextBtn) return;
+        prevBtn.addEventListener("click", () => {
+          carousel.scrollBy({ left: -350, behavior: "smooth" });
+        });
+        nextBtn.addEventListener("click", () => {
+          carousel.scrollBy({ left: 350, behavior: "smooth" });
+        });
+      }
+
+      // On DOM ready, render both event carousels and setup scroll
+      document.addEventListener("DOMContentLoaded", function () {
+        renderEvents(
+          "upcoming-events.json",
+          "upcoming-events-carousel",
+          "upcoming-events-placeholder"
+        );
+        renderEvents(
+          "past-events.json",
+          "past-events-carousel",
+          "past-events-placeholder"
+        );
+        setupCarouselScroll(
+          "upcoming-events-carousel",
+          ".event-upcoming-prev",
+          ".event-upcoming-next"
+        );
+        setupCarouselScroll(
+          "past-events-carousel",
+          ".event-past-prev",
+          ".event-past-next"
+        );
+
+        // Automatic carousel scroll for both carousels
+        function autoScrollCarousel(
+          carouselId,
+          direction = 1,
+          interval = 3500
+        ) {
+          const carousel = document.getElementById(carouselId);
+          if (!carousel) return;
+          let scrollAmount = 350 * direction;
+          setInterval(() => {
+            // If mouse is over carousel, pause auto-scroll
+            if (carousel.matches(":hover")) return;
+            carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            // If reached end, scroll back to start
+            if (
+              direction > 0 &&
+              carousel.scrollLeft + carousel.offsetWidth >=
+                carousel.scrollWidth - 10
+            ) {
+              carousel.scrollTo({ left: 0, behavior: "smooth" });
+            } else if (direction < 0 && carousel.scrollLeft <= 10) {
+              carousel.scrollTo({
+                left: carousel.scrollWidth,
+                behavior: "smooth",
+              });
+            }
+          }, interval);
+        }
+        autoScrollCarousel("upcoming-events-carousel", 1, 3500);
+        autoScrollCarousel("past-events-carousel", 1, 3500);
+
+        // Event card click: show modal
+        function showEventModal(eventData) {
+          // Remove any existing modal
+          const oldModal = document.getElementById("event-modal-overlay");
+          if (oldModal) oldModal.remove();
+          const ticketUrl =
+            [
+              eventData.ticketUrl,
+              eventData.ticketsUrl,
+              eventData.buyTicketsUrl,
+              eventData.tickets,
+            ].find((u) => typeof u === "string" && /^https?:\/\//i.test(u)) ||
+            null;
+          // Create overlay
+          const overlay = document.createElement("div");
+          overlay.className = "event-modal-overlay";
+          overlay.id = "event-modal-overlay";
+          overlay.tabIndex = 0;
+          overlay.innerHTML = `
+            <div class="event-modal" role="dialog" aria-modal="true">
+              <button class="event-modal-close" aria-label="Close event details">&times;</button>
+              <img src="${
+                eventData.image ? eventData.image : "images/shows/default.jpg"
+              }" alt="${
+            eventData.title ? eventData.title : "Event"
+          }" class="event-modal-img" onerror="this.style.display='none';">
+              <h2 class="text-3xl font-bold text-primary-700 mb-4 text-center">${
+                eventData.title ? eventData.title : "Untitled Event"
+              }</h2>
+              <div class="text-base text-gray-700 mb-4 text-center">${
+                eventData.description ? eventData.description : ""
+              }</div>
+              <div class="flex flex-wrap justify-center gap-6 mb-2">
+                <div class="text-sm text-gray-500 flex items-center gap-2">
+                  <i class="fas fa-calendar-alt"></i> <span>${
+                    eventData.date ? eventData.date : ""
+                  }</span>
+                </div>
+                <div class="text-sm text-gray-500 flex items-center gap-2">
+                  <i class="fas fa-clock"></i> <span>${
+                    eventData.time ? eventData.time : ""
+                  }</span>
+                </div>
+                <div class="text-sm text-gray-600 flex items-center gap-2">
+                  <i class="fas fa-map-marker-alt"></i>
+                  ${
+                    eventData.location
+                      ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                          eventData.location
+                        )}" target="_blank" rel="noopener" class="text-primary-600 hover:text-primary-700 hover:underline transition-colors">${
+                          eventData.location
+                        }</a>`
+                      : "<span>Location not available</span>"
+                  }
+                </div>
+              </div>
+              ${
+                ticketUrl
+                  ? `<div class="mt-4 text-center">
+                       <a href="${ticketUrl}" target="_blank" rel="noopener"
+                          class="inline-flex items-center bg-gradient-to-r from-primary-500 to-rose-500 hover:from-primary-600 hover:to-rose-600 text-white px-6 py-3 rounded-full font-semibold shadow hover:shadow-lg transform hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200">
+                         <i class="fas fa-ticket-alt mr-2"></i>
+                         Buy Tickets
+                       </a>
+                     </div>`
+                  : ""
+              }
+            </div>
+          `;
+          document.body.appendChild(overlay);
+          // Close modal on click or Esc
+          overlay.querySelector(".event-modal-close").onclick = () =>
+            overlay.remove();
+          overlay.onclick = (e) => {
+            if (e.target === overlay) overlay.remove();
+          };
+          document.addEventListener("keydown", function escListener(ev) {
+            if (ev.key === "Escape") {
+              overlay.remove();
+              document.removeEventListener("keydown", escListener);
+            }
+          });
+        }
+
+        function attachCardClickHandlers(carouselId) {
+          const carousel = document.getElementById(carouselId);
+          if (!carousel) return;
+          const cards = carousel.querySelectorAll(".event-card");
+          cards.forEach((card) => {
+            // Remove previous click listeners if any
+            card.onclick = null;
+            card.addEventListener("click", function (e) {
+              if (card.dataset.event) {
+                let eventData;
+                try {
+                  eventData = JSON.parse(
+                    decodeURIComponent(card.dataset.event)
+                  );
+                } catch (err) {
+                  eventData = {};
+                }
+                showEventModal(eventData);
+              }
+            });
+          });
+        }
+        // Attach click handlers after events are rendered, and re-attach if cards change
+        function observeCards(carouselId) {
+          const carousel = document.getElementById(carouselId);
+          if (!carousel) return;
+          // Attach click handlers after a short delay to ensure cards are rendered
+          setTimeout(() => {
+            attachCardClickHandlers(carouselId);
+          }, 50);
+          const observer = new MutationObserver(() => {
+            attachCardClickHandlers(carouselId);
+          });
+          observer.observe(carousel, { childList: true, subtree: true });
+        }
+        // Ensure event listeners are attached after cards are rendered
+        setTimeout(() => {
+          observeCards("upcoming-events-carousel");
+          observeCards("past-events-carousel");
+        }, 0);
+      });
+    </script>
+
+    <!-- Dancing Hero Image Carousel -->
+    <script>
+      class DancingHeroCarousel {
+        constructor() {
+          this.currentIndex = 0;
+          this.images = document.querySelectorAll(".dancing-image");
+          this.indicators = document.querySelectorAll(".dance-indicator");
+          this.isPlaying = true;
+          this.autoPlayInterval = null;
+
+          this.init();
+        }
+
+        init() {
+          // Set up event listeners
+          const nextBtn = document.getElementById("nextBtn");
+          const prevBtn = document.getElementById("prevBtn");
+          const playPauseBtn = document.getElementById("playPauseBtn");
+
+          if (nextBtn) nextBtn.addEventListener("click", () => this.next());
+          if (prevBtn) prevBtn.addEventListener("click", () => this.prev());
+          if (playPauseBtn)
+            playPauseBtn.addEventListener("click", () =>
+              this.togglePlayPause()
+            );
+
+          // Indicator clicks
+          this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener("click", () => this.goToSlide(index));
+          });
+
+          // Start autoplay
+          this.startAutoPlay();
+
+          // Update initial state
+          this.updateSlide();
+        }
+
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+          this.updateSlide();
+        }
+
+        prev() {
+          this.currentIndex =
+            (this.currentIndex - 1 + this.images.length) % this.images.length;
+          this.updateSlide();
+        }
+
+        goToSlide(index) {
+          this.currentIndex = index;
+          this.updateSlide();
+        }
+
+        updateSlide() {
+          this.images.forEach((image, index) => {
+            image.classList.remove("active", "prev", "next");
+            if (index === this.currentIndex) {
+              image.classList.add("active");
+            } else if (
+              index ===
+              (this.currentIndex - 1 + this.images.length) % this.images.length
+            ) {
+              image.classList.add("prev");
+            } else if (index === (this.currentIndex + 1) % this.images.length) {
+              image.classList.add("next");
+            }
+          });
+          // Update indicators
+          this.indicators.forEach((indicator, index) => {
+            indicator.classList.toggle("active", index === this.currentIndex);
+          });
+        }
+
+        startAutoPlay() {
+          if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+          }
+
+          this.autoPlayInterval = setInterval(() => {
+            if (this.isPlaying) {
+              this.next();
+            }
+          }, 4000);
+        }
+
+        togglePlayPause() {
+          this.isPlaying = !this.isPlaying;
+          const playIcon = document.getElementById("playIcon");
+
+          if (playIcon) {
+            if (this.isPlaying) {
+              playIcon.className = "fas fa-pause";
+            } else {
+              playIcon.className = "fas fa-play";
+            }
+          }
+        }
+      }
+
+      // Initialize the dancing carousel when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        if (document.querySelectorAll(".dancing-image").length > 0) {
+          new DancingHeroCarousel();
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fadeInUp");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.querySelectorAll("section > div").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Interactive Gallery Functionality
+      let currentSlide = 0;
+      let currentFilter = "all";
+      const galleryTrack = document.getElementById("gallery-track");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      const galleryNavBtns = document.querySelectorAll(".gallery-nav-btn");
+      const galleryPrevBtn = document.querySelector(".gallery-prev");
+      const galleryNextBtn = document.querySelector(".gallery-next");
+      const galleryIndicators = document.querySelectorAll(".gallery-indicator");
+
+      // Calculate visible items and slides
+      function getVisibleItems() {
+        if (!galleryTrack) return 1;
+        const containerWidth = galleryTrack.parentElement.offsetWidth;
+        const itemWidth = 320 + 16; // min-w-80 (320px) + margin (16px)
+        return Math.floor(containerWidth / itemWidth);
+      }
+
+      // Filter gallery items
+      function filterGallery(category) {
+        if (!galleryItems.length) return;
+
+        currentFilter = category;
+        currentSlide = 0;
+
+        galleryItems.forEach((item) => {
+          if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        updateGalleryPosition();
+        updateNavigationButtons();
+        updateIndicators();
+      }
+
+      // Update gallery position
+      function updateGalleryPosition() {
+        if (!galleryTrack) return;
+        const visibleItems = getVisibleItems();
+        const itemWidth = 320 + 16; // min-w-80 + margin
+        const translateX = -currentSlide * itemWidth;
+        galleryTrack.style.transform = `translateX(${translateX}px)`;
+      }
+
+      // Update navigation buttons
+      function updateNavigationButtons() {
+        if (!galleryItems.length) return;
+
+        const visibleItems = getVisibleItems();
+        const totalVisibleItems = Array.from(galleryItems).filter(
+          (item) => item.style.display !== "none"
+        ).length;
+        const maxSlides = Math.max(0, totalVisibleItems - visibleItems);
+
+        if (galleryPrevBtn) {
+          galleryPrevBtn.style.opacity = currentSlide === 0 ? "0.5" : "1";
+          galleryPrevBtn.style.pointerEvents =
+            currentSlide === 0 ? "none" : "auto";
+        }
+
+        if (galleryNextBtn) {
+          galleryNextBtn.style.opacity =
+            currentSlide >= maxSlides ? "0.5" : "1";
+          galleryNextBtn.style.pointerEvents =
+            currentSlide >= maxSlides ? "none" : "auto";
+        }
+      }
+
+      // Update indicators
+      function updateIndicators() {
+        if (!galleryIndicators.length || !galleryItems.length) return;
+
+        const visibleItems = getVisibleItems();
+        const totalVisibleItems = Array.from(galleryItems).filter(
+          (item) => item.style.display !== "none"
+        ).length;
+        const totalSlides = Math.max(
+          1,
+          Math.ceil(totalVisibleItems / visibleItems)
+        );
+
+        galleryIndicators.forEach((indicator, index) => {
+          if (index < totalSlides) {
+            indicator.style.display = "block";
+            indicator.classList.toggle(
+              "bg-primary-500",
+              index === Math.floor(currentSlide / visibleItems)
+            );
+            indicator.classList.toggle(
+              "bg-gray-300",
+              index !== Math.floor(currentSlide / visibleItems)
+            );
+          } else {
+            indicator.style.display = "none";
+          }
+        });
+      }
+
+      // Gallery navigation event listeners
+      if (galleryPrevBtn) {
+        galleryPrevBtn.addEventListener("click", () => {
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+          }
+        });
+      }
+
+      if (galleryNextBtn) {
+        galleryNextBtn.addEventListener("click", () => {
+          const visibleItems = getVisibleItems();
+          const totalVisibleItems = Array.from(galleryItems).filter(
+            (item) => item.style.display !== "none"
+          ).length;
+          const maxSlides = Math.max(0, totalVisibleItems - visibleItems);
+
+          if (currentSlide < maxSlides) {
+            currentSlide++;
+            updateGalleryPosition();
+            updateNavigationButtons();
+            updateIndicators();
+          }
+        });
+      }
+
+      // Gallery filter buttons
+      galleryNavBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          galleryNavBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          filterGallery(btn.dataset.category);
+        });
+      });
+
+      // Gallery indicators
+      galleryIndicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          const visibleItems = getVisibleItems();
+          currentSlide = index * visibleItems;
+          updateGalleryPosition();
+          updateNavigationButtons();
+          updateIndicators();
+        });
+      });
+
+      // Initialize gallery
+      function initGallery() {
+        if (galleryTrack && galleryItems.length) {
+          updateGalleryPosition();
+          updateNavigationButtons();
+          updateIndicators();
+        }
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (galleryTrack && galleryItems.length) {
+          updateGalleryPosition();
+          updateNavigationButtons();
+          updateIndicators();
+        }
+      });
+
+      // Initialize gallery when page loads
+      initGallery();
+    </script>
+  </body>
+</html>
