@@ -1,5 +1,5 @@
 /**
- * Notification Banner System for rasika Dance Academy
+ * Notification Banner System for Rasika Dance Academy
  * Easy way to display important announcements, events, and updates
  */
 

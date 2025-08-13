@@ -70,7 +70,7 @@ const NavigationComponent = {
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
                                     <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
                                     <!-- Logo with gentle glow animation -->
-                                    <img src="images/logo/logo.png" alt="rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
+                                    <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
                                 </div>
                             </div>
                         </div>
@@ -170,12 +170,12 @@ const FooterComponent = {
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
                                     <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
                                     <!-- Logo -->
-                                    <img src="images/logo/logo.png" alt="rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
+                                    <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif font-bold">rasika Dance Academy</h3>
+                            <h3 class="text-2xl font-serif font-bold">Rasika Dance Academy</h3>
                             <p class="text-gray-400">Where Art Meets Soul</p>
                         </div>
                     </div>
@@ -209,7 +209,7 @@ const FooterComponent = {
                         <a href="https://www.youtube.com/c/RasikaDanceAcademy" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Subscribe to our YouTube">
                             <i class="fab fa-youtube text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/rasikadanceacademy/" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Instagram">
+                        <a href="https://www.instagram.com/Rasikadanceacademy/" target="_blank" class="text-gray-300 hover:text-primary-400 transition-colors" title="Follow us on Instagram">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
                     </div>
@@ -217,7 +217,7 @@ const FooterComponent = {
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2001-2024 rasika Dance Academy. All rights reserved. | Established 2001</p>
+                <p class="text-gray-400">&copy; 2001-2024 Rasika Dance Academy. All rights reserved. | Established 2001</p>
             </div>
         </div>
     </footer>`,
