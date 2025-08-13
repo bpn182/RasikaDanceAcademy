@@ -106,7 +106,7 @@ const NavigationComponent = {
             <div class="px-4 py-2 space-y-2">
                 <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
                 <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="index.html#shows" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
+                <a href="shows.html" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
                 <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
                 <a href="manjula.html" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
                 <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
@@ -199,7 +199,7 @@ const FooterComponent = {
                     <h4 class="text-lg font-semibold mb-4">Connect</h4>
                     <div class="space-y-3 mb-4">
                         <p class="text-gray-300 text-sm">
-                            <i class="fas fa-phone mr-2"></i>0461 409 099
+                            <i class="fas fa-phone mr-2"></i>0433 005 131
                         </p>
                     </div>
                     <div class="flex space-x-4">
