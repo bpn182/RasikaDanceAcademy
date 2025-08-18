@@ -104,19 +104,19 @@ const NavigationComponent = {
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
             <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary-600">Home</a>
-                <a href="media-charity.html" class="block py-2 text-gray-700 hover:text-primary-600">Media & Charity</a>
-                <a href="shows.html" class="block py-2 text-gray-700 hover:text-primary-600">Shows</a>
-                <a href="videos.html" class="block py-2 text-gray-700 hover:text-primary-600">Videos</a>
-                <a href="manjula.html" class="block py-2 text-gray-700 hover:text-primary-600">Manjula</a>
-                <a href="arangetram.html" class="block py-2 text-gray-700 hover:text-primary-600">Arangetram</a>
-                <a href="index.html#contact" class="block py-2 text-primary-600 font-medium">Contact</a>
+                <a href="index.html" class="mobile-nav-link" data-page="home">Home</a>
+                <a href="media-charity.html" class="mobile-nav-link" data-page="media">Media & Charity</a>
+                <a href="shows.html" class="mobile-nav-link" data-page="shows">Shows</a>
+                <a href="videos.html" class="mobile-nav-link" data-page="videos">Videos</a>
+                <a href="manjula.html" class="mobile-nav-link" data-page="manjula">Manjula</a>
+                <a href="arangetram.html" class="mobile-nav-link" data-page="arangetram">Arangetram</a>
+                <a href="index.html#contact" class="mobile-nav-link" data-page="contact">Contact</a>
             </div>
         </div>
     </nav>`,
     
     init: function(activePage = 'home') {
-        // Set active page styling
+        // Set active page styling for desktop
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -126,8 +126,17 @@ const NavigationComponent = {
                     link.className = 'text-gray-700 hover:text-primary-600 font-medium transition-colors';
                 }
             });
+            // Set active page styling for mobile
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                if (link.dataset.page === activePage) {
+                    link.className = 'block py-2 text-primary-600 font-medium';
+                } else {
+                    link.className = 'block py-2 text-gray-700 hover:text-primary-600';
+                }
+            });
         }, 0);
-        
+
         // Mobile menu functionality
         setTimeout(() => {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -139,7 +148,7 @@ const NavigationComponent = {
                 });
             }
         }, 0);
-        
+
         // Navbar background change on scroll
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('nav');

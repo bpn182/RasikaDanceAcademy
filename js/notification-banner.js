@@ -96,39 +96,34 @@ class NotificationBanner {
     }
     
     getBannerHTML() {
-        const dismissButton = this.bannerConfig.dismissible ? 
-            '<button class="banner-dismiss ml-4 text-white/80 hover:text-white transition-colors" aria-label="Dismiss notification"><i class="fas fa-times"></i></button>' : '';
+            const dismissButton = this.bannerConfig.dismissible ? 
+                '<button class="banner-dismiss ml-4 text-white/80 hover:text-white transition-colors" aria-label="Dismiss notification"><i class="fas fa-times"></i></button>' : '';
         
-        const actionButton = this.bannerConfig.showButton ? 
-            `<a href="${this.bannerConfig.buttonLink}" ${this.bannerConfig.openInNewTab ? 'target="_blank" rel="noopener noreferrer"' : ''} class="banner-cta ml-4 bg-white/20 hover:bg-white/30 text-white px-4 py-1 rounded-full text-sm font-medium transition-colors">${this.bannerConfig.buttonText}</a>` : '';
+            const actionButton = this.bannerConfig.showButton ? 
+                `<a href="${this.bannerConfig.buttonLink}" ${this.bannerConfig.openInNewTab ? 'target="_blank" rel="noopener noreferrer"' : ''} class="banner-cta ml-4 bg-white/20 hover:bg-white/30 text-white px-4 py-1 rounded-full text-sm font-medium transition-colors">${this.bannerConfig.buttonText}</a>` : '';
         
-        const bannerContent = `
-            <div class="max-w-7xl mx-auto px-4 py-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center flex-1">
-                        <div class="flex-1">
-                            <div class="flex items-center">
-                                <p class="font-semibold text-sm md:text-base">
-                                    ${this.bannerConfig.title}
+            // Make entire banner clickable except dismiss button
+            const bannerContent = `
+                <div class="max-w-7xl mx-auto px-4 py-3 notification-banner-content" style="cursor:pointer;">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center flex-1">
+                            <div class="flex-1">
+                                <div class="flex items-center">
+                                    <p class="font-semibold text-sm md:text-base">
+                                        ${this.bannerConfig.title}
+                                    </p>
+                                </div>
+                                <p class="text-sm text-white/90 mt-1 hidden md:block">
+                                    ${this.bannerConfig.message}
                                 </p>
                             </div>
-                            <p class="text-sm text-white/90 mt-1 hidden md:block">
-                                ${this.bannerConfig.message}
-                            </p>
+                            ${actionButton}
                         </div>
-                        ${actionButton}
+                        ${dismissButton}
                     </div>
-                    ${dismissButton}
                 </div>
-            </div>
-        `;
-        
-        // Make entire banner clickable if configured
-        if (this.bannerConfig.makeEntireBannerClickable && this.bannerConfig.bannerClickLink) {
-            return `<a href="${this.bannerConfig.bannerClickLink}" ${this.bannerConfig.openInNewTab ? 'target="_blank" rel="noopener noreferrer"' : ''} class="block hover:opacity-90 transition-opacity">${bannerContent}</a>`;
-        }
-        
-        return bannerContent;
+            `;
+            return bannerContent;
     }
     
     addEventListeners() {
@@ -148,6 +143,16 @@ class NotificationBanner {
                 // You can add analytics tracking here
             });
         }
+
+            // Make entire banner clickable except dismiss button
+            const bannerContent = this.bannerElement.querySelector('.notification-banner-content');
+            if (bannerContent) {
+                bannerContent.addEventListener('click', (e) => {
+                    // Prevent redirect if dismiss button or CTA is clicked
+                    if (e.target.closest('.banner-dismiss') || e.target.closest('.banner-cta')) return;
+                    window.location.href = 'shows.html';
+                });
+            }
     }
     
     dismissBanner() {
