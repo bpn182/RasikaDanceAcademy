@@ -64,7 +64,7 @@ const NavigationComponent = {
                     <a href="index.html" class="focus:outline-none">
                         <div class="relative w-16 h-16 flex items-center justify-center">
                             <!-- Animated background with fire-like glow -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary-600 to-rose-500 rounded-full shadow-lg logo-fire-animation">
+                            <div class="absolute inset-0 bg-black rounded-full shadow-lg logo-fire-animation">
                                 <div class="w-full h-full flex items-center justify-center relative">
                                     <!-- Traditional pattern borders -->
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
@@ -173,7 +173,7 @@ const FooterComponent = {
                     <div class="flex items-center space-x-4 mb-6">
                         <div class="relative w-16 h-16 flex items-center justify-center">
                             <!-- Same design as navbar but for dark footer -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary-600 to-rose-500 rounded-full shadow-lg">
+                            <div class="absolute inset-0 bg-black rounded-full shadow-lg">
                                 <div class="w-full h-full flex items-center justify-center relative">
                                     <!-- Traditional pattern borders -->
                                     <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
