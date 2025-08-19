@@ -84,12 +84,13 @@ const NavigationComponent = {
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
-                    <a href="media-charity.html" class="nav-link" data-page="media">Media & Charity</a>
+                    <a href="manjula.html" class="nav-link" data-page="manjula">Manjula</a>
+                    <a href="index.html" class="nav-link" data-page="gallery">Gallery</a>
+                    <a href="arangetram.html" class="nav-link" data-page="arangetram">Arangetram</a>
                     <a href="shows.html" class="nav-link" data-page="shows">Shows</a>
                     <a href="videos.html" class="nav-link" data-page="videos">Videos</a>
-                    <a href="manjula.html" class="nav-link" data-page="manjula">Manjula</a>
-                    <a href="arangetram.html" class="nav-link" data-page="arangetram">Arangetram</a>
-                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Contact</a>
+                    <a href="media-charity.html" class="nav-link" data-page="media">Media & Charity</a>
+                    <a href="index.html#contact" class="bg-gradient-to-r from-primary-500 to-rose-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300" data-page="contact">Contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -105,11 +106,12 @@ const NavigationComponent = {
         <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
             <div class="px-4 py-2 space-y-2">
                 <a href="index.html" class="mobile-nav-link" data-page="home">Home</a>
-                <a href="media-charity.html" class="mobile-nav-link" data-page="media">Media & Charity</a>
+                <a href="manjula.html" class="mobile-nav-link" data-page="manjula">Manjula</a>
+                <a href="index.html" class="mobile-nav-link" data-page="gallery">Gallery</a>
+                <a href="arangetram.html" class="mobile-nav-link" data-page="arangetram">Arangetram</a>
                 <a href="shows.html" class="mobile-nav-link" data-page="shows">Shows</a>
                 <a href="videos.html" class="mobile-nav-link" data-page="videos">Videos</a>
-                <a href="manjula.html" class="mobile-nav-link" data-page="manjula">Manjula</a>
-                <a href="arangetram.html" class="mobile-nav-link" data-page="arangetram">Arangetram</a>
+                <a href="media-charity.html" class="mobile-nav-link" data-page="media">Media & Charity</a>
                 <a href="index.html#contact" class="mobile-nav-link" data-page="contact">Contact</a>
             </div>
         </div>
@@ -166,7 +168,7 @@ const NavigationComponent = {
 // Updated Footer Component to match navbar logo
 const FooterComponent = {
     template: `
-    <footer class="bg-gray-900 text-white py-16">
+    <footer class="text-white py-16" style="background-color: #c2185b;">
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
@@ -184,30 +186,33 @@ const FooterComponent = {
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif font-bold">Rasika Dance Academy</h3>
-                            <p class="text-gray-400">Where Art Meets Soul</p>
+                            <h3 class="text-2xl font-serif font-bold text-white">Rasika Dance Academy</h3>
+                            <p class="text-white">Where Art Meets Soul</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-6">
+                    <p class="text-white mb-6">
                         Preserving the sacred tradition of Indian classical dance while nurturing the next generation of artists through dedicated training and spiritual guidance.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-300 hover:text-primary-400 transition-colors">Home</a></li>
-                        <li><a href="videos.html" class="text-gray-300 hover:text-primary-400 transition-colors">Videos</a></li>
-                        <li><a href="news.html" class="text-gray-300 hover:text-primary-400 transition-colors">News</a></li>
-                        <li><a href="manjula.html" class="text-gray-300 hover:text-primary-400 transition-colors">Manjula</a></li>
-                        <li><a href="arangetram.html" class="text-gray-300 hover:text-primary-400 transition-colors">Arangetram</a></li>
+                        <li><a href="index.html" class="text-white hover:text-primary-400 transition-colors">Home</a></li>
+                        <li><a href="manjula.html" class="text-white hover:text-primary-400 transition-colors">Manjula</a></li>
+                        <li><a href="index.html" class="text-white hover:text-primary-400 transition-colors">Gallery</a></li>
+                        <li><a href="arangetram.html" class="text-white hover:text-primary-400 transition-colors">Arangetram</a></li>
+                        <li><a href="shows.html" class="text-white hover:text-primary-400 transition-colors">Shows</a></li>
+                        <li><a href="videos.html" class="text-white hover:text-primary-400 transition-colors">Videos</a></li>
+                        <li><a href="media-charity.html" class="text-white hover:text-primary-400 transition-colors">Media & Charity</a></li>
+                        <li><a href="index.html#contact" class="text-white hover:text-primary-400 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Connect</h4>
                     <div class="space-y-3 mb-4">
-                        <p class="text-gray-300 text-sm">
+                        <p class="text-white text-sm">
                             <i class="fas fa-phone mr-2"></i>0433 005 131
                         </p>
                     </div>
@@ -225,9 +230,6 @@ const FooterComponent = {
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2001-2024 Rasika Dance Academy. All rights reserved. | Established 2001</p>
-            </div>
         </div>
     </footer>`,
     
