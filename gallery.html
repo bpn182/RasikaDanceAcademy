@@ -138,10 +138,14 @@
             if (window.innerWidth < 1024) return 2;
             return 3;
           };
-          function updateIndicators() {
-            const total = Math.max(1, cards.length - visibleCards() + 1);
+          // --- Carousel Indicator Refactor ---
+          let dotButtons = [];
+          let totalDots = 0;
+          function createIndicators() {
+            totalDots = Math.max(1, cards.length - visibleCards() + 1);
             indicators.innerHTML = "";
-            for (let i = 0; i < total; i++) {
+            dotButtons = [];
+            for (let i = 0; i < totalDots; i++) {
               const dot = document.createElement("button");
               dot.className =
                 "w-3 h-3 rounded-full transition-all duration-300 " +
@@ -152,9 +156,24 @@
               dot.addEventListener("click", () => {
                 currentIndex = i;
                 scrollToIndex();
-                updateIndicators();
+                updateActiveIndicator();
               });
               indicators.appendChild(dot);
+              dotButtons.push(dot);
+            }
+          }
+          function updateActiveIndicator() {
+            for (let i = 0; i < dotButtons.length; i++) {
+              if (i === currentIndex) {
+                dotButtons[i].classList.add("bg-primary-500", "scale-125");
+                dotButtons[i].classList.remove(
+                  "bg-gray-300",
+                  "hover:bg-gray-400"
+                );
+              } else {
+                dotButtons[i].classList.remove("bg-primary-500", "scale-125");
+                dotButtons[i].classList.add("bg-gray-300", "hover:bg-gray-400");
+              }
             }
           }
           function scrollToIndex() {
@@ -166,22 +185,31 @@
           prevBtn.addEventListener("click", () => {
             if (currentIndex > 0) currentIndex--;
             scrollToIndex();
-            updateIndicators();
+            updateActiveIndicator();
           });
           nextBtn.addEventListener("click", () => {
             if (currentIndex < cards.length - visibleCards()) currentIndex++;
             scrollToIndex();
-            updateIndicators();
+            updateActiveIndicator();
           });
+          // Throttle scroll event with requestAnimationFrame
+          let ticking = false;
           track.addEventListener("scroll", () => {
-            // Snap to nearest index for indicator
-            currentIndex = Math.round(track.scrollLeft / (cardWidth * 1.2));
-            updateIndicators();
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                currentIndex = Math.round(track.scrollLeft / (cardWidth * 1.2));
+                updateActiveIndicator();
+                ticking = false;
+              });
+              ticking = true;
+            }
           });
           window.addEventListener("resize", () => {
-            updateIndicators();
+            createIndicators();
+            updateActiveIndicator();
           });
-          updateIndicators();
+          createIndicators();
+          updateActiveIndicator();
         });
     </script>
 
