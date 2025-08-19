@@ -138,7 +138,7 @@
           // Show photo grid below carousel
           function showPhotoGrid(section, title, images) {
             const container = document.getElementById("photo-grid-container");
-            let showCount = 6;
+            let showCount = 4;
             let expanded = false;
             function renderGrid(isInitial = false) {
               container.innerHTML = `
@@ -205,7 +205,7 @@
               if (moreBtn) {
                 moreBtn.onclick = () => {
                   expanded = !expanded;
-                  showCount = expanded ? images.length : 6;
+                  showCount = expanded ? images.length : 4;
                   renderGrid();
                 };
               }
