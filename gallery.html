@@ -71,12 +71,16 @@
           id="carousel-indicators"
           class="flex justify-center mt-6 space-x-3"
         ></div>
+        <!-- Dynamic photo grid will be injected here -->
+        <div id="photo-grid-container" class="mt-10"></div>
       </div>
     </section>
     <script>
+      let galleryData = {};
       fetch("images/gallery/gallery-index.json")
         .then((res) => res.json())
         .then((data) => {
+          galleryData = data;
           const sectionTitles = {
             Kids: "Kids",
             Adults: "Adults",
@@ -122,10 +126,179 @@
                 <span class="inline-block bg-primary-100 text-primary-700 text-xs px-3 py-1 rounded-full">${data[section].length} photos</span>
               </div>
             `;
+              // Add click event to show photo grid
+              card.addEventListener("click", function () {
+                showPhotoGrid(section, title, data[section]);
+              });
               track.appendChild(card);
               cards.push(card);
             }
           });
+
+          // Show photo grid below carousel
+          function showPhotoGrid(section, title, images) {
+            const container = document.getElementById("photo-grid-container");
+            let showCount = 6;
+            let expanded = false;
+            function renderGrid(isInitial = false) {
+              container.innerHTML = `
+                <div id="photo-grid-fade" class="opacity-0 translate-y-8 transition-all duration-500 ease-in-out bg-white rounded-2xl shadow-lg p-6 max-w-5xl mx-auto">
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900">${title} Gallery</h3>
+                    <button id="close-photo-grid" class="text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    ${images
+                      .slice(0, showCount)
+                      .map(
+                        (url, idx) => `
+                      <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-100">
+                        <img src="${url}" alt="${title}" class="object-cover w-full h-full cursor-pointer gallery-thumb" data-idx="${idx}" loading="lazy" />
+                      </div>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                  <div class="flex justify-center mt-6">
+                    ${
+                      images.length > showCount
+                        ? `<button id="show-more-photos" class="px-6 py-2 bg-primary-500 text-white rounded-full font-semibold shadow hover:bg-primary-600 transition">${
+                            expanded ? "Show Less" : "Show More Photos"
+                          }</button>`
+                        : ""
+                    }
+                  </div>
+                </div>
+                <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden">
+                  <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-bold focus:outline-none">&times;</button>
+                  <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"><i class="fas fa-chevron-left"></i></button>
+                  <div class="max-w-3xl w-full flex flex-col items-center">
+                    <img id="lightbox-img" src="" alt="Large view" class="max-h-[70vh] w-auto rounded-lg shadow-lg transition-all duration-300" />
+                    <div id="lightbox-caption" class="text-white mt-4 text-lg text-center"></div>
+                  </div>
+                  <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              `;
+              setTimeout(
+                () => {
+                  const fade = document.getElementById("photo-grid-fade");
+                  if (fade) {
+                    fade.classList.remove("opacity-0", "translate-y-8");
+                    fade.classList.add("opacity-100", "translate-y-0");
+                  }
+                },
+                isInitial ? 50 : 10
+              );
+              document.getElementById("close-photo-grid").onclick = () => {
+                const fade = document.getElementById("photo-grid-fade");
+                if (fade) {
+                  fade.classList.remove("opacity-100", "translate-y-0");
+                  fade.classList.add("opacity-0", "translate-y-8");
+                  setTimeout(() => {
+                    container.innerHTML = "";
+                  }, 500);
+                } else {
+                  container.innerHTML = "";
+                }
+              };
+              const moreBtn = document.getElementById("show-more-photos");
+              if (moreBtn) {
+                moreBtn.onclick = () => {
+                  expanded = !expanded;
+                  showCount = expanded ? images.length : 6;
+                  renderGrid();
+                };
+              }
+              // Lightbox logic
+              let currentLightboxIdx = 0;
+              const lightboxModal = document.getElementById("lightbox-modal");
+              const lightboxImg = document.getElementById("lightbox-img");
+              const lightboxCaption =
+                document.getElementById("lightbox-caption");
+              function openLightbox(idx) {
+                currentLightboxIdx = idx;
+                updateLightbox();
+                lightboxModal.classList.remove("hidden");
+                document.body.classList.add("overflow-hidden");
+              }
+              function closeLightbox() {
+                lightboxModal.classList.add("hidden");
+                document.body.classList.remove("overflow-hidden");
+              }
+              function updateLightbox() {
+                lightboxImg.src = images[currentLightboxIdx];
+                lightboxCaption.textContent = `${title} (${
+                  currentLightboxIdx + 1
+                } / ${images.length})`;
+              }
+              function showPrev() {
+                if (currentLightboxIdx > 0) {
+                  currentLightboxIdx--;
+                  updateLightbox();
+                }
+              }
+              function showNext() {
+                if (currentLightboxIdx < images.length - 1) {
+                  currentLightboxIdx++;
+                  updateLightbox();
+                }
+              }
+              // Add event listeners to thumbnails
+              document.querySelectorAll(".gallery-thumb").forEach((img) => {
+                img.addEventListener("click", (e) => {
+                  const idx = parseInt(img.getAttribute("data-idx"));
+                  openLightbox(idx);
+                });
+              });
+              // Lightbox controls
+              document.getElementById("lightbox-close").onclick = closeLightbox;
+              document.getElementById("lightbox-prev").onclick = showPrev;
+              document.getElementById("lightbox-next").onclick = showNext;
+              // Backdrop click closes
+              lightboxModal.addEventListener("click", (e) => {
+                if (e.target === lightboxModal) closeLightbox();
+              });
+              // Keyboard navigation
+              document.addEventListener("keydown", lightboxKeyHandler);
+              function lightboxKeyHandler(e) {
+                if (lightboxModal.classList.contains("hidden")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") showPrev();
+                if (e.key === "ArrowRight") showNext();
+              }
+              // Swipe support
+              let touchStartX = null;
+              let touchEndX = null;
+              lightboxImg.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+              });
+              lightboxImg.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+              });
+              function handleSwipe() {
+                if (touchStartX !== null && touchEndX !== null) {
+                  const dx = touchEndX - touchStartX;
+                  if (Math.abs(dx) > 40) {
+                    if (dx > 0) showPrev();
+                    else showNext();
+                  }
+                }
+                touchStartX = null;
+                touchEndX = null;
+              }
+              // Clean up event listeners on grid close
+              document
+                .getElementById("close-photo-grid")
+                .addEventListener("click", () => {
+                  document.removeEventListener("keydown", lightboxKeyHandler);
+                });
+            }
+            renderGrid(true);
+            setTimeout(() => {
+              container.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 550);
+          }
 
           // Carousel navigation
           const prevBtn = document.getElementById("carousel-prev");
