@@ -34,7 +34,7 @@
     <!-- Gallery Section (Carousel from JSON) -->
     <section id="gallery-json-grid" class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 pt-8">
           <h2
             class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4"
           >
@@ -389,8 +389,236 @@
         });
     </script>
 
+    <!-- Facebook Videos Section -->
+    <section id="facebook-videos-section" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2
+            class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Facebook Videos
+          </h2>
+          <div
+            class="w-16 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Watch highlights from our performances and events, directly from our
+            official Facebook page.
+          </p>
+        </div>
+        <div
+          id="fb-year-pills"
+          class="flex flex-wrap justify-center gap-3 mb-10"
+        ></div>
+        <div id="facebook-videos-container"></div>
+      </div>
+      <!-- Lightbox Modal for Facebook Videos -->
+      <div
+        id="fb-lightbox-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-90 hidden transition-all duration-300"
+      >
+        <button
+          id="fb-lightbox-close"
+          class="absolute top-4 right-4 text-white text-4xl font-bold focus:outline-none"
+          aria-label="Close video"
+        >
+          &times;
+        </button>
+        <button
+          id="fb-lightbox-prev"
+          class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"
+          aria-label="Previous video"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="max-w-3xl w-full flex flex-col items-center">
+          <div
+            id="fb-lightbox-iframe-container"
+            class="w-full flex items-center justify-center min-h-[315px]"
+          >
+            <!-- iframe will be injected here -->
+          </div>
+          <div
+            id="fb-lightbox-caption"
+            class="text-white mt-4 text-lg text-center"
+          ></div>
+        </div>
+        <button
+          id="fb-lightbox-next"
+          class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"
+          aria-label="Next video"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
     <!-- Footer Component Container -->
     <div id="footer-container"></div>
     <script src="js/components.js"></script>
+    <script>
+      // Facebook Videos Section with year pills, grid, and lightbox
+      fetch("videos-facebook.json")
+        .then((res) => res.json())
+        .then((videosData) => {
+          const years = Object.keys(videosData).sort((a, b) => b - a);
+          const pills = document.getElementById("fb-year-pills");
+          const container = document.getElementById(
+            "facebook-videos-container"
+          );
+          let selectedYear = years[0];
+          // Render year pills
+          function renderPills() {
+            pills.innerHTML = years
+              .map(
+                (year) => `
+              <button class="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+                year === selectedYear
+                  ? "bg-primary-500 text-white shadow"
+                  : "bg-gray-100 text-gray-700 hover:bg-primary-100"
+              }" data-year="${year}">${year}</button>
+            `
+              )
+              .join("");
+            pills.querySelectorAll("button").forEach((btn) => {
+              btn.onclick = () => {
+                selectedYear = btn.getAttribute("data-year");
+                renderPills();
+                renderGrid();
+              };
+            });
+          }
+          // Render video grid for selected year
+          function renderGrid() {
+            const videos = videosData[selectedYear];
+            container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              ${videos
+                .map((url, idx) => {
+                  let embedUrl = url;
+                  if (url.includes("facebook.com/watch/?v=")) {
+                    const vid = url.split("v=")[1];
+                    embedUrl = `https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=${vid}&show_text=0&width=560`;
+                  }
+                  return `
+                  <div class="group bg-gray-50 rounded-lg shadow p-2 flex flex-col items-center cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-xl focus-within:scale-105 focus-within:shadow-xl w-full" tabindex="0" role="button" aria-label="Open video ${
+                    idx + 1
+                  } of ${selectedYear}" data-idx="${idx}">
+                    <div class="relative w-full aspect-video flex items-center justify-center overflow-hidden rounded-md bg-black/10">
+                      <iframe src="${embedUrl}" width="100%" height="100%" style="border:none;overflow:hidden;aspect-ratio:16/9;min-height:180px;max-height:260px;" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" class="transition-opacity duration-300 opacity-80 group-hover:opacity-100 pointer-events-none w-full h-full"></iframe>
+                      <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-play text-white text-4xl"></i>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                })
+                .join("")}
+            </div>`;
+            // Add click/keyboard event to open lightbox
+            container.querySelectorAll("[data-idx]").forEach((card) => {
+              card.onclick = () =>
+                openLightbox(parseInt(card.getAttribute("data-idx")));
+              card.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openLightbox(parseInt(card.getAttribute("data-idx")));
+                }
+              };
+            });
+          }
+          // Lightbox logic
+          let currentIdx = 0;
+          let currentVideos = videosData[selectedYear];
+          const modal = document.getElementById("fb-lightbox-modal");
+          const closeBtn = document.getElementById("fb-lightbox-close");
+          const prevBtn = document.getElementById("fb-lightbox-prev");
+          const nextBtn = document.getElementById("fb-lightbox-next");
+          const caption = document.getElementById("fb-lightbox-caption");
+          const iframeContainer = document.getElementById(
+            "fb-lightbox-iframe-container"
+          );
+          function openLightbox(idx) {
+            currentVideos = videosData[selectedYear];
+            currentIdx = idx;
+            updateLightbox();
+            modal.classList.remove("hidden");
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+              modal.classList.add("bg-opacity-100");
+            }, 10);
+          }
+          function closeLightbox() {
+            modal.classList.remove("bg-opacity-100");
+            setTimeout(() => {
+              modal.classList.add("hidden");
+              document.body.classList.remove("overflow-hidden");
+              iframeContainer.innerHTML = "";
+            }, 200);
+          }
+          function updateLightbox() {
+            const url = currentVideos[currentIdx];
+            let embedUrl = url;
+            if (url.includes("facebook.com/watch/?v=")) {
+              const vid = url.split("v=")[1];
+              embedUrl = `https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=${vid}&show_text=0&width=560`;
+            }
+            iframeContainer.innerHTML = `<iframe src="${embedUrl}" width="560" height="315" style="border:none;overflow:hidden" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" class="rounded-lg shadow-lg w-full max-w-2xl mx-auto"></iframe>`;
+            caption.textContent = `${selectedYear}`;
+          }
+          function showPrev() {
+            if (currentIdx > 0) {
+              currentIdx--;
+              updateLightbox();
+            }
+          }
+          function showNext() {
+            if (currentIdx < currentVideos.length - 1) {
+              currentIdx++;
+              updateLightbox();
+            }
+          }
+          closeBtn.onclick = closeLightbox;
+          prevBtn.onclick = showPrev;
+          nextBtn.onclick = showNext;
+          // Backdrop click closes
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeLightbox();
+          });
+          // Keyboard navigation
+          function lightboxKeyHandler(e) {
+            if (modal.classList.contains("hidden")) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "ArrowRight") showNext();
+          }
+          document.addEventListener("keydown", lightboxKeyHandler);
+          // Swipe support
+          let touchStartX = null;
+          let touchEndX = null;
+          iframeContainer.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          });
+          iframeContainer.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+          });
+          function handleSwipe() {
+            if (touchStartX !== null && touchEndX !== null) {
+              const dx = touchEndX - touchStartX;
+              if (Math.abs(dx) > 40) {
+                if (dx > 0) showPrev();
+                else showNext();
+              }
+            }
+            touchStartX = null;
+            touchEndX = null;
+          }
+          // Update grid and pills on year change
+          function updateOnYearChange() {
+            renderPills();
+            renderGrid();
+          }
+          updateOnYearChange();
+        });
+    </script>
   </body>
 </html>
