@@ -85,7 +85,7 @@ const NavigationComponent = {
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
                     <a href="manjula.html" class="nav-link" data-page="manjula">Manjula</a>
-                    <a href="index.html" class="nav-link" data-page="gallery">Gallery</a>
+                    <a href="gallery.html" class="nav-link" data-page="gallery">Gallery</a>
                     <a href="arangetram.html" class="nav-link" data-page="arangetram">Arangetram</a>
                     <a href="shows.html" class="nav-link" data-page="shows">Shows</a>
                     <a href="videos.html" class="nav-link" data-page="videos">Videos</a>
@@ -107,7 +107,7 @@ const NavigationComponent = {
             <div class="px-4 py-2 space-y-2">
                 <a href="index.html" class="mobile-nav-link" data-page="home">Home</a>
                 <a href="manjula.html" class="mobile-nav-link" data-page="manjula">Manjula</a>
-                <a href="index.html" class="mobile-nav-link" data-page="gallery">Gallery</a>
+                <a href="gallery.html" class="mobile-nav-link" data-page="gallery">Gallery</a>
                 <a href="arangetram.html" class="mobile-nav-link" data-page="arangetram">Arangetram</a>
                 <a href="shows.html" class="mobile-nav-link" data-page="shows">Shows</a>
                 <a href="videos.html" class="mobile-nav-link" data-page="videos">Videos</a>
