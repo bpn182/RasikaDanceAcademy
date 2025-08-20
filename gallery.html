@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Rasika Dance Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/shared.css" />
+    <style>
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50" data-page="gallery">
+    <!-- Navigation Component Container (top navigation) -->
+    <div id="navigation-container"></div>
+
+    <!-- Gallery Section (Carousel from JSON) -->
+    <section id="gallery-json-grid" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 pt-8">
+          <h2
+            class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Our Dance Gallery
+          </h2>
+          <div
+            class="w-16 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Experience the beauty and grace of classical Indian dance through
+            our interactive gallery showcasing performances, students, and
+            memorable moments.
+          </p>
+        </div>
+        <div class="relative">
+          <button
+            id="carousel-prev"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition hidden sm:flex"
+          >
+            <i class="fas fa-chevron-left text-gray-600"></i>
+          </button>
+          <div
+            id="gallery-carousel-track"
+            class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-6 py-2"
+          ></div>
+          <button
+            id="carousel-next"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition hidden sm:flex"
+          >
+            <i class="fas fa-chevron-right text-gray-600"></i>
+          </button>
+        </div>
+        <div
+          id="carousel-indicators"
+          class="flex justify-center mt-6 space-x-3"
+        ></div>
+        <!-- Dynamic photo grid will be injected here -->
+        <div id="photo-grid-container" class="mt-10"></div>
+      </div>
+    </section>
+    <script>
+      let galleryData = {};
+      fetch("images/gallery/gallery-index.json")
+        .then((res) => res.json())
+        .then((data) => {
+          galleryData = data;
+          const sectionTitles = {
+            Kids: "Kids",
+            Adults: "Adults",
+            "Group-Performances": "Group Performances",
+            Arangetram: "Arangetram",
+            Expression: "Expression",
+            "Unique-poses": "Unique Poses",
+          };
+          const sectionDescriptions = {
+            Kids: "Adorable young dancers",
+            Adults: "Mature dancers",
+            "Group-Performances": "Synchronized beauty",
+            Arangetram: "Sacred debut performances",
+            Expression: "Captivating facial expressions",
+            "Unique-poses": "Creative and artistic poses",
+          };
+          const track = document.getElementById("gallery-carousel-track");
+          const indicators = document.getElementById("carousel-indicators");
+          track.innerHTML = "";
+          let cards = [];
+          Object.keys(data).forEach((section) => {
+            if (data[section] && data[section].length > 0) {
+              const imgUrl = data[section][0];
+              const title = sectionTitles[section] || section;
+              const desc = sectionDescriptions[section] || "";
+              const card = document.createElement("div");
+              card.className =
+                "min-w-[280px] max-w-xs w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-white flex flex-col flex-shrink-0";
+              card.innerHTML = `
+              <div class="relative h-56 w-full overflow-hidden">
+                <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="hidden absolute inset-0 bg-gradient-to-br from-primary-200 to-rose-200 items-center justify-center">
+                  <i class="fas fa-image text-6xl text-white/80"></i>
+                </div>
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <h3 class="text-xl font-bold mb-2">${title}</h3>
+                    <p class="text-sm">${desc}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 flex-1 flex flex-col justify-end">
+                <div class="flex items-center justify-between w-full">
+                  <span class="text-gray-700 text-sm font-medium">${title}</span>
+                  <span class="text-gray-500 text-xs font-medium">${data[section].length} photos</span>
+                </div>
+              </div>
+            `;
+              // Add click event to show photo grid
+              card.addEventListener("click", function () {
+                showPhotoGrid(section, title, data[section]);
+              });
+              track.appendChild(card);
+              cards.push(card);
+            }
+          });
+
+          // Show photo grid below carousel
+          function showPhotoGrid(section, title, images) {
+            const container = document.getElementById("photo-grid-container");
+            let showCount = 4;
+            let expanded = false;
+            function renderGrid(isInitial = false) {
+              container.innerHTML = `
+                <div id="photo-grid-fade" class="opacity-0 translate-y-8 transition-all duration-500 ease-in-out bg-white rounded-2xl shadow-lg p-6 max-w-5xl mx-auto">
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900">${title} Gallery</h3>
+                    <button id="close-photo-grid" class="text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    ${images
+                      .slice(0, showCount)
+                      .map(
+                        (url, idx) => `
+                      <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-100">
+                        <img src="${url}" alt="${title}" class="object-cover w-full h-full cursor-pointer gallery-thumb" data-idx="${idx}" loading="lazy" />
+                      </div>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                  <div class="flex justify-center mt-6">
+                    ${
+                      images.length > showCount
+                        ? `<button id="show-more-photos" class="px-6 py-2 bg-primary-500 text-white rounded-full font-semibold shadow hover:bg-primary-600 transition">${
+                            expanded ? "Show Less" : "Show More Photos"
+                          }</button>`
+                        : ""
+                    }
+                  </div>
+                </div>
+                <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden">
+                  <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-bold focus:outline-none">&times;</button>
+                  <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"><i class="fas fa-chevron-left"></i></button>
+                  <div class="max-w-3xl w-full flex flex-col items-center">
+                    <img id="lightbox-img" src="" alt="Large view" class="max-h-[70vh] w-auto rounded-lg shadow-lg transition-all duration-300" />
+                    <div id="lightbox-caption" class="text-white mt-4 text-lg text-center"></div>
+                  </div>
+                  <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              `;
+              setTimeout(
+                () => {
+                  const fade = document.getElementById("photo-grid-fade");
+                  if (fade) {
+                    fade.classList.remove("opacity-0", "translate-y-8");
+                    fade.classList.add("opacity-100", "translate-y-0");
+                  }
+                },
+                isInitial ? 50 : 10
+              );
+              document.getElementById("close-photo-grid").onclick = () => {
+                const fade = document.getElementById("photo-grid-fade");
+                if (fade) {
+                  fade.classList.remove("opacity-100", "translate-y-0");
+                  fade.classList.add("opacity-0", "translate-y-8");
+                  setTimeout(() => {
+                    container.innerHTML = "";
+                  }, 500);
+                } else {
+                  container.innerHTML = "";
+                }
+              };
+              const moreBtn = document.getElementById("show-more-photos");
+              if (moreBtn) {
+                moreBtn.onclick = () => {
+                  expanded = !expanded;
+                  showCount = expanded ? images.length : 4;
+                  renderGrid();
+                };
+              }
+              // Lightbox logic
+              let currentLightboxIdx = 0;
+              const lightboxModal = document.getElementById("lightbox-modal");
+              const lightboxImg = document.getElementById("lightbox-img");
+              const lightboxCaption =
+                document.getElementById("lightbox-caption");
+              function openLightbox(idx) {
+                currentLightboxIdx = idx;
+                updateLightbox();
+                lightboxModal.classList.remove("hidden");
+                document.body.classList.add("overflow-hidden");
+              }
+              function closeLightbox() {
+                lightboxModal.classList.add("hidden");
+                document.body.classList.remove("overflow-hidden");
+              }
+              function updateLightbox() {
+                lightboxImg.src = images[currentLightboxIdx];
+                lightboxCaption.textContent = `${title} (${
+                  currentLightboxIdx + 1
+                } / ${images.length})`;
+              }
+              function showPrev() {
+                if (currentLightboxIdx > 0) {
+                  currentLightboxIdx--;
+                  updateLightbox();
+                }
+              }
+              function showNext() {
+                if (currentLightboxIdx < images.length - 1) {
+                  currentLightboxIdx++;
+                  updateLightbox();
+                }
+              }
+              // Add event listeners to thumbnails
+              document.querySelectorAll(".gallery-thumb").forEach((img) => {
+                img.addEventListener("click", (e) => {
+                  const idx = parseInt(img.getAttribute("data-idx"));
+                  openLightbox(idx);
+                });
+              });
+              // Lightbox controls
+              document.getElementById("lightbox-close").onclick = closeLightbox;
+              document.getElementById("lightbox-prev").onclick = showPrev;
+              document.getElementById("lightbox-next").onclick = showNext;
+              // Backdrop click closes
+              lightboxModal.addEventListener("click", (e) => {
+                if (e.target === lightboxModal) closeLightbox();
+              });
+              // Keyboard navigation
+              document.addEventListener("keydown", lightboxKeyHandler);
+              function lightboxKeyHandler(e) {
+                if (lightboxModal.classList.contains("hidden")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") showPrev();
+                if (e.key === "ArrowRight") showNext();
+              }
+              // Swipe support
+              let touchStartX = null;
+              let touchEndX = null;
+              lightboxImg.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+              });
+              lightboxImg.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+              });
+              function handleSwipe() {
+                if (touchStartX !== null && touchEndX !== null) {
+                  const dx = touchEndX - touchStartX;
+                  if (Math.abs(dx) > 40) {
+                    if (dx > 0) showPrev();
+                    else showNext();
+                  }
+                }
+                touchStartX = null;
+                touchEndX = null;
+              }
+              // Clean up event listeners on grid close
+              document
+                .getElementById("close-photo-grid")
+                .addEventListener("click", () => {
+                  document.removeEventListener("keydown", lightboxKeyHandler);
+                });
+            }
+            renderGrid(true);
+            setTimeout(() => {
+              container.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 550);
+          }
+
+          // Carousel navigation
+          const prevBtn = document.getElementById("carousel-prev");
+          const nextBtn = document.getElementById("carousel-next");
+          const cardWidth = 300; // Approximate width including margin
+          let currentIndex = 0;
+          const visibleCards = () => {
+            // Responsive: 1 on mobile, 2 on sm, 3 on md+
+            if (window.innerWidth < 640) return 1;
+            if (window.innerWidth < 1024) return 2;
+            return 3;
+          };
+          // --- Carousel Indicator Refactor ---
+          let dotButtons = [];
+          let totalDots = 0;
+          function createIndicators() {
+            totalDots = Math.max(1, cards.length - visibleCards() + 1);
+            indicators.innerHTML = "";
+            dotButtons = [];
+            for (let i = 0; i < totalDots; i++) {
+              const dot = document.createElement("button");
+              dot.className =
+                "w-3 h-3 rounded-full transition-all duration-300 " +
+                (i === currentIndex
+                  ? "bg-primary-500 scale-125"
+                  : "bg-gray-300 hover:bg-gray-400");
+              dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+              dot.addEventListener("click", () => {
+                currentIndex = i;
+                scrollToIndex();
+                updateActiveIndicator();
+              });
+              indicators.appendChild(dot);
+              dotButtons.push(dot);
+            }
+          }
+          function updateActiveIndicator() {
+            for (let i = 0; i < dotButtons.length; i++) {
+              if (i === currentIndex) {
+                dotButtons[i].classList.add("bg-primary-500", "scale-125");
+                dotButtons[i].classList.remove(
+                  "bg-gray-300",
+                  "hover:bg-gray-400"
+                );
+              } else {
+                dotButtons[i].classList.remove("bg-primary-500", "scale-125");
+                dotButtons[i].classList.add("bg-gray-300", "hover:bg-gray-400");
+              }
+            }
+          }
+          function scrollToIndex() {
+            track.scrollTo({
+              left: currentIndex * cardWidth * 1.2,
+              behavior: "smooth",
+            });
+          }
+          prevBtn.addEventListener("click", () => {
+            if (currentIndex > 0) currentIndex--;
+            scrollToIndex();
+            updateActiveIndicator();
+          });
+          nextBtn.addEventListener("click", () => {
+            if (currentIndex < cards.length - visibleCards()) currentIndex++;
+            scrollToIndex();
+            updateActiveIndicator();
+          });
+          // Throttle scroll event with requestAnimationFrame
+          let ticking = false;
+          track.addEventListener("scroll", () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                currentIndex = Math.round(track.scrollLeft / (cardWidth * 1.2));
+                updateActiveIndicator();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          });
+          window.addEventListener("resize", () => {
+            createIndicators();
+            updateActiveIndicator();
+          });
+          createIndicators();
+          updateActiveIndicator();
+        });
+    </script>
+
+    <!-- Facebook Videos Section -->
+    <section id="facebook-videos-section" class="pt-8 pb-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2
+            class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4"
+          >
+            Facebook Videos
+          </h2>
+          <div
+            class="w-16 h-1 bg-gradient-to-r from-primary-500 to-gold-500 mx-auto mb-6"
+          ></div>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Watch highlights from our performances and events, directly from our
+            official Facebook page.
+          </p>
+        </div>
+        <div
+          id="fb-year-pills"
+          class="flex flex-wrap justify-center gap-3 mb-10"
+        ></div>
+        <div id="facebook-videos-container"></div>
+      </div>
+      <!-- Lightbox Modal for Facebook Videos -->
+      <div
+        id="fb-lightbox-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-90 hidden transition-all duration-300"
+      >
+        <button
+          id="fb-lightbox-close"
+          class="absolute top-4 right-4 text-white text-4xl font-bold focus:outline-none"
+          aria-label="Close video"
+        >
+          &times;
+        </button>
+        <button
+          id="fb-lightbox-prev"
+          class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"
+          aria-label="Previous video"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="max-w-3xl w-full flex flex-col items-center">
+          <div
+            id="fb-lightbox-iframe-container"
+            class="w-full flex items-center justify-center min-h-[315px]"
+          >
+            <!-- iframe will be injected here -->
+          </div>
+          <div
+            id="fb-lightbox-caption"
+            class="text-white mt-4 text-lg text-center"
+          ></div>
+        </div>
+        <button
+          id="fb-lightbox-next"
+          class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl focus:outline-none"
+          aria-label="Next video"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+    <script src="js/components.js"></script>
+    <script>
+      // Facebook Videos Section with year pills, grid, and lightbox
+      fetch("videos-facebook.json")
+        .then((res) => res.json())
+        .then((videosData) => {
+          const years = Object.keys(videosData).sort((a, b) => b - a);
+          const pills = document.getElementById("fb-year-pills");
+          const container = document.getElementById(
+            "facebook-videos-container"
+          );
+          let selectedYear = years[0];
+          // Render year pills
+          function renderPills() {
+            pills.innerHTML = years
+              .map(
+                (year) => `
+              <button class="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+                year === selectedYear
+                  ? "bg-primary-500 text-white shadow"
+                  : "bg-gray-100 text-gray-700 hover:bg-primary-100"
+              }" data-year="${year}">${year}</button>
+            `
+              )
+              .join("");
+            pills.querySelectorAll("button").forEach((btn) => {
+              btn.onclick = () => {
+                selectedYear = btn.getAttribute("data-year");
+                renderPills();
+                renderGrid();
+              };
+            });
+          }
+          // Render video grid for selected year
+          function renderGrid() {
+            const videos = videosData[selectedYear];
+            container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              ${videos
+                .map((url, idx) => {
+                  let embedUrl = url;
+                  if (url.includes("facebook.com/watch/?v=")) {
+                    const vid = url.split("v=")[1];
+                    embedUrl = `https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=${vid}&show_text=0&width=560`;
+                  }
+                  return `
+                  <div class="group bg-gray-50 rounded-lg shadow p-2 flex flex-col items-center cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-xl focus-within:scale-105 focus-within:shadow-xl w-full" tabindex="0" role="button" aria-label="Open video ${
+                    idx + 1
+                  } of ${selectedYear}" data-idx="${idx}">
+                    <div class="relative w-full aspect-video flex items-center justify-center overflow-hidden rounded-md bg-black/10">
+                      <iframe src="${embedUrl}" width="100%" height="100%" style="border:none;overflow:hidden;aspect-ratio:16/9;min-height:180px;max-height:260px;" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" class="transition-opacity duration-300 opacity-80 group-hover:opacity-100 pointer-events-none w-full h-full"></iframe>
+                      <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-play text-white text-4xl"></i>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                })
+                .join("")}
+            </div>`;
+            // Add click/keyboard event to open lightbox
+            container.querySelectorAll("[data-idx]").forEach((card) => {
+              card.onclick = () =>
+                openLightbox(parseInt(card.getAttribute("data-idx")));
+              card.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openLightbox(parseInt(card.getAttribute("data-idx")));
+                }
+              };
+            });
+          }
+          // Lightbox logic
+          let currentIdx = 0;
+          let currentVideos = videosData[selectedYear];
+          const modal = document.getElementById("fb-lightbox-modal");
+          const closeBtn = document.getElementById("fb-lightbox-close");
+          const prevBtn = document.getElementById("fb-lightbox-prev");
+          const nextBtn = document.getElementById("fb-lightbox-next");
+          const caption = document.getElementById("fb-lightbox-caption");
+          const iframeContainer = document.getElementById(
+            "fb-lightbox-iframe-container"
+          );
+          function openLightbox(idx) {
+            currentVideos = videosData[selectedYear];
+            currentIdx = idx;
+            updateLightbox();
+            modal.classList.remove("hidden");
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+              modal.classList.add("bg-opacity-100");
+            }, 10);
+          }
+          function closeLightbox() {
+            modal.classList.remove("bg-opacity-100");
+            setTimeout(() => {
+              modal.classList.add("hidden");
+              document.body.classList.remove("overflow-hidden");
+              iframeContainer.innerHTML = "";
+            }, 200);
+          }
+          function updateLightbox() {
+            const url = currentVideos[currentIdx];
+            let embedUrl = url;
+            if (url.includes("facebook.com/watch/?v=")) {
+              const vid = url.split("v=")[1];
+              embedUrl = `https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=${vid}&show_text=0&width=560`;
+            }
+            iframeContainer.innerHTML = `<iframe src="${embedUrl}" width="560" height="315" style="border:none;overflow:hidden" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" class="rounded-lg shadow-lg w-full max-w-2xl mx-auto"></iframe>`;
+            caption.textContent = `${selectedYear}`;
+          }
+          function showPrev() {
+            if (currentIdx > 0) {
+              currentIdx--;
+              updateLightbox();
+            }
+          }
+          function showNext() {
+            if (currentIdx < currentVideos.length - 1) {
+              currentIdx++;
+              updateLightbox();
+            }
+          }
+          closeBtn.onclick = closeLightbox;
+          prevBtn.onclick = showPrev;
+          nextBtn.onclick = showNext;
+          // Backdrop click closes
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeLightbox();
+          });
+          // Keyboard navigation
+          function lightboxKeyHandler(e) {
+            if (modal.classList.contains("hidden")) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "ArrowRight") showNext();
+          }
+          document.addEventListener("keydown", lightboxKeyHandler);
+          // Swipe support
+          let touchStartX = null;
+          let touchEndX = null;
+          iframeContainer.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          });
+          iframeContainer.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+          });
+          function handleSwipe() {
+            if (touchStartX !== null && touchEndX !== null) {
+              const dx = touchEndX - touchStartX;
+              if (Math.abs(dx) > 40) {
+                if (dx > 0) showPrev();
+                else showNext();
+              }
+            }
+            touchStartX = null;
+            touchEndX = null;
+          }
+          // Update grid and pills on year change
+          function updateOnYearChange() {
+            renderPills();
+            renderGrid();
+          }
+          updateOnYearChange();
+        });
+    </script>
+  </body>
+</html>
