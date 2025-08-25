@@ -399,12 +399,6 @@
             },
           ];
 
-          // IDs that cannot be embedded (owner disabled embedding)
-          const blockedVideoIds = new Set([
-            "c9m3zCeXGqI", // Sagarika Manjula
-            "6MBBkecCndg", // Sagarika Venkat Bhakti - June 2021
-          ]);
-
           // Helper for tag color
           function getTagColor(tag) {
             switch (tag?.toLowerCase()) {
@@ -442,9 +436,9 @@
           grid.innerHTML = videos
             .map(
               (video) => `
-                <div class="video-card bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" aria-label="Open video ${
-                  video.title
-                }" onclick="openVideoModal('${video.id}')">
+                <div class="video-card bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openVideoModal('${
+                  video.id
+                }', '${video.title.replace(/'/g, "'")}' )">
                     <div class="video-thumbnail">
                         <img src="${video.thumbnail}" alt="${
                 video.title
@@ -452,11 +446,6 @@
                         ${
                           video.badge
                             ? `<div class='featured-badge'>${video.badge}</div>`
-                            : ""
-                        }
-                        ${
-                          blockedVideoIds.has(video.id)
-                            ? `<div class="absolute top-8 right-8 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">YouTube Only</div>`
                             : ""
                         }
                         <div class="video-duration">${video.duration}</div>
@@ -518,24 +507,79 @@
       ></div>
       <div class="flex items-center justify-center min-h-screen p-4">
         <div
-          class="relative bg-black rounded-2xl max-w-5xl w-full overflow-hidden shadow-2xl animate-scaleIn"
+          class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-scaleIn"
         >
-          <button
-            onclick="closeVideoModal()"
-            class="absolute top-3 right-3 z-10 text-white/80 hover:text-white transition-colors"
-            aria-label="Close video"
+          <!-- Modal Header -->
+          <div
+            class="flex items-center justify-between p-6 border-b border-gray-200"
           >
-            <i class="fas fa-times text-2xl"></i>
-          </button>
-          <div class="relative aspect-video">
+            <div>
+              <h3
+                id="modal-title"
+                class="text-2xl font-serif font-bold text-gray-900"
+              ></h3>
+              <p class="text-primary-600 font-medium mt-1">
+                Rasika Dance Academy
+              </p>
+            </div>
+            <button
+              onclick="closeVideoModal()"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <i class="fas fa-times text-2xl"></i>
+            </button>
+          </div>
+
+          <!-- Video Player -->
+          <div class="relative aspect-video bg-black">
             <iframe
               id="youtube-player"
               src=""
               frameborder="0"
-              allow="autoplay; encrypted-media; picture-in-picture; web-share"
               allowfullscreen
               class="w-full h-full"
             ></iframe>
+          </div>
+
+          <!-- Video Info -->
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-6 text-sm">
+                <a
+                  href="https://www.youtube.com/c/RasikaDanceAcademy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  <i class="fab fa-youtube mr-2"></i>
+                  Watch on YouTube
+                </a>
+                <button
+                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  <i class="fas fa-share mr-2"></i>Share
+                </button>
+                <button
+                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  <i class="fas fa-heart mr-2"></i>Save
+                </button>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span
+                  class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium"
+                >
+                  Classical Dance
+                </span>
+              </div>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              Experience the divine artistry of classical Indian dance through
+              this beautiful performance by Sagarika Venkat and the Rasika Dance
+              Academy. Each movement tells a story, each gesture carries
+              meaning, bringing ancient traditions to life through contemporary
+              artistry.
+            </p>
           </div>
         </div>
       </div>
@@ -579,52 +623,23 @@
 
         <!-- Social Stats -->
         <div class="flex flex-wrap justify-center gap-6 mt-12">
-          <div
-            class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1"
-          >
-            <div class="text-2xl font-bold text-white mb-1 tracking-tight">
-              81K+
-            </div>
-            <div class="text-white/80 text-sm font-medium tracking-wide">
-              Video Views
-            </div>
+          <div class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1">
+            <div class="text-2xl font-bold text-white mb-1 tracking-tight">81K+</div>
+            <div class="text-white/80 text-sm font-medium tracking-wide">Video Views</div>
           </div>
-          <div
-            class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1"
-          >
-            <div class="text-2xl font-bold text-white mb-1 tracking-tight">
-              100+
-            </div>
-            <div class="text-white/80 text-sm font-medium tracking-wide">
-              Original Performances
-            </div>
+          <div class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1">
+            <div class="text-2xl font-bold text-white mb-1 tracking-tight">100+</div>
+            <div class="text-white/80 text-sm font-medium tracking-wide">Original Performances</div>
           </div>
-          <div
-            class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1"
-          >
-            <div class="text-2xl font-bold text-white mb-1 tracking-tight">
-              3.2K+
-            </div>
-            <div class="text-white/80 text-sm font-medium tracking-wide">
-              Facebook Followers
-            </div>
+          <div class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1">
+            <div class="text-2xl font-bold text-white mb-1 tracking-tight">3.2K+</div>
+            <div class="text-white/80 text-sm font-medium tracking-wide">Facebook Followers</div>
           </div>
-          <a
-            href="https://www.youtube.com/c/RasikaDanceAcademy"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1 cursor-pointer group"
-          >
-            <div
-              class="text-2xl font-bold text-white mb-1 tracking-tight flex items-center justify-center group-hover:scale-110 transition-transform"
-            >
+          <a href="https://www.youtube.com/c/RasikaDanceAcademy" target="_blank" rel="noopener noreferrer" class="px-7 py-4 rounded-2xl glass-effect border border-white/30 shadow-md backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center min-w-[140px] max-w-[200px] flex-1 cursor-pointer group">
+            <div class="text-2xl font-bold text-white mb-1 tracking-tight flex items-center justify-center group-hover:scale-110 transition-transform">
               <i class="fab fa-youtube mr-1"></i>1K+
             </div>
-            <div
-              class="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors"
-            >
-              Subscribers
-            </div>
+            <div class="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors">Subscribers</div>
           </a>
         </div>
       </div>
@@ -637,21 +652,14 @@
     <script src="js/components.js"></script>
     <script>
       // Video modal functions
-      function openVideoModal(videoId) {
-        // If video is blocked from embedding, open directly on YouTube
-        if (blockedVideoIds && blockedVideoIds.has(videoId)) {
-          window.open(
-            `https://www.youtube.com/watch?v=${videoId}`,
-            "_blank",
-            "noopener,noreferrer"
-          );
-          return;
-        }
+      function openVideoModal(videoId, title) {
         const modal = document.getElementById("video-modal");
         const iframe = document.getElementById("youtube-player");
+        const modalTitle = document.getElementById("modal-title");
 
         // Set video URL with autoplay
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        modalTitle.textContent = title;
 
         // Show modal
         modal.classList.remove("hidden");
