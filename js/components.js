@@ -76,8 +76,11 @@ const NavigationComponent = {
                         </div>
                     </a>
                     <div>
-                        <h2 class="text-2xl font-serif font-bold text-primary-600">Rasika</h2>
-                        <p class="text-sm text-amber-600 font-medium">Dance Academy</p>
+                        <h2 class="text-2xl font-serif font-bold flex items-center gap-2">
+                            <span class="text-primary-600">Rasika</span>
+                            <span class="text-2xl text-gray-400 font-normal">|</span>
+                            <span class="text-gray-700">Dance Academy</span>
+                        </h2>
                     </div>
                 </div>
 
