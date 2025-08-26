@@ -76,6 +76,33 @@
       </div>
     </section>
     <script>
+      // Simple reveal-on-scroll utility (global)
+      window.revealOnScroll = function (
+        elements,
+        delayStep = 60,
+        threshold = 0.12
+      ) {
+        if (!elements || elements.length === 0) return;
+        const obs = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                // ensure transition is applied smoothly
+                el.classList.remove("opacity-0", "translate-y-4");
+                el.classList.add("opacity-100", "translate-y-0");
+                observer.unobserve(el);
+              }
+            });
+          },
+          { threshold }
+        );
+        Array.from(elements).forEach((el, i) => {
+          // Stagger via inline transition-delay
+          el.style.transitionDelay = `${i * delayStep}ms`;
+          obs.observe(el);
+        });
+      };
       let galleryData = {};
       fetch("images/gallery/gallery-index.json")
         .then((res) => res.json())
@@ -106,7 +133,7 @@
               const desc = sectionDescriptions[section] || "";
               const card = document.createElement("div");
               card.className =
-                "min-w-[280px] max-w-xs w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-white flex flex-col flex-shrink-0";
+                "min-w-[280px] max-w-xs w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-1000 ease-out cursor-pointer group bg-white flex flex-col flex-shrink-0 opacity-0 translate-y-4 js-reveal";
               card.innerHTML = `
               <div class="relative h-56 w-full overflow-hidden">
                 <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -136,6 +163,9 @@
             }
           });
 
+          // Animate carousel cards on first reveal
+          window.revealOnScroll(cards, 120, 0.15);
+
           // Show photo grid below carousel
           function showPhotoGrid(section, title, images) {
             const container = document.getElementById("photo-grid-container");
@@ -143,7 +173,7 @@
             let expanded = false;
             function renderGrid(isInitial = false) {
               container.innerHTML = `
-                <div id="photo-grid-fade" class="opacity-0 translate-y-8 transition-all duration-500 ease-in-out bg-white rounded-2xl shadow-lg p-6 max-w-5xl mx-auto">
+                <div id="photo-grid-fade" class="opacity-0 translate-y-8 transition-all duration-700 ease-in-out bg-white rounded-2xl shadow-lg p-6 max-w-5xl mx-auto">
                   <div class="flex items-center justify-between mb-4">
                     <h3 class="text-2xl font-bold text-gray-900">${title} Gallery</h3>
                     <button id="close-photo-grid" class="text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
@@ -153,7 +183,7 @@
                       .slice(0, showCount)
                       .map(
                         (url, idx) => `
-                      <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-100">
+            <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-100 opacity-0 translate-y-4 transition-all duration-700 ease-out js-reveal">
                         <img src="${url}" alt="${title}" class="object-cover w-full h-full cursor-pointer gallery-thumb" data-idx="${idx}" loading="lazy" />
                       </div>
                     `
@@ -187,6 +217,9 @@
                     fade.classList.remove("opacity-0", "translate-y-8");
                     fade.classList.add("opacity-100", "translate-y-0");
                   }
+                  // Staggered reveal for thumbs
+                  const revealThumbs = container.querySelectorAll(".js-reveal");
+                  window.revealOnScroll(revealThumbs, 80, 0.1);
                 },
                 isInitial ? 50 : 10
               );
@@ -469,7 +502,7 @@
             pills.innerHTML = years
               .map(
                 (year) => `
-              <button class="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+              <button class="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-700 ease-out opacity-0 translate-y-2 js-reveal focus:outline-none focus:ring-2 focus:ring-primary-500 ${
                 year === selectedYear
                   ? "bg-primary-500 text-white shadow"
                   : "bg-gray-100 text-gray-700 hover:bg-primary-100"
@@ -484,6 +517,12 @@
                 renderGrid();
               };
             });
+            // Reveal pills
+            window.revealOnScroll(
+              pills.querySelectorAll(".js-reveal"),
+              70,
+              0.05
+            );
           }
           // Render video grid for selected year
           function renderGrid() {
@@ -497,7 +536,7 @@
                     embedUrl = `https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=${vid}&show_text=0&width=560`;
                   }
                   return `
-                  <div class="group bg-gray-50 rounded-lg shadow p-2 flex flex-col items-center cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-xl focus-within:scale-105 focus-within:shadow-xl w-full" tabindex="0" role="button" aria-label="Open video ${
+                  <div class="group bg-gray-50 rounded-lg shadow p-2 flex flex-col items-center cursor-pointer transform transition duration-900 ease-out hover:scale-105 hover:shadow-xl focus-within:scale-105 focus-within:shadow-xl w-full opacity-0 translate-y-4 js-reveal" tabindex="0" role="button" aria-label="Open video ${
                     idx + 1
                   } of ${selectedYear}" data-idx="${idx}">
                     <div class="relative w-full aspect-video flex items-center justify-center overflow-hidden rounded-md bg-black/10">
@@ -522,6 +561,12 @@
                 }
               };
             });
+            // Reveal video cards
+            window.revealOnScroll(
+              container.querySelectorAll(".js-reveal"),
+              100,
+              0.08
+            );
           }
           // Lightbox logic
           let currentIdx = 0;
