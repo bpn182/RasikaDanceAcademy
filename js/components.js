@@ -75,10 +75,9 @@ const NavigationComponent = {
                             </div>
                         </div>
                     </a>
-                    <div>
+                    <div class="hidden sm:block">
                         <h2 class="text-2xl font-serif font-bold flex items-center gap-2">
                             <span class="text-primary-600">Rasika</span>
-                            <span class="text-2xl text-gray-400 font-normal">|</span>
                             <span class="text-gray-700">Dance Academy</span>
                         </h2>
                     </div>
