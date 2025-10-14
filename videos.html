@@ -399,6 +399,9 @@
             },
           ];
 
+          // Videos that might have embedding restrictions
+          const restrictedVideos = ['PKvpcq-MiC4', 'nWgf25MU8nY', 'c9m3zCeXGqI', 'XyWwsphMfTM']; // Add video IDs that commonly have embed restrictions
+
           // Helper for tag color
           function getTagColor(tag) {
             switch (tag?.toLowerCase()) {
@@ -446,6 +449,11 @@
                         ${
                           video.badge
                             ? `<div class='featured-badge'>${video.badge}</div>`
+                            : ""
+                        }
+                        ${
+                          restrictedVideos.includes(video.id)
+                            ? `<div class='absolute top-8 right-8 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium'>Watch on YouTube</div>`
                             : ""
                         }
                         <div class="video-duration">${video.duration}</div>
@@ -499,88 +507,27 @@
       </div>
     </section>
 
-    <!-- Video Modal -->
+    <!-- Video Modal (video-only) -->
     <div id="video-modal" class="fixed inset-0 z-50 hidden">
-      <div
-        class="modal-backdrop absolute inset-0"
-        onclick="closeVideoModal()"
-      ></div>
+      <div class="modal-backdrop absolute inset-0" onclick="closeVideoModal()"></div>
       <div class="flex items-center justify-center min-h-screen p-4">
-        <div
-          class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-scaleIn"
-        >
-          <!-- Modal Header -->
-          <div
-            class="flex items-center justify-between p-6 border-b border-gray-200"
+        <div class="w-[90vw] max-w-5xl aspect-video bg-black rounded-2xl shadow-2xl overflow-hidden animate-scaleIn relative">
+          <!-- Close button -->
+          <button
+            onclick="closeVideoModal()"
+            class="absolute top-3 right-3 text-white/80 hover:text-white transition-colors"
+            aria-label="Close video"
           >
-            <div>
-              <h3
-                id="modal-title"
-                class="text-2xl font-serif font-bold text-gray-900"
-              ></h3>
-              <p class="text-primary-600 font-medium mt-1">
-                Rasika Dance Academy
-              </p>
-            </div>
-            <button
-              onclick="closeVideoModal()"
-              class="text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <i class="fas fa-times text-2xl"></i>
-            </button>
-          </div>
-
-          <!-- Video Player -->
-          <div class="relative aspect-video bg-black">
-            <iframe
-              id="youtube-player"
-              src=""
-              frameborder="0"
-              allowfullscreen
-              class="w-full h-full"
-            ></iframe>
-          </div>
-
-          <!-- Video Info -->
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-6 text-sm">
-                <a
-                  href="https://www.youtube.com/c/RasikaDanceAcademy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fab fa-youtube mr-2"></i>
-                  Watch on YouTube
-                </a>
-                <button
-                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fas fa-share mr-2"></i>Share
-                </button>
-                <button
-                  class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fas fa-heart mr-2"></i>Save
-                </button>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span
-                  class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium"
-                >
-                  Classical Dance
-                </span>
-              </div>
-            </div>
-            <p class="text-gray-700 leading-relaxed">
-              Experience the divine artistry of classical Indian dance through
-              this beautiful performance by Sagarika Venkat and the Rasika Dance
-              Academy. Each movement tells a story, each gesture carries
-              meaning, bringing ancient traditions to life through contemporary
-              artistry.
-            </p>
-          </div>
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+          <iframe
+            id="youtube-player"
+            src=""
+            frameborder="0"
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            class="w-full h-full"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -653,13 +600,30 @@
     <script>
       // Video modal functions
       function openVideoModal(videoId, title) {
+        // Check if this video is known to be restricted
+        if (restrictedVideos.includes(videoId)) {
+          // Open directly on YouTube for restricted videos
+          window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+          return;
+        }
+
         const modal = document.getElementById("video-modal");
         const iframe = document.getElementById("youtube-player");
-        const modalTitle = document.getElementById("modal-title");
 
-        // Set video URL with autoplay
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-        modalTitle.textContent = title;
+        // Try to embed the video with better parameters
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1`;
+
+        // Add timeout to detect if video can't be embedded
+        let embedTimeout = setTimeout(() => {
+          // If iframe hasn't loaded properly, open in YouTube instead
+          window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+          closeVideoModal();
+        }, 5000);
+
+        // Handle iframe load success
+        iframe.onload = function() {
+          clearTimeout(embedTimeout);
+        };
 
         // Show modal
         modal.classList.remove("hidden");
