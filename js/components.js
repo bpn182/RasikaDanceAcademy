@@ -62,17 +62,8 @@ const NavigationComponent = {
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
                     <a href="index.html" class="focus:outline-none">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                            <!-- Animated background with fire-like glow -->
-                            <div class="absolute inset-0 bg-black rounded-full shadow-lg logo-fire-animation">
-                                <div class="w-full h-full flex items-center justify-center relative">
-                                    <!-- Traditional pattern borders -->
-                                    <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
-                                    <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
-                                    <!-- Logo with gentle glow animation -->
-                                    <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg logo-glow-pulse" />
-                                </div>
-                            </div>
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border border-gray-200">
+                            <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain" />
                         </div>
                     </a>
                     <div>
@@ -176,17 +167,8 @@ const FooterComponent = {
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
                     <div class="flex items-center space-x-4 mb-6">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                            <!-- Same design as navbar but for dark footer -->
-                            <div class="absolute inset-0 bg-black rounded-full shadow-lg">
-                                <div class="w-full h-full flex items-center justify-center relative">
-                                    <!-- Traditional pattern borders -->
-                                    <div class="absolute inset-1 border-2 border-white rounded-full opacity-60" style="border-style: dotted;"></div>
-                                    <div class="absolute inset-2 border border-amber-200 rounded-full opacity-40" style="border-style: dashed;"></div>
-                                    <!-- Logo -->
-                                    <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain z-10 drop-shadow-lg" />
-                                </div>
-                            </div>
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                            <img src="images/logo/logo.png" alt="Rasika Dance Academy Logo" class="w-12 h-12 object-contain" />
                         </div>
                         <div>
                             <h3 class="text-2xl font-serif font-bold text-white">Rasika Dance Academy</h3>
